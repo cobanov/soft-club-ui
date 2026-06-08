@@ -71,6 +71,32 @@ import {
   Tooltip,
   WordRoll
 } from "@cobanov/soft-club-ui";
+import {
+  Alert,
+  Avatar,
+  Breadcrumb,
+  ButtonGroup,
+  DuotoneCard,
+  DuotoneImage,
+  GlitchText,
+  Kbd,
+  Label,
+  MatrixRain,
+  NativeSelect,
+  OrbitLoader,
+  Pagination,
+  ParticleField,
+  Progress,
+  RadarSweep,
+  RadioGroup,
+  ScrollArea,
+  Slider,
+  Spinner,
+  Table,
+  Toggle,
+  ToggleGroup,
+  Waveform
+} from "@cobanov/soft-club-ui";
 
 interface ComponentEntry {
   category: string;
@@ -84,18 +110,21 @@ interface ComponentEntry {
 const themeOptions = [
   {
     description: "Icy transport glass and cyan scan lines.",
+    glass: "blue",
     label: "Blue",
     swatches: ["#7ebcff", "#87f2e6", "#ffd16a"],
     value: "blue"
   },
   {
     description: "Green room glow, soft glass, muted concrete.",
+    glass: "green",
     label: "Green",
     swatches: ["#8bb8d7", "#8effad", "#ff8a3d"],
     value: "green"
   },
   {
     description: "Amber motion blur and late-night platform heat.",
+    glass: "amber",
     label: "Orange",
     swatches: ["#ffd27a", "#ff9a20", "#ffcf35"],
     value: "orange"
@@ -710,6 +739,432 @@ const componentEntries: ComponentEntry[] = [
       </StickyBanner>
     ),
     slug: "sticky-banner"
+  },
+  {
+    category: "Foundations",
+    code: `<Label required>Channel name</Label>`,
+    description: "Form label with optional required marker, paired with any control.",
+    name: "Label",
+    preview: () => (
+      <div className="preview-stack">
+        <Label htmlFor="demo-room">Room code</Label>
+        <Input aria-label="Room code" defaultValue="SC-133G04" id="demo-room" name="demo-room" />
+        <Label required>Channel name</Label>
+      </div>
+    ),
+    slug: "label"
+  },
+  {
+    category: "Foundations",
+    code: `<Kbd>⌘</Kbd><Kbd>K</Kbd>`,
+    description: "Keyboard key cap for shortcut hints and command surfaces.",
+    name: "Kbd",
+    preview: () => (
+      <div className="preview-row">
+        <Kbd>⌘</Kbd>
+        <Kbd>K</Kbd>
+        <span>open palette</span>
+      </div>
+    ),
+    slug: "kbd"
+  },
+  {
+    category: "Foundations",
+    code: `<Avatar fallback="SC" />`,
+    description: "Image avatar with monogram fallback, tones, and stacked groups.",
+    name: "Avatar",
+    preview: () => (
+      <div className="preview-row">
+        <Avatar fallback="SC" />
+        <Avatar fallback="A3" size="lg" tone="blue" />
+        <Avatar.Group>
+          <Avatar fallback="R3" />
+          <Avatar fallback="K7" tone="warm" />
+          <Avatar fallback="VF" tone="blue" />
+        </Avatar.Group>
+      </div>
+    ),
+    slug: "avatar"
+  },
+  {
+    category: "Actions & Inputs",
+    code: `<NativeSelect><option>Bus B2</option></NativeSelect>`,
+    description: "Styled native select with token chrome and custom chevron.",
+    name: "NativeSelect",
+    preview: () => (
+      <NativeSelect aria-label="Route bus" defaultValue="b2">
+        <option value="a1">Bus A1</option>
+        <option value="b2">Bus B2</option>
+        <option value="c3">Bus C3</option>
+      </NativeSelect>
+    ),
+    slug: "native-select"
+  },
+  {
+    category: "Actions & Inputs",
+    code: `<RadioGroup.Item value="glass" label="Green glass" />`,
+    description: "Accessible radio group with controlled value and labelled items.",
+    name: "RadioGroup",
+    preview: () => (
+      <RadioGroup defaultValue="glass" name="demo-surface">
+        <RadioGroup.Item
+          description="Default Soft Club surface."
+          label="Green glass"
+          value="glass"
+        />
+        <RadioGroup.Item description="Cold platform light." label="Metro" value="metro" />
+        <RadioGroup.Item description="Amber late-night heat." label="Signal" value="signal" />
+      </RadioGroup>
+    ),
+    slug: "radio-group"
+  },
+  {
+    category: "Actions & Inputs",
+    code: `<Slider defaultValue={64} />`,
+    description: "Native range slider with token track and themed thumb tones.",
+    name: "Slider",
+    preview: () => (
+      <div className="preview-stack">
+        <Slider aria-label="Noise" defaultValue={64} />
+        <Slider aria-label="Blur" defaultValue={32} tone="blue" />
+        <Slider aria-label="Heat" defaultValue={48} tone="warning" />
+      </div>
+    ),
+    slug: "slider"
+  },
+  {
+    category: "Actions & Inputs",
+    code: `<Toggle defaultPressed>Glass</Toggle>`,
+    description: "Two-state pressable toggle with default and outline variants.",
+    name: "Toggle",
+    preview: () => (
+      <div className="preview-row">
+        <Toggle defaultPressed>Glass</Toggle>
+        <Toggle variant="outline">Grid</Toggle>
+        <Toggle variant="outline">Scan</Toggle>
+      </div>
+    ),
+    slug: "toggle"
+  },
+  {
+    category: "Actions & Inputs",
+    code: `<ToggleGroup type="single">…</ToggleGroup>`,
+    description: "Single or multiple toggle set with shared selection state.",
+    name: "ToggleGroup",
+    preview: () => (
+      <ToggleGroup aria-label="Align" defaultValue={["center"]}>
+        <ToggleGroup.Item value="left">Left</ToggleGroup.Item>
+        <ToggleGroup.Item value="center">Center</ToggleGroup.Item>
+        <ToggleGroup.Item value="right">Right</ToggleGroup.Item>
+      </ToggleGroup>
+    ),
+    slug: "toggle-group"
+  },
+  {
+    category: "Actions & Inputs",
+    code: `<ButtonGroup><Button variant="outline">Scan</Button></ButtonGroup>`,
+    description: "Joins related buttons into one seamless segmented control.",
+    name: "ButtonGroup",
+    preview: () => (
+      <ButtonGroup>
+        <Button variant="outline">Scan</Button>
+        <Button variant="outline">Route</Button>
+        <Button variant="outline">Render</Button>
+      </ButtonGroup>
+    ),
+    slug: "button-group"
+  },
+  {
+    category: "Navigation",
+    code: `<Breadcrumb><Breadcrumb.List>…</Breadcrumb.List></Breadcrumb>`,
+    description: "Hierarchy trail with links, current page, and chevron separators.",
+    name: "Breadcrumb",
+    preview: () => (
+      <Breadcrumb>
+        <Breadcrumb.List>
+          <Breadcrumb.Item>
+            <Breadcrumb.Link href="#/">Home</Breadcrumb.Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Separator />
+          <Breadcrumb.Item>
+            <Breadcrumb.Link href="#/category/surfaces">Surfaces</Breadcrumb.Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Separator />
+          <Breadcrumb.Item>
+            <Breadcrumb.Page>Glass Panel</Breadcrumb.Page>
+          </Breadcrumb.Item>
+        </Breadcrumb.List>
+      </Breadcrumb>
+    ),
+    slug: "breadcrumb"
+  },
+  {
+    category: "Navigation",
+    code: `<Pagination><Pagination.Content>…</Pagination.Content></Pagination>`,
+    description: "Page navigation with prev/next, active page, and ellipsis.",
+    name: "Pagination",
+    preview: () => (
+      <Pagination>
+        <Pagination.Content>
+          <Pagination.Item>
+            <Pagination.Previous href="#/category/navigation/pagination" />
+          </Pagination.Item>
+          <Pagination.Item>
+            <Pagination.Link href="#/category/navigation/pagination">1</Pagination.Link>
+          </Pagination.Item>
+          <Pagination.Item>
+            <Pagination.Link href="#/category/navigation/pagination" isActive>
+              2
+            </Pagination.Link>
+          </Pagination.Item>
+          <Pagination.Item>
+            <Pagination.Link href="#/category/navigation/pagination">3</Pagination.Link>
+          </Pagination.Item>
+          <Pagination.Item>
+            <Pagination.Ellipsis />
+          </Pagination.Item>
+          <Pagination.Item>
+            <Pagination.Next href="#/category/navigation/pagination" />
+          </Pagination.Item>
+        </Pagination.Content>
+      </Pagination>
+    ),
+    slug: "pagination"
+  },
+  {
+    category: "Feedback",
+    code: `<Alert variant="green"><Alert.Title>Synced</Alert.Title></Alert>`,
+    description: "Inline status message with variants and an optional leading icon.",
+    name: "Alert",
+    preview: () => (
+      <div className="preview-stack">
+        <Alert icon={<StatusDot static tone="green" />} variant="green">
+          <Alert.Title>Channel synced</Alert.Title>
+          <Alert.Description>Glass pass active. Visual noise settled at 04%.</Alert.Description>
+        </Alert>
+        <Alert icon={<StatusDot static tone="warning" />} variant="warning">
+          <Alert.Title>Signal drift</Alert.Title>
+          <Alert.Description>Bus B2 latency is above the soft threshold.</Alert.Description>
+        </Alert>
+      </div>
+    ),
+    slug: "alert"
+  },
+  {
+    category: "Feedback",
+    code: `<Progress value={72} />`,
+    description: "Determinate progress bar with green, blue, and warning tones.",
+    name: "Progress",
+    preview: () => (
+      <div className="preview-stack">
+        <Progress value={72} />
+        <Progress tone="blue" value={44} />
+        <Progress tone="warning" value={28} />
+      </div>
+    ),
+    slug: "progress"
+  },
+  {
+    category: "Feedback",
+    code: `<Spinner />`,
+    description: "Compact ring spinner for inline and button loading states.",
+    name: "Spinner",
+    preview: () => (
+      <div className="preview-row">
+        <Spinner size="sm" />
+        <Spinner />
+        <Spinner size="lg" />
+      </div>
+    ),
+    slug: "spinner"
+  },
+  {
+    category: "Feedback",
+    code: `<OrbitLoader />`,
+    description: "Live three-ring orbital loader with themed satellites.",
+    name: "OrbitLoader",
+    preview: () => (
+      <div className="preview-row">
+        <OrbitLoader size="sm" />
+        <OrbitLoader />
+        <OrbitLoader size="lg" />
+      </div>
+    ),
+    slug: "orbit-loader"
+  },
+  {
+    category: "Surfaces",
+    code: `<Table><Table.Header>…</Table.Header></Table>`,
+    description: "Composable data table with header, body, footer, and hover rows.",
+    name: "Table",
+    preview: () => (
+      <Table>
+        <Table.Header>
+          <Table.Row>
+            <Table.Head>Node</Table.Head>
+            <Table.Head>Bus</Table.Head>
+            <Table.Head>State</Table.Head>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>A1</Table.Cell>
+            <Table.Cell>Glass</Table.Cell>
+            <Table.Cell>
+              <Badge variant="green">Online</Badge>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>B2</Table.Cell>
+            <Table.Cell>Metro</Table.Cell>
+            <Table.Cell>
+              <Badge variant="warning">Drift</Badge>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>C3</Table.Cell>
+            <Table.Cell>Signal</Table.Cell>
+            <Table.Cell>
+              <Badge variant="neutral">Idle</Badge>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    ),
+    slug: "table"
+  },
+  {
+    category: "Surfaces",
+    code: `<ScrollArea maxHeight="9rem">…</ScrollArea>`,
+    description: "Scoped scroll container with themed thin scrollbars.",
+    name: "ScrollArea",
+    preview: () => (
+      <ScrollArea maxHeight="9rem">
+        <div style={{ display: "grid", gap: "0.5rem", padding: "0.75rem" }}>
+          {Array.from({ length: 10 }).map((_, index) => (
+            <div key={index}>SC/{index + 1} — glass bus mapped, noise 0{index}%</div>
+          ))}
+        </div>
+      </ScrollArea>
+    ),
+    slug: "scroll-area"
+  },
+  {
+    category: "Live & Reactive",
+    code: `<MatrixRain />`,
+    description: "Falling glyph rain rendered on canvas, tinted to the active theme.",
+    name: "MatrixRain",
+    preview: () => <MatrixRain label="MATRIX / RAIN" />,
+    slug: "matrix-rain"
+  },
+  {
+    category: "Live & Reactive",
+    code: `<ParticleField />`,
+    description: "Cursor-reactive constellation of particles linked by signal lines.",
+    name: "ParticleField",
+    preview: () => <ParticleField label="PARTICLE / FIELD" />,
+    slug: "particle-field"
+  },
+  {
+    category: "Live & Reactive",
+    code: `<RadarSweep />`,
+    description: "Rotating radar sweep over concentric rings with fading blips.",
+    name: "RadarSweep",
+    preview: () => <RadarSweep label="RADAR / SWEEP" />,
+    slug: "radar-sweep"
+  },
+  {
+    category: "Live & Reactive",
+    code: `<Waveform />`,
+    description: "Always-moving audio-style bar field with gradient bars.",
+    name: "Waveform",
+    preview: () => <Waveform label="WAVEFORM" />,
+    slug: "waveform"
+  },
+  {
+    category: "Live & Reactive",
+    code: `<GlitchText text="SOFT CLUB" />`,
+    description: "Phosphor glitch type with dual color channels jittering on a loop.",
+    name: "GlitchText",
+    preview: () => (
+      <div className="preview-counter">
+        <GlitchText text="SOFT CLUB" />
+      </div>
+    ),
+    slug: "glitch-text"
+  },
+  {
+    category: "Media",
+    code: `<DuotoneImage src={src} color="rgb(142 255 173)" />`,
+    description: "Recolors any image into a single-hue duotone via CSS blends.",
+    name: "DuotoneImage",
+    preview: () => (
+      <div className="preview-row">
+        <DuotoneImage
+          alt=""
+          src="https://picsum.photos/seed/soft-club-green/360/450"
+          style={{ width: "9rem" }}
+        />
+        <DuotoneImage
+          alt=""
+          color="rgb(126 188 255)"
+          src="https://picsum.photos/seed/soft-club-blue/360/450"
+          style={{ width: "9rem" }}
+        />
+        <DuotoneImage
+          alt=""
+          color="rgb(255 154 32)"
+          src="https://picsum.photos/seed/soft-club-amber/360/450"
+          style={{ width: "9rem" }}
+        />
+      </div>
+    ),
+    slug: "duotone-image"
+  },
+  {
+    category: "Media",
+    code: `<DuotoneCard src={src} color="rgb(126 188 255)" featured>…</DuotoneCard>`,
+    description: "Image-backed plan card: a duotone picture under a readable content scrim.",
+    name: "DuotoneCard",
+    preview: () => (
+      <div className="snapshot-grid">
+        <DuotoneCard alt="" color="rgb(142 255 173)" src="https://picsum.photos/seed/plan-free/640/800">
+          <DuotoneCard.Header>
+            <DuotoneCard.Meta>FREE / $0 mo</DuotoneCard.Meta>
+            <DuotoneCard.Title>Free</DuotoneCard.Title>
+          </DuotoneCard.Header>
+          <DuotoneCard.Body>
+            <span>· Pay-as-you-go access</span>
+            <span>· 300+ models</span>
+          </DuotoneCard.Body>
+          <DuotoneCard.Footer>
+            <Button size="sm" variant="outline">
+              Choose plan
+            </Button>
+          </DuotoneCard.Footer>
+        </DuotoneCard>
+        <DuotoneCard
+          alt=""
+          color="rgb(126 188 255)"
+          featured
+          src="https://picsum.photos/seed/plan-plus/640/800"
+        >
+          <DuotoneCard.Header>
+            <DuotoneCard.Meta>PLUS / $20 mo</DuotoneCard.Meta>
+            <DuotoneCard.Title>Signal Plus</DuotoneCard.Title>
+          </DuotoneCard.Header>
+          <DuotoneCard.Body>
+            <span>· 300+ models</span>
+            <span>· Hosted tool usage</span>
+            <span>· High rate limits</span>
+          </DuotoneCard.Body>
+          <DuotoneCard.Footer>
+            <Button size="sm">Subscribe and connect</Button>
+          </DuotoneCard.Footer>
+        </DuotoneCard>
+      </div>
+    ),
+    slug: "duotone-card"
   }
 ];
 
@@ -727,6 +1182,8 @@ const categoryDescriptions: Record<string, string> = {
   Conversation: "Chat surfaces, bubbles, and prompt docks.",
   Feedback: "Toast, loading, streaming, counters, and status motion.",
   Foundations: "Small primitives that carry state, spacing, and separators.",
+  "Live & Reactive": "Canvas-driven, cursor-aware, always-moving surfaces.",
+  Media: "Image treatments that recolor to a chosen hue or the active theme.",
   "Motion & Type": "Animated type and controlled emphasis components.",
   Navigation: "Tabs, disclosure, menus, dialogs, popovers, and tooltips.",
   "Proof & Commerce": "Social proof, marquees, badges, and pricing surfaces.",
@@ -751,15 +1208,22 @@ const wideExampleSlugs = new Set([
   "aurora-field",
   "before-after",
   "chat-dock",
+  "duotone-card",
+  "duotone-image",
   "logo-marquee",
+  "matrix-rain",
   "mock-console",
   "mock-ide",
   "node-grid",
+  "particle-field",
   "pricing-card",
   "prompt-hero",
+  "radar-sweep",
   "signal-marquee",
   "sticky-banner",
-  "token-stream"
+  "table",
+  "token-stream",
+  "waveform"
 ]);
 
 const standardExampleSlugs = new Set([
@@ -854,91 +1318,84 @@ function App() {
     }, 0);
   }, [activeComponentSlug, route]);
 
+  const showToast = () => setToastOpen(true);
+  const isDocsView = Boolean(activeDemoPage || activeCategory);
+
   return (
     <ToastProvider swipeDirection="right">
       <a className="skip-link" href="#main-content">
         Skip to Content
       </a>
-      <div className="docs-shell">
-        <aside className="docs-nav">
-          <div className="docs-brand">
-            <strong translate="no">GEN X</strong>
-            <span>Soft Club UI</span>
-          </div>
-          <div className="theme-switcher" aria-label="Theme palette">
-            {themeOptions.map((theme) => (
-              <button
-                aria-label={`${theme.label} theme`}
-                aria-pressed={activeTheme === theme.value}
-                key={theme.value}
-                onClick={() => setActiveTheme(theme.value)}
-                title={theme.description}
-                type="button"
-              >
-                <span className="theme-switcher__swatches" aria-hidden="true">
-                  {theme.swatches.map((swatch) => (
-                    <span key={swatch} style={{ background: swatch }} />
-                  ))}
-                </span>
-                <span>{theme.label}</span>
-              </button>
-            ))}
-          </div>
-          <nav aria-label="Component documentation">
-            <div className="docs-nav-group">
-              <span>Overview</span>
-              <a aria-current={activePath === "/" ? "page" : undefined} href="#/">
-                Home
-              </a>
-              <a aria-current={activePath === "/demo" ? "page" : undefined} href="#/demo">
-                Demo Website
-              </a>
-            </div>
-            {categories.map(({ category, entries, slug }) => (
-              <div className="docs-nav-group" key={category}>
-                <a
-                  aria-current={activePath === `/category/${slug}` ? "page" : undefined}
-                  className="docs-nav-category"
-                  href={`#/category/${slug}`}
-                >
-                  {category}
-                </a>
-                <div className="docs-nav-sublist">
-                  {entries.map((entry) => {
-                    const href = `/category/${slug}/${entry.slug}`;
-                    const isActive = route === href;
-                    return (
-                      <a
-                        aria-current={isActive ? "location" : undefined}
-                        href={`#${href}`}
-                        key={entry.slug}
-                      >
-                        {entry.name}
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </nav>
-        </aside>
-
-        <main className="docs-main" id="main-content">
-          {activeDemoPage ? (
-            <DemoWebsite page={activeDemoPage} showToast={() => setToastOpen(true)} />
-          ) : activeCategory ? (
-            <CategoryPage
-              activeComponentSlug={activeComponentSlug}
-              category={activeCategory.category}
-              entries={activeCategory.entries}
-              showToast={() => setToastOpen(true)}
-              slug={activeCategory.slug}
+      {isDocsView ? (
+        <div className="docs-shell">
+          <aside className="docs-nav">
+            <a className="docs-brand" href="#/">
+              <strong translate="no">GEN X</strong>
+              <span>Soft Club UI</span>
+            </a>
+            <ThemeSwitcher
+              activeTheme={activeTheme}
+              setActiveTheme={setActiveTheme}
+              variant="rail"
             />
-          ) : (
-            <HomePage showToast={() => setToastOpen(true)} />
-          )}
-        </main>
-      </div>
+            <nav aria-label="Component documentation">
+              <div className="docs-nav-group">
+                <span>Overview</span>
+                <a href="#/">Home</a>
+                <a aria-current={activePath === "/demo" ? "page" : undefined} href="#/demo">
+                  Demo Website
+                </a>
+              </div>
+              {categories.map(({ category, entries, slug }) => (
+                <div className="docs-nav-group" key={category}>
+                  <a
+                    aria-current={activePath === `/category/${slug}` ? "page" : undefined}
+                    className="docs-nav-category"
+                    href={`#/category/${slug}`}
+                  >
+                    {category}
+                  </a>
+                  <div className="docs-nav-sublist">
+                    {entries.map((entry) => {
+                      const href = `/category/${slug}/${entry.slug}`;
+                      const isActive = route === href;
+                      return (
+                        <a
+                          aria-current={isActive ? "location" : undefined}
+                          href={`#${href}`}
+                          key={entry.slug}
+                        >
+                          {entry.name}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </nav>
+          </aside>
+
+          <main className="docs-main" id="main-content">
+            {activeDemoPage ? (
+              <DemoWebsite page={activeDemoPage} showToast={showToast} />
+            ) : activeCategory ? (
+              <CategoryPage
+                activeComponentSlug={activeComponentSlug}
+                category={activeCategory.category}
+                entries={activeCategory.entries}
+                showToast={showToast}
+                slug={activeCategory.slug}
+              />
+            ) : null}
+          </main>
+        </div>
+      ) : (
+        <LandingPage
+          activeTheme={activeTheme}
+          setActiveTheme={setActiveTheme}
+          showToast={showToast}
+        />
+      )}
 
       <Toast onOpenChange={setToastOpen} open={toastOpen}>
         <ToastTitle>Soft channel synced</ToastTitle>
@@ -1190,90 +1647,633 @@ function DemoPageHeader({ copy, title }: { copy: string; title: string }) {
   );
 }
 
-function HomePage({ showToast }: { showToast: () => void }) {
+const githubUrl = "https://github.com/cobanov/soft-club-ui";
+const npmUrl = "https://www.npmjs.com/package/@cobanov/soft-club-ui";
+const licenseUrl = "https://github.com/cobanov/soft-club-ui/blob/main/LICENSE";
+const contributingUrl = "https://github.com/cobanov/soft-club-ui/blob/main/CONTRIBUTING.md";
+const installCommand = "pnpm add @cobanov/soft-club-ui @cobanov/soft-club-tokens";
+
+const packageManagers = [
+  { command: "pnpm add @cobanov/soft-club-ui @cobanov/soft-club-tokens", id: "pnpm" },
+  { command: "npm install @cobanov/soft-club-ui @cobanov/soft-club-tokens", id: "npm" },
+  { command: "yarn add @cobanov/soft-club-ui @cobanov/soft-club-tokens", id: "yarn" },
+  { command: "bun add @cobanov/soft-club-ui @cobanov/soft-club-tokens", id: "bun" }
+] as const;
+
+const usageSnippet = `import "@cobanov/soft-club-ui/styles.css";
+import { Button, Card, CardHeader, CardTitle } from "@cobanov/soft-club-ui";
+
+export function Room() {
   return (
-    <>
-      <header className="docs-header docs-header--home">
-        <div className="title-block">
-          <h1>Soft Club UI</h1>
+    <Card>
+      <CardHeader>
+        <CardTitle>Room A3</CardTitle>
+      </CardHeader>
+      <Button>Sync channel</Button>
+    </Card>
+  );
+}`;
+
+const featureIconProps = {
+  "aria-hidden": true,
+  fill: "none",
+  height: 18,
+  stroke: "currentColor",
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  strokeWidth: 1.6,
+  viewBox: "0 0 24 24",
+  width: 18
+} as const;
+
+const landingFeatures: { body: string; icon: ReactNode; title: string }[] = [
+  {
+    body: "Every color, space, radius, shadow, and motion value is a CSS variable. Drop the token sheet into any stack and give your CSS migration one source of truth.",
+    icon: (
+      <svg {...featureIconProps}>
+        <path d="M12 3 3 8l9 5 9-5-9-5Z" />
+        <path d="m3 13 9 5 9-5" />
+      </svg>
+    ),
+    title: "Framework-agnostic tokens"
+  },
+  {
+    body: "Install the package or lift the source. Components forward refs and accept className, so the markup stays yours to extend, the shadcn way.",
+    icon: (
+      <svg {...featureIconProps}>
+        <line x1="6" x2="6" y1="3" y2="15" />
+        <circle cx="18" cy="6" r="3" />
+        <circle cx="6" cy="18" r="3" />
+        <path d="M18 9a9 9 0 0 1-9 9" />
+      </svg>
+    ),
+    title: "Copy, own, extend"
+  },
+  {
+    body: "Dialog, Tabs, Popover, Dropdown, and Tooltip ride on Radix primitives. Focus order, keyboard control, and ARIA arrive already wired in.",
+    icon: (
+      <svg {...featureIconProps}>
+        <circle cx="12" cy="5" r="1" />
+        <path d="m9 20 3-6 3 6" />
+        <path d="m6 8 6 2 6-2" />
+        <path d="M12 10v4" />
+      </svg>
+    ),
+    title: "Accessible by default"
+  },
+  {
+    body: "Three calibrated palettes. Flip data-sc-theme on the root element and the whole system re-skins instantly. No rebuild, no JavaScript.",
+    icon: (
+      <svg {...featureIconProps}>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 3a9 9 0 0 0 0 18Z" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+    title: "Theme with one attribute"
+  },
+  {
+    body: "Full types ship with the package. Autocomplete every variant and slot, and catch prop typos before they ever reach the screen.",
+    icon: (
+      <svg {...featureIconProps}>
+        <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1" />
+        <path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1" />
+      </svg>
+    ),
+    title: "TypeScript first"
+  },
+  {
+    body: "Glass, scanlines, phosphor glow, and motion are tuned through tokens and respect reduced-motion. Atmosphere without the noise.",
+    icon: (
+      <svg {...featureIconProps}>
+        <path d="M3 14c2-4 4-4 6 0s4 4 6 0 4-4 6 0" />
+        <path d="M3 9c2-4 4-4 6 0s4 4 6 0 4-4 6 0" opacity="0.45" />
+      </svg>
+    ),
+    title: "Mood, controlled"
+  }
+];
+
+const showcaseSlugs = [
+  "prompt-hero",
+  "button",
+  "badge",
+  "token-stream",
+  "tabs",
+  "switch",
+  "pricing-card",
+  "glass-panel",
+  "stat-counter",
+  "chat-dock",
+  "accordion",
+  "dropdown-menu"
+] as const;
+
+const entryBySlug = new Map(componentEntries.map((entry) => [entry.slug, entry]));
+
+const docHrefForEntry = (entry: ComponentEntry) =>
+  `#/category/${categorySlug(entry.category)}/${entry.slug}`;
+
+const landingStats: { label: string; suffix?: string; value: number }[] = [
+  { label: "Components", suffix: "+", value: componentEntries.length },
+  { label: "Categories", value: categories.length },
+  { label: "Themes", value: themeOptions.length },
+  { label: "Token-driven", suffix: "%", value: 100 }
+];
+
+function ThemeSwitcher({
+  activeTheme,
+  setActiveTheme,
+  variant = "rail"
+}: {
+  activeTheme: ThemeName;
+  setActiveTheme: (theme: ThemeName) => void;
+  variant?: "bar" | "rail";
+}) {
+  if (variant === "bar") {
+    return (
+      <div className="theme-bar" role="group" aria-label="Theme palette">
+        {themeOptions.map((theme) => (
+          <button
+            aria-label={`${theme.label} theme`}
+            aria-pressed={activeTheme === theme.value}
+            className="theme-bar__chip"
+            key={theme.value}
+            onClick={() => setActiveTheme(theme.value)}
+            title={theme.description}
+            type="button"
+          >
+            <span className="theme-bar__swatches" aria-hidden="true">
+              {theme.swatches.map((swatch) => (
+                <span key={swatch} style={{ background: swatch }} />
+              ))}
+            </span>
+            <span className="theme-bar__name">{theme.label}</span>
+          </button>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="theme-switcher" aria-label="Theme palette">
+      {themeOptions.map((theme) => (
+        <button
+          aria-label={`${theme.label} theme`}
+          aria-pressed={activeTheme === theme.value}
+          key={theme.value}
+          onClick={() => setActiveTheme(theme.value)}
+          title={theme.description}
+          type="button"
+        >
+          <span className="theme-switcher__swatches" aria-hidden="true">
+            {theme.swatches.map((swatch) => (
+              <span key={swatch} style={{ background: swatch }} />
+            ))}
+          </span>
+          <span>{theme.label}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function CopyButton({ label = "Copy", value }: { label?: string; value: string }) {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const timer = window.setTimeout(() => setCopied(false), 1600);
+    return () => window.clearTimeout(timer);
+  }, [copied]);
+
+  return (
+    <button
+      aria-label={copied ? "Copied to clipboard" : `Copy ${label} to clipboard`}
+      className="copy-btn"
+      onClick={() => {
+        navigator.clipboard
+          ?.writeText(value)
+          .then(() => setCopied(true))
+          .catch(() => undefined);
+      }}
+      type="button"
+    >
+      {copied ? "Copied" : label}
+    </button>
+  );
+}
+
+function SectionHead({ copy, kicker, title }: { copy?: string; kicker: string; title: string }) {
+  return (
+    <div className="landing-section-head">
+      <span className="landing-kicker">{kicker}</span>
+      <h2>{title}</h2>
+      {copy ? <p>{copy}</p> : null}
+    </div>
+  );
+}
+
+function LandingBar({
+  activeTheme,
+  setActiveTheme
+}: {
+  activeTheme: ThemeName;
+  setActiveTheme: (theme: ThemeName) => void;
+}) {
+  return (
+    <header className="landing-bar">
+      <div className="landing-bar__inner">
+        <a className="landing-brand" href="#/">
+          <strong translate="no">GEN X</strong>
+          <span>Soft Club UI</span>
+        </a>
+        <nav className="landing-bar__links" aria-label="Primary">
+          <a href="#features">Features</a>
+          <a href="#components">Components</a>
+          <a href="#install">Install</a>
+          <a href="#themes">Themes</a>
+          <a href="#/demo">Demo</a>
+        </nav>
+        <div className="landing-bar__actions">
+          <ThemeSwitcher activeTheme={activeTheme} setActiveTheme={setActiveTheme} variant="bar" />
+          <a
+            className="landing-bar__github"
+            href={githubUrl}
+            rel="noreferrer"
+            target="_blank"
+          >
+            GitHub
+          </a>
+          <Button asChild size="sm">
+            <a href="#components">Get started</a>
+          </Button>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function LandingFooter({ glass }: { glass: string }) {
+  return (
+    <footer className="landing-footer">
+      <div className="landing-footer__inner">
+        <div className="landing-footer__brand">
+          <strong translate="no">GEN X</strong>
+          <span>Soft Club UI</span>
           <p>
-            Category-routed React component catalog for green glass surfaces, prompt UI,
-            motion text, proof blocks, and compact application primitives.
+            Late-90s {glass}-glass React components and a portable CSS token system. MIT
+            licensed and built in the open.
           </p>
-          <div className="home-actions">
-            <a className="docs-link-button" href="#/category/actions-and-inputs">
-              Browse Components
+        </div>
+        <div className="landing-footer__cols">
+          <div className="landing-footer-col">
+            <strong>Docs</strong>
+            <a href="#components">Components</a>
+            <a href="#install">Quick start</a>
+            <a href="#themes">Theming</a>
+            <a href="#/demo">Demo website</a>
+          </div>
+          <div className="landing-footer-col">
+            <strong>Project</strong>
+            <a href={githubUrl} rel="noreferrer" target="_blank">
+              GitHub
             </a>
-            <a className="docs-link-button" href="#/demo">
-              Open Demo Website
+            <a href={npmUrl} rel="noreferrer" target="_blank">
+              npm
             </a>
-            <a className="docs-link-button docs-link-button--ghost" href="#/category/surfaces/ascii-hero">
-              Open AsciiHero
+            <a href={contributingUrl} rel="noreferrer" target="_blank">
+              Contributing
+            </a>
+            <a href={licenseUrl} rel="noreferrer" target="_blank">
+              License
             </a>
           </div>
-        </div>
-        <div className="hero-plate" aria-hidden="true">
-          <div className="hero-photo" />
-          <div className="hero-grid">
-            <span>A1</span>
-            <span>A2</span>
-            <span>B1</span>
-            <span>B2</span>
-          </div>
-          <div className="hero-type">CONTEMPORARY SOFT CLUB</div>
-        </div>
-      </header>
-
-      <section className="docs-section">
-        <div className="section-heading">
-          <h2>Components</h2>
-          <p>Each category has one page; component links scroll inside that page.</p>
-        </div>
-        <div className="component-index">
-          {categories.map(({ category, entries, slug }) => (
-            <section className="component-index-group" key={category}>
-              <a className="category-card-link" href={`#/category/${slug}`}>
-                <h3>{category}</h3>
-                <span>{categoryDescriptions[category]}</span>
+          <div className="landing-footer-col">
+            <strong>Categories</strong>
+            {categories.slice(0, 5).map(({ category, slug }) => (
+              <a href={`#/category/${slug}`} key={slug}>
+                {category}
               </a>
-              <div className="component-index-grid">
-                {entries.map((entry) => (
-                  <a
-                    className="component-index-card"
-                    href={`#/category/${slug}/${entry.slug}`}
-                    key={entry.slug}
-                  >
-                    <strong>{entry.name}</strong>
-                    <span>{entry.description}</span>
-                  </a>
-                ))}
-              </div>
-            </section>
-          ))}
+            ))}
+          </div>
         </div>
-      </section>
+      </div>
+      <div className="landing-footer__base">
+        <span>&copy; Soft Club UI / @cobanov</span>
+        <span translate="no">Built with the library itself.</span>
+      </div>
+    </footer>
+  );
+}
 
-      <section className="docs-section">
-        <div className="section-heading">
-          <h2>Library Snapshot</h2>
-          <p>Representative pieces from inputs, feedback, surfaces, and proof.</p>
-        </div>
-        <div className="snapshot-grid">
-          <div className="component-demo">
-            {componentEntries.find((entry) => entry.slug === "prompt-hero")?.preview({ showToast })}
+function LandingPage({
+  activeTheme,
+  setActiveTheme,
+  showToast
+}: {
+  activeTheme: ThemeName;
+  setActiveTheme: (theme: ThemeName) => void;
+  showToast: () => void;
+}) {
+  const theme = themeOptions.find((option) => option.value === activeTheme) ?? themeOptions[1];
+  const glass = theme.glass;
+  const Glass = `${glass.charAt(0).toUpperCase()}${glass.slice(1)}`;
+
+  return (
+    <div className="landing">
+      <LandingBar activeTheme={activeTheme} setActiveTheme={setActiveTheme} />
+
+      <main className="landing-main" id="main-content">
+        <header className="landing-hero">
+          <div className="landing-hero__copy">
+            <span className="landing-kicker">Open source / React + CSS tokens</span>
+            <h1>{Glass} glass components for interfaces that feel engineered.</h1>
+            <p>
+              Soft Club UI is a React component library and a portable token system. Forty
+              accessible, Radix-backed components dressed in late-90s {glass} glass. Copy them,
+              own them, and re-skin the whole set with one attribute. Like shadcn, with its own
+              atmosphere.
+            </p>
+            <div className="landing-cmd">
+              <span className="landing-cmd__prompt" aria-hidden="true">
+                $
+              </span>
+              <code>{installCommand}</code>
+              <CopyButton label="Copy" value={installCommand} />
+            </div>
+            <div className="landing-hero__actions">
+              <Button asChild size="lg">
+                <a href="#components">Browse components</a>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <a href={githubUrl} rel="noreferrer" target="_blank">
+                  View on GitHub
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="ghost">
+                <a href="#/demo">See it in a real site</a>
+              </Button>
+            </div>
+            <div className="landing-hero__meta">
+              <span>
+                <StatusDot tone="green" /> MIT licensed
+              </span>
+              <span>
+                <StatusDot tone="blue" /> Radix primitives
+              </span>
+              <span>
+                <StatusDot tone="warning" /> Zero-config theming
+              </span>
+            </div>
           </div>
-          <div className="component-demo">
-            {componentEntries.find((entry) => entry.slug === "token-stream")?.preview({ showToast })}
+
+          <div className="landing-hero__stage" aria-hidden="true">
+            <GlassPanel>
+              <GlassPanelHeader>
+                <GlassPanelKicker>LIVE / SC-133G04</GlassPanelKicker>
+                <GlassPanelTitle>
+                  <StatCounter suffix="%" value={94} /> system sync
+                </GlassPanelTitle>
+              </GlassPanelHeader>
+              <GlassPanelBody>
+                <TokenStream
+                  loop
+                  loopDelayMs={1800}
+                  speedMs={[28, 90]}
+                  text="scan -> tokenize -> route -> render -> settle"
+                  tokenize={(value) => value.split(/( -> |\s+)/)}
+                />
+                <div className="landing-hero__row">
+                  <Badge variant="green">Glass</Badge>
+                  <Badge>Blue</Badge>
+                  <Badge variant="warning">Signal</Badge>
+                  <Badge variant="danger">Clip</Badge>
+                </div>
+                <SignalMarquee />
+              </GlassPanelBody>
+            </GlassPanel>
+            <MockIDE
+              filename="soft-club.tsx"
+              tokens={[
+                { children: "import ", tone: "keyword" },
+                { children: "{ Button, Card } " },
+                { children: "from ", tone: "keyword" },
+                { children: '"@cobanov/soft-club-ui"', tone: "string" },
+                { children: ";\n\n" },
+                { children: "export ", tone: "keyword" },
+                { children: "function ", tone: "keyword" },
+                { children: "Room", tone: "function" },
+                { children: "() {\n  " },
+                { children: "return ", tone: "keyword" },
+                { children: "<Button>Sync</Button>;\n}" }
+              ]}
+            />
           </div>
-          <div className="component-demo">
-            {componentEntries.find((entry) => entry.slug === "chat-dock")?.preview({ showToast })}
+        </header>
+
+        <section className="landing-stats" aria-label="Library at a glance">
+          {landingStats.map((stat) => (
+            <div className="landing-stat" key={stat.label}>
+              <strong>
+                <StatCounter suffix={stat.suffix} value={stat.value} />
+              </strong>
+              <span>{stat.label}</span>
+            </div>
+          ))}
+        </section>
+
+        <section className="landing-section" id="features">
+          <SectionHead
+            copy="Soft Club UI is a system, not a skin. The same tokens drive the components, the docs, and the demo site, so what you preview is exactly what ships."
+            kicker="Why Soft Club"
+            title="Built like a system, not a theme"
+          />
+          <div className="landing-feature-grid">
+            {landingFeatures.map((feature) => (
+              <GlassCard key={feature.title}>
+                <GlassCard.Icon>{feature.icon}</GlassCard.Icon>
+                <GlassCard.Title>{feature.title}</GlassCard.Title>
+                <GlassCard.Body>{feature.body}</GlassCard.Body>
+              </GlassCard>
+            ))}
           </div>
-          <div className="component-demo">
-            {componentEntries.find((entry) => entry.slug === "pricing-card")?.preview({ showToast })}
+        </section>
+
+        <section className="landing-section" id="showcase">
+          <SectionHead
+            copy="Live components, not screenshots. Every tile below is the real thing rendered from the package. Open any one to read its docs and copy the code."
+            kicker="The set"
+            title="A look at the components"
+          />
+          <div className="landing-showcase-grid">
+            {showcaseSlugs.map((slug) => {
+              const entry = entryBySlug.get(slug);
+              if (!entry) return null;
+              const wide = wideExampleSlugs.has(slug);
+              return (
+                <article
+                  className={`landing-show-card${wide ? " landing-show-card--wide" : ""}`}
+                  key={slug}
+                >
+                  <div className="landing-show-card__head">
+                    <div>
+                      <span className="landing-show-card__cat">{entry.category}</span>
+                      <h3>{entry.name}</h3>
+                    </div>
+                    <a className="landing-show-card__doc" href={docHrefForEntry(entry)}>
+                      Docs &rarr;
+                    </a>
+                  </div>
+                  <div className="landing-show-card__body">{entry.preview({ showToast })}</div>
+                </article>
+              );
+            })}
           </div>
-        </div>
-      </section>
-    </>
+        </section>
+
+        <section className="landing-section" id="components">
+          <SectionHead
+            copy={`${componentEntries.length} components across ${categories.length} categories, each with its own deep-linked documentation page and copy-ready snippet.`}
+            kicker="Catalog"
+            title="Every category, one click away"
+          />
+          <div className="landing-catalog">
+            {categories.map(({ category, entries, slug }) => (
+              <a className="landing-catalog-card" href={`#/category/${slug}`} key={category}>
+                <div className="landing-catalog-card__top">
+                  <h3>{category}</h3>
+                  <span className="landing-catalog-card__count">{entries.length}</span>
+                </div>
+                <p>{categoryDescriptions[category]}</p>
+                <div className="landing-catalog-card__chips">
+                  {entries.slice(0, 4).map((entry) => (
+                    <span key={entry.slug}>{entry.name}</span>
+                  ))}
+                  {entries.length > 4 ? (
+                    <span className="muted">+{entries.length - 4}</span>
+                  ) : null}
+                </div>
+                <span className="landing-catalog-card__link">Open category &rarr;</span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="landing-section" id="install">
+          <SectionHead
+            copy="Add the package, import the stylesheet once, and start composing. The token sheet is plain CSS, so it drops into any build during a migration."
+            kicker="Quick start"
+            title="Install and ship in two imports"
+          />
+          <div className="landing-install">
+            <div className="landing-install__col">
+              <Tabs defaultValue="pnpm">
+                <TabsList aria-label="Package manager">
+                  {packageManagers.map((manager) => (
+                    <TabsTrigger key={manager.id} value={manager.id}>
+                      {manager.id}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+                {packageManagers.map((manager) => (
+                  <TabsContent key={manager.id} value={manager.id}>
+                    <div className="landing-code">
+                      <pre>
+                        <code>{manager.command}</code>
+                      </pre>
+                      <CopyButton label="Copy" value={manager.command} />
+                    </div>
+                  </TabsContent>
+                ))}
+              </Tabs>
+              <p className="landing-install__note">
+                Tokens ship separately as <code>@cobanov/soft-club-tokens</code> &mdash; pure CSS
+                variables you can reuse in any framework while you migrate.
+              </p>
+            </div>
+            <div className="landing-install__col">
+              <div className="landing-code landing-code--block">
+                <div className="landing-code__bar">
+                  <span translate="no">App.tsx</span>
+                  <CopyButton label="Copy" value={usageSnippet} />
+                </div>
+                <pre>
+                  <code>{usageSnippet}</code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="landing-section landing-themes" id="themes">
+          <div className="landing-themes__copy">
+            <SectionHead
+              copy="Switch data-sc-theme on the root and every surface re-skins. Try it here. The whole page follows the palette you pick."
+              kicker="Theming"
+              title="One token layer, three moods"
+            />
+            <ThemeSwitcher
+              activeTheme={activeTheme}
+              setActiveTheme={setActiveTheme}
+              variant="rail"
+            />
+            <div className="landing-code landing-code--inline">
+              <code>&lt;html data-sc-theme=&quot;{activeTheme}&quot;&gt;</code>
+              <CopyButton label="Copy" value={`<html data-sc-theme="${activeTheme}">`} />
+            </div>
+          </div>
+          <div className="landing-themes__preview">
+            <div className="landing-themes__preview-row">
+              <Badge variant="green">Glass</Badge>
+              <Badge>Blue</Badge>
+              <Badge variant="warning">Signal</Badge>
+              <StatusDot tone="green" />
+            </div>
+            <GlassPanel>
+              <GlassPanelHeader>
+                <GlassPanelKicker translate="no">THEME / {activeTheme}</GlassPanelKicker>
+                <GlassPanelTitle>
+                  <StatCounter suffix="%" value={94} /> re-skin
+                </GlassPanelTitle>
+              </GlassPanelHeader>
+              <GlassPanelBody>
+                <TokenStream loop text="data-sc-theme -> recolor -> settle" />
+              </GlassPanelBody>
+            </GlassPanel>
+            <div className="landing-themes__preview-row">
+              <Button size="sm">Sync</Button>
+              <Button size="sm" variant="outline">
+                Export
+              </Button>
+              <Switch defaultChecked label="Live token pass" name="theme-demo-switch" />
+            </div>
+          </div>
+        </section>
+
+        <section className="landing-cta">
+          <div className="landing-cta__inner">
+            <span className="landing-kicker">Ship the room</span>
+            <h2>Bring the {glass} glass to your next interface.</h2>
+            <p>
+              Open source, MIT licensed, and ready to drop in. Read the docs, lift the code, and
+              make it yours.
+            </p>
+            <div className="landing-hero__actions">
+              <Button asChild size="lg">
+                <a href="#components">Browse components</a>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <a href={githubUrl} rel="noreferrer" target="_blank">
+                  Star on GitHub
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <LandingFooter glass={glass} />
+    </div>
   );
 }
 
