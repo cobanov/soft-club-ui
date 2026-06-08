@@ -1,0 +1,37 @@
+{
+  "name": "@cobanov/soft-club-tokens",
+  "version": "0.1.0",
+  "description": "Design tokens for Soft Club UI.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Mert Cobanov",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cobanov/soft-club-ui.git",
+    "directory": "packages/tokens"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": ["*.css"],
+  "files": ["dist", "src"],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./style.css": "./src/soft-club.css"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3"
+  }
+}

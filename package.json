@@ -1,0 +1,24 @@
+{
+  "name": "soft-club-ui-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "dev": "pnpm --filter @cobanov/soft-club-docs dev",
+    "build": "pnpm -r build",
+    "storybook": "pnpm --filter @cobanov/soft-club-docs storybook",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@types/node": "^22.10.7",
+    "eslint": "^9.18.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0"
+  }
+}

@@ -1,0 +1,67 @@
+:root {
+  color-scheme: dark;
+
+  --sc-color-background: #050706;
+  --sc-color-background-soft: #0a1110;
+  --sc-color-surface: rgba(13, 22, 19, 0.74);
+  --sc-color-surface-raised: rgba(25, 42, 36, 0.78);
+  --sc-color-surface-muted: rgba(61, 88, 73, 0.42);
+  --sc-color-surface-inset: rgba(4, 9, 8, 0.72);
+  --sc-color-glass: rgba(161, 255, 204, 0.12);
+  --sc-color-text: #eef6ee;
+  --sc-color-text-muted: #a9b9ae;
+  --sc-color-text-subtle: #74867b;
+  --sc-color-border: rgba(174, 255, 210, 0.24);
+  --sc-color-border-strong: rgba(190, 255, 222, 0.46);
+  --sc-color-accent-blue: #8bb8d7;
+  --sc-color-accent-blue-soft: rgba(139, 184, 215, 0.18);
+  --sc-color-accent-green: #8effad;
+  --sc-color-accent-green-soft: rgba(142, 255, 173, 0.18);
+  --sc-color-danger: #f06a54;
+  --sc-color-danger-soft: rgba(240, 106, 84, 0.18);
+  --sc-color-warning: #ff8a3d;
+  --sc-color-warning-soft: rgba(255, 138, 61, 0.18);
+  --sc-color-focus: rgba(142, 255, 173, 0.44);
+  --sc-color-overlay: rgba(0, 4, 3, 0.74);
+
+  --sc-font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --sc-font-mono: "SFMono-Regular", "IBM Plex Mono", Consolas, "Liberation Mono", monospace;
+  --sc-font-size-1: 0.6875rem;
+  --sc-font-size-2: 0.75rem;
+  --sc-font-size-3: 0.875rem;
+  --sc-font-size-4: 1rem;
+  --sc-font-size-5: 1.1875rem;
+  --sc-font-size-6: 1.625rem;
+  --sc-line-height-tight: 1.12;
+  --sc-line-height-normal: 1.45;
+  --sc-line-height-loose: 1.62;
+  --sc-font-weight-regular: 400;
+  --sc-font-weight-medium: 500;
+  --sc-font-weight-bold: 700;
+
+  --sc-space-1: 0.25rem;
+  --sc-space-2: 0.5rem;
+  --sc-space-3: 0.75rem;
+  --sc-space-4: 1rem;
+  --sc-space-5: 1.25rem;
+  --sc-space-6: 1.5rem;
+  --sc-space-8: 2rem;
+  --sc-space-10: 2.5rem;
+
+  --sc-radius-1: 0.125rem;
+  --sc-radius-2: 0.25rem;
+  --sc-radius-3: 0.375rem;
+  --sc-radius-round: 999px;
+
+  --sc-border-width: 1px;
+  --sc-border: var(--sc-border-width) solid var(--sc-color-border);
+  --sc-border-strong: var(--sc-border-width) solid var(--sc-color-border-strong);
+
+  --sc-shadow-1: 0 1px 0 rgba(255, 255, 255, 0.06), 0 8px 24px rgba(0, 0, 0, 0.22);
+  --sc-shadow-2: 0 1px 0 rgba(255, 255, 255, 0.07), 0 18px 42px rgba(0, 0, 0, 0.34);
+  --sc-shadow-inset: inset 0 1px 0 rgba(218, 255, 232, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.34);
+
+  --sc-motion-duration-fast: 120ms;
+  --sc-motion-duration-normal: 180ms;
+  --sc-motion-ease: cubic-bezier(0.2, 0, 0, 1);
+}

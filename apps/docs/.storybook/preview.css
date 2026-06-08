@@ -1,0 +1,30 @@
+body {
+  background:
+    linear-gradient(rgba(142, 255, 173, 0.025) 1px, transparent 1px) 0 0 / 100% 24px,
+    linear-gradient(90deg, rgba(142, 255, 173, 0.04) 1px, transparent 1px) 0 0 / 96px 100%,
+    var(--sc-color-background);
+  color: var(--sc-color-text);
+  font-family: var(--sc-font-sans);
+}
+
+.story-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sc-space-2);
+}
+
+.story-field {
+  display: grid;
+  gap: var(--sc-space-2);
+  max-width: 20rem;
+}
+
+.story-field span {
+  color: var(--sc-color-text-muted);
+  font-size: var(--sc-font-size-2);
+}
+
+.story-card {
+  max-width: 24rem;
+}
