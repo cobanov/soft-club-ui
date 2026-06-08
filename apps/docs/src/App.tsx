@@ -1,6 +1,9 @@
 import { useState } from "react";
 import {
+  AsciiHero,
+  AuroraField,
   Badge,
+  BeforeAfter,
   Button,
   Card,
   CardContent,
@@ -8,6 +11,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  ChatBubble,
+  ChatDock,
   Dialog,
   DialogContent,
   DialogDescription,
@@ -21,10 +26,22 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  GlassPanel,
+  GlassPanelBody,
+  GlassPanelHeader,
+  GlassPanelKicker,
+  GlassPanelTitle,
   Input,
+  MockConsole,
+  NodeGrid,
   Popover,
   PopoverContent,
   PopoverTrigger,
+  PromptBox,
+  SignalMarquee,
+  StatCounter,
+  StatusIndicator,
+  StickyBanner,
   Tabs,
   TabsContent,
   TabsList,
@@ -35,7 +52,9 @@ import {
   ToastDescription,
   ToastProvider,
   ToastTitle,
-  ToastViewport
+  ToastViewport,
+  TokenStream,
+  WordRoll
 } from "@cobanov/soft-club-ui";
 
 const colors = [
@@ -75,7 +94,8 @@ function App() {
             <a href="#tokens">A1 Tokens</a>
             <a href="#type">B2 Type</a>
             <a href="#components">C3 Components</a>
-            <a href="#console">D4 Console</a>
+            <a href="#surfaces">D4 Surfaces</a>
+            <a href="#console">E5 Console</a>
           </nav>
         </aside>
 
@@ -239,6 +259,76 @@ function App() {
                   </Button>
                 </CardContent>
               </Card>
+            </div>
+          </section>
+
+          <section className="docs-section" id="surfaces">
+            <div className="section-heading">
+              <h2>Performative Surfaces</h2>
+              <p>ASCII, prompt, chat, counters, marquees, and synthetic background layers.</p>
+            </div>
+            <div className="surface-stack">
+              <AsciiHero
+                label="SC / ASCII HERO"
+                title="green room interface"
+                subtitle="A technical hero surface for posters, docs, and application intros."
+              />
+
+              <div className="component-grid">
+                <GlassPanel>
+                  <GlassPanelHeader>
+                    <GlassPanelKicker>GLASS PANEL</GlassPanelKicker>
+                    <GlassPanelTitle>
+                      Signal surface / <WordRoll index={2} />
+                    </GlassPanelTitle>
+                  </GlassPanelHeader>
+                  <GlassPanelBody>
+                    <TokenStream tokens={["SC", "/", "A3", " ", "noise", " ", "04", "%"]} />
+                  </GlassPanelBody>
+                </GlassPanel>
+
+                <NodeGrid>
+                  <AuroraField intensity="low" />
+                  <div className="node-copy">
+                    <StatusIndicator tone="green" /> B2 bus mapped
+                  </div>
+                </NodeGrid>
+              </div>
+
+              <div className="component-grid">
+                <MockConsole />
+                <ChatDock>
+                  <ChatBubble meta="system / 03:35" tone="system">
+                    Glass pass armed. Keep typography solid above the blur layer.
+                  </ChatBubble>
+                  <ChatBubble meta="operator" tone="user">
+                    Sync the green shelf glow and freeze frame B2.
+                  </ChatBubble>
+                  <PromptBox defaultValue="render a soft cyber room with cold glass" />
+                </ChatDock>
+              </div>
+
+              <div className="component-grid">
+                <BeforeAfter
+                  before="Flat panel, no atmosphere, no scan index."
+                  after="Cold glass, green phosphor, blur, and technical coordinates."
+                />
+                <GlassPanel>
+                  <GlassPanelHeader>
+                    <GlassPanelKicker>COUNTERS</GlassPanelKicker>
+                    <GlassPanelTitle>
+                      <StatCounter suffix="%" value={94} /> sync
+                    </GlassPanelTitle>
+                  </GlassPanelHeader>
+                  <GlassPanelBody>
+                    <SignalMarquee />
+                  </GlassPanelBody>
+                </GlassPanel>
+              </div>
+
+              <StickyBanner action={<Button size="sm">Open deck</Button>}>
+                SC-133G04 / soft channel updated / noise 04%
+              </StickyBanner>
             </div>
           </section>
 

@@ -58,6 +58,10 @@ Soft Club UI is not McBling, not bright disco Y2K, and not generic SaaS dark mod
 
 The components stay accessible and practical. Radix UI handles interaction semantics, exported components support `className` overrides, and all visual decisions are token-based.
 
+## Inspiration
+
+The expanded performative surface set was informed by the MIT-licensed [`vorpus/performativeUI`](https://github.com/vorpus/performativeUI) component catalog, then rewritten for Soft Club's late-90s green-glass design language.
+
 ## v0 Components
 
 - Button
@@ -70,3 +74,18 @@ The components stay accessible and practical. Radix UI handles interaction seman
 - Dropdown Menu
 - Popover
 - Toast
+- AsciiHero
+- AuroraField
+- NodeGrid
+- GlassPanel
+- MockConsole
+- TokenStream
+- ChatBubble
+- ChatDock
+- PromptBox
+- BeforeAfter
+- WordRoll
+- StatCounter
+- SignalMarquee
+- StatusIndicator
+- StickyBanner

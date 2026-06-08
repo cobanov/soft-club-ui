@@ -28,3 +28,34 @@ body {
 .story-card {
   max-width: 24rem;
 }
+
+.story-grid {
+  display: grid;
+  gap: var(--sc-space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.story-stack {
+  display: grid;
+  gap: var(--sc-space-2);
+  max-width: 28rem;
+}
+
+.story-stage {
+  border: var(--sc-border);
+  border-radius: var(--sc-radius-3);
+  min-height: 12rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.story-node-copy {
+  align-items: center;
+  color: var(--sc-color-text);
+  display: inline-flex;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-font-size-2);
+  gap: var(--sc-space-2);
+  position: relative;
+  z-index: 1;
+}
