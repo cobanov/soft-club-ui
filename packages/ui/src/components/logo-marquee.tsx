@@ -41,6 +41,12 @@ export const LogoMarquee = React.forwardRef<HTMLDivElement, LogoMarqueeProps>(
       "--sc-logo-marquee-speed": `${speed}s`
     } as React.CSSProperties;
 
+    // Repeat the set enough that one half of the track always overflows the
+    // container, so the seamless -50% loop never reveals empty space.
+    const minItems = 8;
+    const repeat = Math.max(1, Math.ceil(minItems / Math.max(1, logos.length)));
+    const filled = Array.from({ length: repeat }).flatMap(() => logos);
+
     const renderItem = (item: LogoMarqueeItem, index: number) => {
       const key = item.kind === "img" ? item.src : item.key ?? index;
 
@@ -65,8 +71,8 @@ export const LogoMarquee = React.forwardRef<HTMLDivElement, LogoMarqueeProps>(
         {...props}
       >
         <div className="sc-logo-marquee__track">
-          {logos.map(renderItem)}
-          {logos.map((item, index) => renderItem(item, index + logos.length))}
+          {filled.map(renderItem)}
+          {filled.map((item, index) => renderItem(item, index + filled.length))}
         </div>
       </div>
     );

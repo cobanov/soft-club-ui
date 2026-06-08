@@ -81,6 +81,10 @@ import {
   GlitchText,
   Kbd,
   Label,
+  Loader,
+  type LoaderName,
+  loaderNames,
+  LogoRow,
   MatrixRain,
   NativeSelect,
   OrbitLoader,
@@ -95,6 +99,7 @@ import {
   Table,
   Toggle,
   ToggleGroup,
+  ToolCall,
   Waveform
 } from "@cobanov/soft-club-ui";
 
@@ -128,6 +133,13 @@ const themeOptions = [
     label: "Orange",
     swatches: ["#ffd27a", "#ff9a20", "#ffcf35"],
     value: "orange"
+  },
+  {
+    description: "Cyberpunk 2077 night city: petrol-blue glass, neon cyan, hot HUD red.",
+    glass: "neon",
+    label: "Cyberpunk",
+    swatches: ["#5eb3af", "#a1eae3", "#d22348"],
+    value: "cyberpunk"
   }
 ] as const;
 
@@ -551,6 +563,22 @@ const componentEntries: ComponentEntry[] = [
   },
   {
     category: "Surfaces",
+    code: `<AsciiHero variant="banner" title="cursor reactive field" />`,
+    description: "Full-bleed reactive ASCII banner: the canvas fills the surface, title overlaid, no side panel.",
+    name: "AsciiBanner",
+    preview: () => (
+      <AsciiHero
+        label="PERFORMATIVE / ASCII"
+        spotlightRadius={11}
+        subtitle="Reactive ASCII surface tuned to Soft Club tokens."
+        title="cursor reactive field"
+        variant="banner"
+      />
+    ),
+    slug: "ascii-banner"
+  },
+  {
+    category: "Surfaces",
     code: `<MockIDE />`,
     description: "Animated code mock with Soft Club syntax colors and editor chrome.",
     name: "MockIDE",
@@ -567,15 +595,21 @@ const componentEntries: ComponentEntry[] = [
   },
   {
     category: "Surfaces",
-    code: `<NodeGrid><AuroraField /></NodeGrid>`,
-    description: "Grid-backed ambient surface for system diagrams and backgrounds.",
+    code: `<NodeGrid points={[{ x: 12, y: 30, label: "A1" }, { x: 50, y: 64 }]} />`,
+    description: "Grid surface that plots an x,y list of nodes (percent coords) with optional labels and tones.",
     name: "NodeGrid",
     preview: () => (
-      <NodeGrid>
+      <NodeGrid
+        points={[
+          { label: "A1", tone: "green", x: 10, y: 26 },
+          { tone: "blue", x: 30, y: 60 },
+          { x: 48, y: 32 },
+          { tone: "warning", x: 66, y: 70 },
+          { tone: "green", x: 82, y: 42 },
+          { label: "B2", tone: "danger", x: 90, y: 18 }
+        ]}
+      >
         <AuroraField intensity="low" />
-        <div className="node-copy">
-          <StatusIndicator tone="green" /> B2 bus mapped
-        </div>
       </NodeGrid>
     ),
     slug: "node-grid"
@@ -647,15 +681,48 @@ const componentEntries: ComponentEntry[] = [
   },
   {
     category: "Conversation",
-    code: `<ChatBubble meta="system" tone="system">…</ChatBubble>`,
-    description: "Single message bubble for system, user, and signal tones.",
+    code: `<ChatBubble agent="Synthetica" thinking="reasoning…">
+  <TokenStream text="Q3 churn is bleeding from your SMB cohort…" loop />
+</ChatBubble>`,
+    description: "Message bubble with an agent name and a thinking pill that streams a reply.",
     name: "ChatBubble",
     preview: () => (
-      <ChatBubble meta="assistant / transfer" tone="system">
-        The pieces are mapped into a calmer component set.
-      </ChatBubble>
+      <div className="preview-stack">
+        <ChatBubble agent="Synthetica" thinking="reasoning…" tone="system">
+          <TokenStream
+            loop
+            loopDelayMs={2800}
+            text="Q3 churn is bleeding from your SMB cohort. Net retention there is 71% vs. 104% in mid-market and 118% in enterprise."
+          />
+        </ChatBubble>
+        <ChatBubble agent="Synthetica" thinking="calling search_web…" tone="system">
+          <TokenStream loop loopDelayMs={3400} text="Pulling the latest cohort numbers before I answer." />
+        </ChatBubble>
+        <ChatBubble meta="operator" tone="user">
+          Keep it useful in the left menu.
+        </ChatBubble>
+      </div>
     ),
     slug: "chat-bubble"
+  },
+  {
+    category: "Conversation",
+    code: `<ToolCall tool="search_web" status="running" />`,
+    description: "Agent tool-call indicator: a loading pill naming the called tool and its state.",
+    name: "ToolCall",
+    preview: () => (
+      <div className="preview-stack">
+        <div className="preview-row">
+          <ToolCall status="calling" tool="search_web" />
+          <ToolCall status="running" tool="query_db" />
+        </div>
+        <div className="preview-row">
+          <ToolCall status="done" tool="render_chart" />
+          <ToolCall status="error" tool="send_email" />
+        </div>
+      </div>
+    ),
+    slug: "tool-call"
   },
   {
     category: "Conversation",
@@ -696,15 +763,68 @@ const componentEntries: ComponentEntry[] = [
   },
   {
     category: "Proof & Commerce",
-    code: `<CommunityBadge title="Soft Club channel" />`,
-    description: "Compact community/social proof card.",
+    code: `<LogoRow heading="Backed by" logos={logos} />`,
+    description: "Static, centered logo strip for backers, press, or alumni.",
+    name: "LogoRow",
+    preview: () => (
+      <LogoRow
+        heading="Backed by"
+        logos={[
+          { kind: "node", node: "NOVA", key: "nova" },
+          { kind: "node", node: "A24", key: "a24" },
+          { kind: "node", node: "VOID FM", key: "void" },
+          { kind: "node", node: "ROOM 33", key: "room" },
+          { kind: "node", node: "K7 LABS", key: "k7" }
+        ]}
+      />
+    ),
+    slug: "logo-row"
+  },
+  {
+    category: "Proof & Commerce",
+    code: `<CommunityBadge variant="outline" tone="blue" title="Join the Discord" subtitle="…" />`,
+    description: "Social-proof tile with surface, outline, ghost, and solid variants across tones.",
     name: "CommunityBadge",
     preview: () => (
-      <CommunityBadge
-        href="#/category/proof-and-commerce/community-badge"
-        subtitle="2,408 builders / +91 this week"
-        title="Soft Club channel"
-      />
+      <div className="preview-stack">
+        <CommunityBadge
+          href="#/category/proof-and-commerce/community-badge"
+          iconNode={<span>GH</span>}
+          subtitle={
+            <>
+              <b>12,847</b> stars / +184 this week
+            </>
+          }
+          title="Star us on GitHub"
+          trailing="→"
+        />
+        <CommunityBadge
+          href="#/category/proof-and-commerce/community-badge"
+          iconNode={<span>DC</span>}
+          subtitle="9,210 members online"
+          title="Join the Discord"
+          tone="blue"
+          variant="outline"
+        />
+        <CommunityBadge
+          href="#/category/proof-and-commerce/community-badge"
+          iconNode={<span>X</span>}
+          size="sm"
+          subtitle="Follow for component drops"
+          title="@softclubui"
+          tone="warm"
+          variant="solid"
+        />
+        <CommunityBadge
+          href="#/category/proof-and-commerce/community-badge"
+          iconNode={<span>RS</span>}
+          size="sm"
+          subtitle="Weekly dispatch and release notes"
+          title="Soft Club Dispatch"
+          tone="neutral"
+          variant="ghost"
+        />
+      </div>
     ),
     slug: "community-badge"
   },
@@ -938,13 +1058,17 @@ const componentEntries: ComponentEntry[] = [
     name: "Alert",
     preview: () => (
       <div className="preview-stack">
-        <Alert icon={<StatusDot static tone="green" />} variant="green">
+        <Alert variant="green">
           <Alert.Title>Channel synced</Alert.Title>
           <Alert.Description>Glass pass active. Visual noise settled at 04%.</Alert.Description>
         </Alert>
-        <Alert icon={<StatusDot static tone="warning" />} variant="warning">
+        <Alert variant="warning">
           <Alert.Title>Signal drift</Alert.Title>
           <Alert.Description>Bus B2 latency is above the soft threshold.</Alert.Description>
+        </Alert>
+        <Alert variant="danger">
+          <Alert.Title>Channel breach</Alert.Title>
+          <Alert.Description>Bus C3 dropped the glass layer. Re-route before the next pass.</Alert.Description>
         </Alert>
       </div>
     ),
@@ -991,6 +1115,14 @@ const componentEntries: ComponentEntry[] = [
       </div>
     ),
     slug: "orbit-loader"
+  },
+  {
+    category: "Feedback",
+    code: `<Loader preset="arc" />`,
+    description: "Frame-based terminal loaders ported from rattles. Switch presets anywhere a spinner lives.",
+    name: "Loader",
+    preview: () => <LoaderShowcase />,
+    slug: "loader"
   },
   {
     category: "Surfaces",
@@ -1204,12 +1336,14 @@ const categories = Object.entries(groupedEntries).map(([category, entries]) => (
 }));
 
 const wideExampleSlugs = new Set([
+  "ascii-banner",
   "ascii-hero",
   "aurora-field",
   "before-after",
   "chat-dock",
   "duotone-card",
   "duotone-image",
+  "loader",
   "logo-marquee",
   "matrix-rain",
   "mock-console",
@@ -1963,6 +2097,48 @@ function LandingFooter({ glass }: { glass: string }) {
         <span translate="no">Built with the library itself.</span>
       </div>
     </footer>
+  );
+}
+
+function LoaderShowcase() {
+  const [preset, setPreset] = useState<LoaderName>("arc");
+
+  return (
+    <div className="loader-showcase">
+      <div className="loader-showcase__bar">
+        <NativeSelect
+          aria-label="Loader preset"
+          className="loader-showcase__select"
+          onChange={(event) => setPreset(event.target.value as LoaderName)}
+          value={preset}
+        >
+          {loaderNames.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </NativeSelect>
+        <Loader preset={preset} size="lg" />
+        <Button loader={<Loader preset={preset} size="sm" />} loading>
+          Syncing
+        </Button>
+        <ToolCall loader={<Loader preset={preset} size="sm" />} status="running" tool="search_web" />
+      </div>
+      <div className="loader-grid">
+        {loaderNames.map((name) => (
+          <button
+            aria-pressed={preset === name}
+            className="loader-chip"
+            key={name}
+            onClick={() => setPreset(name)}
+            type="button"
+          >
+            <Loader preset={name} />
+            <span>{name}</span>
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 

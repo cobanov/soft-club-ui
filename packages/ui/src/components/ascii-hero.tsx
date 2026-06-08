@@ -20,7 +20,7 @@ export interface AsciiHeroProps
   label?: string;
   subtitle?: string;
   title?: string;
-  variant?: "panel" | "bare";
+  variant?: "banner" | "bare" | "panel";
 }
 
 export const AsciiHero = React.forwardRef<HTMLElement, AsciiHeroProps>(
@@ -81,23 +81,24 @@ export const AsciiHero = React.forwardRef<HTMLElement, AsciiHeroProps>(
         className={cx(
           "sc-ascii-hero",
           variant === "bare" && "sc-ascii-hero--bare",
+          variant === "banner" && "sc-ascii-hero--banner",
           className
         )}
         ref={setRef}
         {...props}
       >
         <canvas aria-hidden="true" className="sc-ascii-hero__canvas" ref={canvasRef} />
+        {variant !== "bare" ? (
+          <div className="sc-ascii-hero__copy">
+            <div className="sc-ascii-hero__label">{label}</div>
+            <h2 className="sc-ascii-hero__title">{title}</h2>
+            <p className="sc-ascii-hero__subtitle">{subtitle}</p>
+          </div>
+        ) : null}
         {variant === "panel" ? (
-          <>
-            <div className="sc-ascii-hero__copy">
-              <div className="sc-ascii-hero__label">{label}</div>
-              <h2 className="sc-ascii-hero__title">{title}</h2>
-              <p className="sc-ascii-hero__subtitle">{subtitle}</p>
-            </div>
-            <pre aria-hidden="true" className="sc-ascii-hero__art">
-              {art.trim()}
-            </pre>
-          </>
+          <pre aria-hidden="true" className="sc-ascii-hero__art">
+            {art.trim()}
+          </pre>
         ) : null}
       </section>
     );

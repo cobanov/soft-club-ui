@@ -24,8 +24,13 @@ export function useTokenStream({
 }: UseTokenStreamOptions) {
   const [output, setOutput] = React.useState(enabled ? "" : text);
   const [isComplete, setIsComplete] = React.useState(!enabled);
-  const onCompleteRef = React.useRef(onComplete);
-  onCompleteRef.current = onComplete;
+
+  // Keep the volatile options in a ref so inline `speedMs={[..]}` / `tokenize`
+  // props do not re-trigger the effect mid-loop. The effect runs once per
+  // (enabled, loop, text) and loops forever within that single lifecycle —
+  // the same run-once algorithm the reference library uses.
+  const optionsRef = React.useRef({ loopDelayMs, onComplete, speedMs, tokenize });
+  optionsRef.current = { loopDelayMs, onComplete, speedMs, tokenize };
 
   React.useEffect(() => {
     if (!enabled) {
@@ -35,28 +40,31 @@ export function useTokenStream({
     }
 
     let cancelled = false;
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const tokens = tokenize(text);
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const tokens = optionsRef.current.tokenize(text);
 
-    const pickDelay = () =>
-      Array.isArray(speedMs)
-        ? speedMs[0] + Math.random() * (speedMs[1] - speedMs[0])
-        : speedMs;
+    const pickDelay = () => {
+      const speed = optionsRef.current.speedMs;
+      return Array.isArray(speed) ? speed[0] + Math.random() * (speed[1] - speed[0]) : speed;
+    };
 
-    const start = () => {
+    const run = () => {
       let index = 0;
       let buffer = "";
-      setOutput("");
-      setIsComplete(false);
 
       const tick = () => {
         if (cancelled) return;
 
         if (index >= tokens.length) {
           setIsComplete(true);
-          onCompleteRef.current?.();
+          optionsRef.current.onComplete?.();
           if (loop) {
-            timer = setTimeout(start, loopDelayMs);
+            timer = setTimeout(() => {
+              if (cancelled) return;
+              setIsComplete(false);
+              setOutput("");
+              run();
+            }, optionsRef.current.loopDelayMs);
           }
           return;
         }
@@ -70,13 +78,15 @@ export function useTokenStream({
       tick();
     };
 
-    start();
+    setOutput("");
+    setIsComplete(false);
+    run();
 
     return () => {
       cancelled = true;
       if (timer) clearTimeout(timer);
     };
-  }, [enabled, loop, loopDelayMs, speedMs, text, tokenize]);
+  }, [enabled, loop, text]);
 
   return { isComplete, isStreaming: !isComplete, output };
 }

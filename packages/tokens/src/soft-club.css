@@ -166,3 +166,35 @@
   --sc-color-focus: rgba(255, 154, 32, 0.46);
   --sc-color-overlay: rgba(9, 2, 0, 0.8);
 }
+
+/* Cyberpunk 2077 night-city: petrol-blue glass, neon cyan lights, hot HUD red. */
+[data-sc-theme="cyberpunk"] {
+  --sc-theme-rgb-primary: 161 234 227;
+  --sc-theme-rgb-secondary: 94 179 175;
+  --sc-theme-rgb-warm: 210 35 72;
+  --sc-theme-rgb-panel: 209 240 236;
+  --sc-theme-rgb-text: 234 246 244;
+
+  --sc-color-background: #171019;
+  --sc-color-background-soft: #1c1422;
+  --sc-color-surface: rgba(21, 49, 63, 0.72);
+  --sc-color-surface-raised: rgba(30, 64, 80, 0.8);
+  --sc-color-surface-muted: rgba(50, 104, 112, 0.42);
+  --sc-color-surface-inset: rgba(9, 6, 13, 0.74);
+  --sc-color-glass: rgba(161, 234, 227, 0.12);
+  --sc-color-text: #eaf6f4;
+  --sc-color-text-muted: #9fb4b4;
+  --sc-color-text-subtle: #b09194;
+  --sc-color-border: rgba(161, 234, 227, 0.22);
+  --sc-color-border-strong: rgba(161, 234, 227, 0.46);
+  --sc-color-accent-blue: #5eb3af;
+  --sc-color-accent-blue-soft: rgba(94, 179, 175, 0.18);
+  --sc-color-accent-green: #a1eae3;
+  --sc-color-accent-green-soft: rgba(161, 234, 227, 0.18);
+  --sc-color-danger: #d22348;
+  --sc-color-danger-soft: rgba(210, 35, 72, 0.2);
+  --sc-color-warning: #e0556e;
+  --sc-color-warning-soft: rgba(210, 35, 72, 0.18);
+  --sc-color-focus: rgba(161, 234, 227, 0.46);
+  --sc-color-overlay: rgba(8, 5, 12, 0.8);
+}

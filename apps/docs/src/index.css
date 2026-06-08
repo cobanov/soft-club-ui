@@ -1974,3 +1974,58 @@ code {
     padding: var(--sc-space-8) var(--sc-space-5);
   }
 }
+
+/* Loader showcase (docs) */
+.loader-showcase {
+  display: grid;
+  gap: var(--sc-space-5);
+  width: 100%;
+}
+
+.loader-showcase__bar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sc-space-4);
+}
+
+.loader-showcase__select {
+  max-width: 12rem;
+}
+
+.loader-grid {
+  display: grid;
+  gap: var(--sc-space-2);
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+}
+
+.loader-chip {
+  align-items: center;
+  background: rgb(var(--sc-theme-rgb-panel) / 0.04);
+  border: var(--sc-border);
+  border-radius: var(--sc-radius-1);
+  color: var(--sc-color-text-muted);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-font-size-1);
+  gap: var(--sc-space-2);
+  min-height: 2.2rem;
+  padding: var(--sc-space-2);
+}
+
+.loader-chip:hover {
+  border-color: var(--sc-color-border-strong);
+  color: var(--sc-color-text);
+}
+
+.loader-chip[aria-pressed="true"] {
+  background: rgb(var(--sc-theme-rgb-primary) / 0.12);
+  border-color: var(--sc-color-border-strong);
+  color: var(--sc-color-text);
+}
+
+.loader-chip:focus-visible {
+  outline: 2px solid var(--sc-color-focus);
+  outline-offset: 2px;
+}
