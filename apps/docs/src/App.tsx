@@ -793,9 +793,23 @@ type DemoPageSlug = (typeof demoPages)[number]["slug"];
 const isDemoPageSlug = (value: string | undefined): value is DemoPageSlug =>
   demoPages.some((page) => page.slug === value);
 
-function getHashPath() {
+const docsBasePath = "/soft-club-ui";
+
+function normalizeRoutePath(path: string) {
+  if (!path || path === "/") return "/";
+  return path.replace(/\/+$/, "") || "/";
+}
+
+function getRoutePath() {
   const hash = window.location.hash.replace(/^#/, "");
-  return hash || "/";
+  if (hash) return normalizeRoutePath(hash.startsWith("/") ? hash : `/${hash}`);
+
+  const pathname = window.location.pathname;
+  const baseRelativePath = pathname.startsWith(docsBasePath)
+    ? pathname.slice(docsBasePath.length)
+    : pathname;
+
+  return normalizeRoutePath(baseRelativePath || "/");
 }
 
 function App() {
@@ -806,13 +820,17 @@ function App() {
     const storedTheme = window.localStorage.getItem("soft-club-theme");
     return isThemeName(storedTheme) ? storedTheme : "green";
   });
-  const [route, setRoute] = useState(() => getHashPath());
+  const [route, setRoute] = useState(() => getRoutePath());
   const [toastOpen, setToastOpen] = useState(false);
 
   useEffect(() => {
-    const handleHashChange = () => setRoute(getHashPath());
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    const handleRouteChange = () => setRoute(getRoutePath());
+    window.addEventListener("hashchange", handleRouteChange);
+    window.addEventListener("popstate", handleRouteChange);
+    return () => {
+      window.removeEventListener("hashchange", handleRouteChange);
+      window.removeEventListener("popstate", handleRouteChange);
+    };
   }, []);
 
   useEffect(() => {

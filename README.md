@@ -12,7 +12,7 @@ The component catalog is deployed to GitHub Pages:
 
 The same deployment also includes a product-style demo website built with the library:
 
-[soft-club-ui demo website](https://cobanov.github.io/soft-club-ui/#/demo)
+[soft-club-ui demo website](https://cobanov.github.io/soft-club-ui/demo/)
 
 ## Install
 

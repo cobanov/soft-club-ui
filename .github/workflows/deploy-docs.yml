@@ -39,6 +39,14 @@ jobs:
       - name: Build Workspace
         run: pnpm build
 
+      - name: Add Demo Route Fallbacks
+        run: |
+          cp apps/docs/dist/index.html apps/docs/dist/404.html
+          for route in demo demo/product demo/pricing demo/community; do
+            mkdir -p "apps/docs/dist/$route"
+            cp apps/docs/dist/index.html "apps/docs/dist/$route/index.html"
+          done
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
