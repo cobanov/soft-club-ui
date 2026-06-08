@@ -781,6 +781,18 @@ const getExampleScale = (entry: ComponentEntry) => {
   return "compact";
 };
 
+const demoPages = [
+  { label: "Landing", slug: "landing" },
+  { label: "Product", slug: "product" },
+  { label: "Pricing", slug: "pricing" },
+  { label: "Community", slug: "community" }
+] as const;
+
+type DemoPageSlug = (typeof demoPages)[number]["slug"];
+
+const isDemoPageSlug = (value: string | undefined): value is DemoPageSlug =>
+  demoPages.some((page) => page.slug === value);
+
 function getHashPath() {
   const hash = window.location.hash.replace(/^#/, "");
   return hash || "/";
@@ -809,9 +821,11 @@ function App() {
   }, [activeTheme]);
 
   const categoryRoute = route.match(/^\/category\/([^/]+)(?:\/([^/]+))?$/);
+  const demoRoute = route.match(/^\/demo(?:\/([^/]+))?$/);
+  const activeDemoPage = isDemoPageSlug(demoRoute?.[1]) ? demoRoute?.[1] : demoRoute ? "landing" : undefined;
   const activeCategory = categories.find((group) => group.slug === categoryRoute?.[1]);
   const activeComponentSlug = categoryRoute?.[2];
-  const activePath = activeCategory ? `/category/${activeCategory.slug}` : route;
+  const activePath = activeDemoPage ? "/demo" : activeCategory ? `/category/${activeCategory.slug}` : route;
 
   useEffect(() => {
     if (!activeComponentSlug) return;
@@ -858,6 +872,9 @@ function App() {
               <a aria-current={activePath === "/" ? "page" : undefined} href="#/">
                 Home
               </a>
+              <a aria-current={activePath === "/demo" ? "page" : undefined} href="#/demo">
+                Demo Website
+              </a>
             </div>
             {categories.map(({ category, entries, slug }) => (
               <div className="docs-nav-group" key={category}>
@@ -889,7 +906,9 @@ function App() {
         </aside>
 
         <main className="docs-main" id="main-content">
-          {activeCategory ? (
+          {activeDemoPage ? (
+            <DemoWebsite page={activeDemoPage} showToast={() => setToastOpen(true)} />
+          ) : activeCategory ? (
             <CategoryPage
               activeComponentSlug={activeComponentSlug}
               category={activeCategory.category}
@@ -913,6 +932,246 @@ function App() {
   );
 }
 
+function DemoWebsite({ page, showToast }: { page: DemoPageSlug; showToast: () => void }) {
+  return (
+    <article className="demo-site">
+      <header className="demo-site__nav">
+        <a className="demo-site__brand" href="#/demo" translate="no">
+          GEN X
+        </a>
+        <nav aria-label="Demo website pages">
+          {demoPages.map((demoPage) => (
+            <a
+              aria-current={page === demoPage.slug ? "page" : undefined}
+              href={demoPage.slug === "landing" ? "#/demo" : `#/demo/${demoPage.slug}`}
+              key={demoPage.slug}
+            >
+              {demoPage.label}
+            </a>
+          ))}
+        </nav>
+      </header>
+
+      {page === "landing" ? <DemoLanding showToast={showToast} /> : null}
+      {page === "product" ? <DemoProduct /> : null}
+      {page === "pricing" ? <DemoPricing /> : null}
+      {page === "community" ? <DemoCommunity /> : null}
+    </article>
+  );
+}
+
+function DemoLanding({ showToast }: { showToast: () => void }) {
+  return (
+    <>
+      <section className="demo-hero">
+        <div className="demo-hero__copy">
+          <h1>
+            Coordinate the room before the feed turns into noise.
+          </h1>
+          <p>
+            A compact collaboration layer for crews that route prompts, decisions, pricing
+            changes, and community feedback through one readable surface.
+          </p>
+          <PromptHero
+            ctaLabel="Open room"
+            defaultValue="Plan Friday release room with pricing, support, and community"
+            onSubmit={showToast}
+          />
+          <div className="demo-hero__actions">
+            <Button asChild>
+              <a href="#/demo/product">View Product</a>
+            </Button>
+            <Button asChild variant="outline">
+              <a href="#/demo/pricing">See Pricing</a>
+            </Button>
+          </div>
+        </div>
+        <div className="demo-hero__visual">
+          <div className="demo-hero__status">
+            <StatusDot tone="green" />
+            <TokenStream
+              animated
+              loop
+              loopDelayMs={1600}
+              speedMs={24}
+              text="routing / launch-room / pricing-ready / community-online"
+            />
+          </div>
+          <MockIDE
+            filename="launch-room.ts"
+            tokens={[
+              { children: "// live room configuration\n", tone: "comment" },
+              { children: "const ", tone: "keyword" },
+              { children: "room", tone: "function" },
+              { children: " = " },
+              { children: '"friday-release"', tone: "string" },
+              { children: ";\nroute", tone: "function" },
+              { children: "({ pricing: " },
+              { children: "true", tone: "keyword" },
+              { children: ", community: " },
+              { children: "true", tone: "keyword" },
+              { children: " });" }
+            ]}
+          />
+        </div>
+      </section>
+
+      <LogoMarquee
+        className="demo-marquee"
+        logos={[
+          { kind: "node", node: "ROOM 33", key: "room33" },
+          { kind: "node", node: "ATLAS", key: "atlas" },
+          { kind: "node", node: "VOID FM", key: "voidfm" },
+          { kind: "node", node: "K7 LABS", key: "k7" },
+          { kind: "node", node: "NOVA", key: "nova" }
+        ]}
+        speed={26}
+      />
+
+      <section className="demo-section demo-section--split">
+        <div>
+          <h2>One surface, four operating modes.</h2>
+          <p>
+            Teams can switch between prompt capture, execution notes, launch signals, and
+            community response without leaving the room.
+          </p>
+        </div>
+        <div className="demo-mode-grid">
+          {["Prompt", "Launch", "Pricing", "Community"].map((mode) => (
+            <GlassCard className="demo-mode-card" key={mode}>
+              <span>{mode}</span>
+              <strong>
+                <GradientText>{mode === "Prompt" ? "Clean input" : mode === "Launch" ? "Live route" : mode === "Pricing" ? "Plan lock" : "Signal read"}</GradientText>
+              </strong>
+            </GlassCard>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+function DemoProduct() {
+  return (
+    <>
+      <DemoPageHeader
+        copy="Built for focused work: prompts, context, and status updates stay close together without turning the product into a dashboard wall."
+        title="Product"
+      />
+      <section className="demo-section demo-product-grid">
+        <GlassPanel>
+          <GlassPanelHeader>
+            <GlassPanelKicker>Room Stack</GlassPanelKicker>
+            <GlassPanelTitle>Release desk</GlassPanelTitle>
+          </GlassPanelHeader>
+          <GlassPanelBody>
+            <div className="demo-task-list">
+              {[
+                ["Prompt intake", "12 clean briefs"],
+                ["Pricing pass", "2 plans changed"],
+                ["Community read", "48 posts reviewed"]
+              ].map(([label, value]) => (
+                <div className="demo-task-row" key={label}>
+                  <span>{label}</span>
+                  <strong>{value}</strong>
+                </div>
+              ))}
+            </div>
+          </GlassPanelBody>
+        </GlassPanel>
+        <div className="demo-chat-stack">
+          <ChatBubble meta="Ops" tone="system">
+            Pricing copy is locked. Push the annual plan as the default path.
+          </ChatBubble>
+          <ChatBubble meta="Community" tone="signal">
+            Support thread volume is calm. Two launch questions need a pinned answer.
+          </ChatBubble>
+          <ChatBubble meta="You" tone="user">
+            Route both into the release room and mark the pricing card ready.
+          </ChatBubble>
+        </div>
+      </section>
+      <section className="demo-section">
+        <NodeGrid />
+      </section>
+    </>
+  );
+}
+
+function DemoPricing() {
+  return (
+    <>
+      <DemoPageHeader
+        copy="A compact pricing page with enough detail to compare plans quickly, using the same library primitives as the component catalog."
+        title="Pricing"
+      />
+      <section className="demo-pricing-grid">
+        {[
+          ["Room", "$19", "For small launch crews.", ["3 rooms", "Shared prompts", "Community notes"]],
+          ["Club", "$49", "For teams running weekly cycles.", ["Unlimited rooms", "Pricing routes", "Priority support"]],
+          ["Signal", "$129", "For multi-team operations.", ["Audit trail", "Custom themes", "Dedicated onboarding"]]
+        ].map(([tier, price, blurb, features], index) => (
+          <PricingCard featured={index === 1} key={tier as string}>
+            {index === 1 ? <PricingCard.Flag>Most used</PricingCard.Flag> : null}
+            <PricingCard.Tier>{tier}</PricingCard.Tier>
+            <PricingCard.Amount unit="/mo">{price}</PricingCard.Amount>
+            <PricingCard.Blurb>{blurb}</PricingCard.Blurb>
+            <PricingCard.Features>
+              {(features as string[]).map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </PricingCard.Features>
+            <PricingCard.CTA href="#/demo/community">Start room</PricingCard.CTA>
+          </PricingCard>
+        ))}
+      </section>
+    </>
+  );
+}
+
+function DemoCommunity() {
+  return (
+    <>
+      <DemoPageHeader
+        copy="Community proof, changelog notes, and public-facing updates stay compact enough to scan without losing the Soft Club atmosphere."
+        title="Community"
+      />
+      <section className="demo-section demo-community-layout">
+        <div className="demo-community-list">
+          <CommunityBadge href="#/demo/community" subtitle="1.8k builders reading release notes" title="Soft Club Dispatch" />
+          <CommunityBadge href="#/demo/community" subtitle="Weekly office hours and pricing clinics" title="Room 33" />
+          <CommunityBadge href="#/demo/community" subtitle="Design notes, prompt surfaces, and component drops" title="K7 Labs" />
+        </div>
+        <GlassPanel>
+          <GlassPanelHeader>
+            <GlassPanelKicker>Changelog</GlassPanelKicker>
+            <GlassPanelTitle>June release</GlassPanelTitle>
+          </GlassPanelHeader>
+          <GlassPanelBody>
+            <div className="demo-changelog">
+              <p>PromptHero now supports quieter submit states.</p>
+              <p>PricingCard gained plan flags and tighter feature rows.</p>
+              <p>TokenStream loop timing can be tuned per surface.</p>
+            </div>
+          </GlassPanelBody>
+        </GlassPanel>
+      </section>
+    </>
+  );
+}
+
+function DemoPageHeader({ copy, title }: { copy: string; title: string }) {
+  return (
+    <header className="demo-page-header">
+      <a className="back-link" href="#/demo">
+        Back to Demo
+      </a>
+      <h1>{title}</h1>
+      <p>{copy}</p>
+    </header>
+  );
+}
+
 function HomePage({ showToast }: { showToast: () => void }) {
   return (
     <>
@@ -926,6 +1185,9 @@ function HomePage({ showToast }: { showToast: () => void }) {
           <div className="home-actions">
             <a className="docs-link-button" href="#/category/actions-and-inputs">
               Browse Components
+            </a>
+            <a className="docs-link-button" href="#/demo">
+              Open Demo Website
             </a>
             <a className="docs-link-button docs-link-button--ghost" href="#/category/surfaces/ascii-hero">
               Open AsciiHero

@@ -10,6 +10,10 @@ The component catalog is deployed to GitHub Pages:
 
 [soft-club-ui demo](https://cobanov.github.io/soft-club-ui/)
 
+The same deployment also includes a product-style demo website built with the library:
+
+[soft-club-ui demo website](https://cobanov.github.io/soft-club-ui/#/demo)
+
 ## Install
 
 ```sh
