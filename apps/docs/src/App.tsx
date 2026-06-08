@@ -746,6 +746,41 @@ const categories = Object.entries(groupedEntries).map(([category, entries]) => (
   slug: categorySlug(category)
 }));
 
+const wideExampleSlugs = new Set([
+  "ascii-hero",
+  "aurora-field",
+  "before-after",
+  "chat-dock",
+  "logo-marquee",
+  "mock-console",
+  "mock-ide",
+  "node-grid",
+  "pricing-card",
+  "prompt-hero",
+  "signal-marquee",
+  "sticky-banner",
+  "token-stream"
+]);
+
+const standardExampleSlugs = new Set([
+  "accordion",
+  "card",
+  "dialog",
+  "dropdown-menu",
+  "glass-card",
+  "glass-panel",
+  "popover",
+  "rotator",
+  "tabs",
+  "textarea"
+]);
+
+const getExampleScale = (entry: ComponentEntry) => {
+  if (wideExampleSlugs.has(entry.slug)) return "wide";
+  if (standardExampleSlugs.has(entry.slug)) return "standard";
+  return "compact";
+};
+
 function getHashPath() {
   const hash = window.location.hash.replace(/^#/, "");
   return hash || "/";
@@ -1001,7 +1036,7 @@ function CategoryPage({
       <div className="category-examples">
         {entries.map((entry) => (
           <section
-            className="example-block"
+            className={`example-block example-block--${getExampleScale(entry)}`}
             id={`component-${entry.slug}`}
             key={entry.slug}
             aria-labelledby={`${entry.slug}-heading`}
