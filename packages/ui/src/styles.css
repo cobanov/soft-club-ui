@@ -95,23 +95,23 @@
 }
 
 .sc-button--default {
-  background: color-mix(in srgb, var(--sc-color-accent-green), #06100c 74%);
-  border-color: color-mix(in srgb, var(--sc-color-accent-green), transparent 42%);
-  color: #f4fff5;
+  background: var(--sc-color-accent-green);
+  border-color: var(--sc-color-accent-green);
+  color: #07120f;
 }
 
 .sc-button--default:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--sc-color-accent-green), #06100c 66%);
-  box-shadow: var(--sc-shadow-inset), 0 0 0 1px rgb(var(--sc-theme-rgb-primary) / 0.18);
+  background: color-mix(in srgb, var(--sc-color-accent-green), white 14%);
+  box-shadow: var(--sc-shadow-inset), 0 0 0 1px rgb(var(--sc-theme-rgb-primary) / 0.28);
 }
 
 .sc-button--secondary {
-  background: color-mix(in srgb, var(--sc-color-accent-blue), #07100f 82%);
-  border-color: color-mix(in srgb, var(--sc-color-accent-blue), transparent 48%);
+  background: color-mix(in srgb, var(--sc-color-accent-blue), #07100f 58%);
+  border-color: color-mix(in srgb, var(--sc-color-accent-blue), transparent 30%);
 }
 
 .sc-button--secondary:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--sc-color-accent-blue), #07100f 74%);
+  background: color-mix(in srgb, var(--sc-color-accent-blue), #07100f 46%);
 }
 
 .sc-button--outline {
@@ -137,8 +137,8 @@
 }
 
 .sc-button--danger {
-  background: color-mix(in srgb, var(--sc-color-danger), #080807 74%);
-  border-color: color-mix(in srgb, var(--sc-color-danger), transparent 38%);
+  background: color-mix(in srgb, var(--sc-color-danger), #080807 56%);
+  border-color: color-mix(in srgb, var(--sc-color-danger), transparent 28%);
   color: #fff3ee;
 }
 
@@ -318,8 +318,8 @@
 }
 
 .sc-switch__input:checked + .sc-switch__track {
-  background: color-mix(in srgb, var(--sc-color-accent-green), #06100c 64%);
-  border-color: color-mix(in srgb, var(--sc-color-accent-green), transparent 36%);
+  background: color-mix(in srgb, var(--sc-color-accent-green), #06100c 46%);
+  border-color: color-mix(in srgb, var(--sc-color-accent-green), transparent 26%);
 }
 
 .sc-switch__input:checked + .sc-switch__track .sc-switch__thumb {
