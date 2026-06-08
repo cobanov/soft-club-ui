@@ -26,8 +26,8 @@ export const Waveform = React.forwardRef<HTMLDivElement, WaveformProps>(
         const phase = i * 0.4;
         const amplitude =
           0.5 +
-          0.34 * Math.sin(time * 3 + phase) +
-          0.16 * Math.sin(time * 7.3 + phase * 1.7);
+          0.34 * Math.sin(time * 2 + phase) +
+          0.16 * Math.sin(time * 4.8 + phase * 1.7);
         const barHeight = Math.max(2, Math.abs(amplitude) * (height - 8));
         const x = i * (barWidth + gap);
         const blend = i / bars;

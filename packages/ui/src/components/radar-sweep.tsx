@@ -18,7 +18,7 @@ const defaultBlips = [
 ];
 
 export const RadarSweep = React.forwardRef<HTMLDivElement, RadarSweepProps>(
-  ({ blips = defaultBlips, className, label, speed = 1, ...props }, ref) => {
+  ({ blips = defaultBlips, className, label, speed = 0.65, ...props }, ref) => {
     const hostRef = React.useRef<HTMLDivElement | null>(null);
     const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
 

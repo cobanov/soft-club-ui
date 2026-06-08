@@ -141,9 +141,9 @@ textarea {
 }
 
 .theme-switcher button:hover {
-  background: rgb(var(--sc-theme-rgb-primary) / 0.07);
-  border-color: var(--sc-color-border);
-  color: var(--sc-color-text);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.1);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.45);
+  color: var(--sc-color-warning);
 }
 
 .theme-switcher button:focus-visible {
@@ -201,9 +201,9 @@ textarea {
 }
 
 .docs-nav a:hover {
-  background: rgb(var(--sc-theme-rgb-primary) / 0.08);
-  border-color: var(--sc-color-border);
-  color: var(--sc-color-text);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.1);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.4);
+  color: var(--sc-color-warning);
 }
 
 .docs-nav a:focus-visible,
@@ -311,8 +311,9 @@ textarea {
 
 .docs-link-button:hover,
 .back-link:hover {
-  background: rgb(var(--sc-theme-rgb-primary) / 0.16);
-  border-color: var(--sc-color-border-strong);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.18);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.5);
+  color: var(--sc-color-warning);
 }
 
 .docs-link-button--ghost {
@@ -458,7 +459,7 @@ textarea {
 }
 
 .category-card-link:hover h3 {
-  color: var(--sc-color-accent-green);
+  color: var(--sc-color-warning);
 }
 
 .component-index-group h3 {
@@ -492,8 +493,8 @@ textarea {
 }
 
 .component-index-card:hover {
-  background: rgb(var(--sc-theme-rgb-panel) / 0.075);
-  border-color: var(--sc-color-border-strong);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.07);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.5);
 }
 
 .component-index-card strong,
@@ -556,7 +557,12 @@ textarea {
   text-decoration: none;
 }
 
-.demo-site__nav a:not(.demo-site__brand):hover,
+.demo-site__nav a:not(.demo-site__brand):hover {
+  background: rgb(var(--sc-theme-rgb-warm) / 0.12);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.45);
+  color: var(--sc-color-warning);
+}
+
 .demo-site__nav a[aria-current="page"] {
   background: rgb(var(--sc-theme-rgb-primary) / 0.1);
   border-color: var(--sc-color-border);
@@ -887,7 +893,12 @@ textarea {
   touch-action: manipulation;
 }
 
-.category-tabs a:hover,
+.category-tabs a:hover {
+  background: rgb(var(--sc-theme-rgb-warm) / 0.14);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.5);
+  color: var(--sc-color-warning);
+}
+
 .category-tabs a[aria-current="location"] {
   background: rgb(var(--sc-theme-rgb-primary) / 0.12);
   border-color: var(--sc-color-border-strong);
@@ -1278,8 +1289,8 @@ code {
 }
 
 .landing-bar__links a:hover {
-  background: rgb(var(--sc-theme-rgb-primary) / 0.08);
-  color: var(--sc-color-text);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.1);
+  color: var(--sc-color-warning);
 }
 
 .landing-bar__actions {
@@ -1295,7 +1306,7 @@ code {
 }
 
 .landing-bar__github:hover {
-  color: var(--sc-color-text);
+  color: var(--sc-color-warning);
 }
 
 .theme-bar {
@@ -1319,8 +1330,9 @@ code {
 }
 
 .theme-bar__chip:hover {
-  border-color: var(--sc-color-border);
-  color: var(--sc-color-text);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.08);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.45);
+  color: var(--sc-color-warning);
 }
 
 .theme-bar__chip[aria-pressed="true"] {
@@ -1580,6 +1592,7 @@ code {
 }
 
 .landing-show-card__doc:hover {
+  color: var(--sc-color-warning);
   text-decoration: underline;
 }
 
@@ -1614,8 +1627,8 @@ code {
 }
 
 .landing-catalog-card:hover {
-  background: rgb(var(--sc-theme-rgb-panel) / 0.075);
-  border-color: var(--sc-color-border-strong);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.07);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.5);
 }
 
 .landing-catalog-card__top {
@@ -1887,7 +1900,7 @@ code {
 }
 
 .landing-footer-col a:hover {
-  color: var(--sc-color-text);
+  color: var(--sc-color-warning);
 }
 
 .landing-footer__base {
@@ -2015,8 +2028,9 @@ code {
 }
 
 .loader-chip:hover {
-  border-color: var(--sc-color-border-strong);
-  color: var(--sc-color-text);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.08);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.45);
+  color: var(--sc-color-warning);
 }
 
 .loader-chip[aria-pressed="true"] {

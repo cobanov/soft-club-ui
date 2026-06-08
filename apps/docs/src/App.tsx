@@ -135,11 +135,11 @@ const themeOptions = [
     value: "orange"
   },
   {
-    description: "Cyberpunk 2077 night city: petrol-blue glass, neon cyan, hot HUD red.",
+    description: "Night City: petrol-blue glass, neon cyan lights, hot HUD red.",
     glass: "neon",
-    label: "Cyberpunk",
+    label: "Night City",
     swatches: ["#5eb3af", "#a1eae3", "#d22348"],
-    value: "cyberpunk"
+    value: "night-city"
   }
 ] as const;
 

@@ -167,8 +167,8 @@
   --sc-color-overlay: rgba(9, 2, 0, 0.8);
 }
 
-/* Cyberpunk 2077 night-city: petrol-blue glass, neon cyan lights, hot HUD red. */
-[data-sc-theme="cyberpunk"] {
+/* Night City: petrol-blue glass, neon cyan lights, hot HUD red. */
+[data-sc-theme="night-city"] {
   --sc-theme-rgb-primary: 161 234 227;
   --sc-theme-rgb-secondary: 94 179 175;
   --sc-theme-rgb-warm: 210 35 72;
@@ -193,8 +193,8 @@
   --sc-color-accent-green-soft: rgba(161, 234, 227, 0.18);
   --sc-color-danger: #d22348;
   --sc-color-danger-soft: rgba(210, 35, 72, 0.2);
-  --sc-color-warning: #e0556e;
-  --sc-color-warning-soft: rgba(210, 35, 72, 0.18);
+  --sc-color-warning: #ff6b8a;
+  --sc-color-warning-soft: rgba(255, 107, 138, 0.2);
   --sc-color-focus: rgba(161, 234, 227, 0.46);
   --sc-color-overlay: rgba(8, 5, 12, 0.8);
 }

@@ -32,8 +32,8 @@ export const ParticleField = React.forwardRef<HTMLDivElement, ParticleFieldProps
           st.h = height;
           st.seeded = true;
           st.particles = Array.from({ length: count }, () => ({
-            vx: (Math.random() - 0.5) * 26,
-            vy: (Math.random() - 0.5) * 26,
+            vx: (Math.random() - 0.5) * 18,
+            vy: (Math.random() - 0.5) * 18,
             x: Math.random() * width,
             y: Math.random() * height
           }));
@@ -51,8 +51,8 @@ export const ParticleField = React.forwardRef<HTMLDivElement, ParticleFieldProps
             const dy = particle.y - pointer.y;
             const distance = Math.hypot(dx, dy) || 1;
             if (distance < 130) {
-              particle.vx += (dx / distance) * 22 * 0.016;
-              particle.vy += (dy / distance) * 22 * 0.016;
+              particle.vx += (dx / distance) * 15 * 0.016;
+              particle.vy += (dy / distance) * 15 * 0.016;
             }
           }
           particle.x += particle.vx * 0.016;

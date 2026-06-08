@@ -51,10 +51,10 @@ export const MatrixRain = React.forwardRef<HTMLDivElement, MatrixRainProps>(
           );
 
           if (y > height && Math.random() > 0.975) drops[i] = Math.random() * -12;
-          drops[i] += 0.6;
+          drops[i] += 0.42;
         }
       },
-      { fps: 22 }
+      { fps: 18 }
     );
 
     const setRef = (node: HTMLDivElement | null) => {

@@ -1728,7 +1728,7 @@
   }
 
   .sc-logo-marquee__track {
-    animation: sc-logo-marquee var(--sc-logo-marquee-speed, 32s) linear infinite;
+    animation: sc-logo-marquee var(--sc-logo-marquee-speed, 42s) linear infinite;
   }
 
   .sc-signal-marquee__track {
@@ -2318,8 +2318,9 @@
 }
 
 .sc-toggle:hover {
-  border-color: var(--sc-color-border-strong);
-  color: var(--sc-color-text);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.1);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.5);
+  color: var(--sc-color-warning);
 }
 
 .sc-toggle[data-state="on"] {
@@ -2452,8 +2453,9 @@
 
 .sc-pagination__link:hover,
 .sc-pagination__edge:hover {
-  border-color: var(--sc-color-border-strong);
-  color: var(--sc-color-text);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.1);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.5);
+  color: var(--sc-color-warning);
 }
 
 .sc-pagination__link--active {
@@ -2863,17 +2865,17 @@
 }
 
 .sc-orbit__ring--1 {
-  animation-duration: 1.5s;
+  animation-duration: 2.1s;
 }
 
 .sc-orbit__ring--2 {
   animation-direction: reverse;
-  animation-duration: 2.2s;
+  animation-duration: 3.1s;
   inset: 18%;
 }
 
 .sc-orbit__ring--3 {
-  animation-duration: 1.8s;
+  animation-duration: 2.5s;
   inset: 36%;
 }
 
@@ -2967,7 +2969,7 @@
 }
 
 .sc-community-badge:hover {
-  border-color: var(--sc-color-border-strong);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.55);
   transform: translateY(-2px);
 }
 
@@ -3210,4 +3212,31 @@
   .sc-tool-call__dots i {
     animation: none;
   }
+}
+
+/* ============================================================
+   CRT old-TV scanlines layered onto core surfaces
+   ============================================================ */
+.sc-card,
+.sc-glass-panel,
+.sc-glass-card,
+.sc-mock-console,
+.sc-mock-ide,
+.sc-dialog-content,
+.sc-popover-content,
+.sc-toast-root,
+.sc-pricing-card,
+.sc-prompt-hero,
+.sc-chat-dock,
+.sc-prompt-box,
+.sc-sticky-banner,
+.sc-community-badge,
+.sc-before-after {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgb(var(--sc-theme-rgb-text) / 0.055) 0,
+    rgb(var(--sc-theme-rgb-text) / 0.055) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }

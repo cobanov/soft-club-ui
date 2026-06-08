@@ -29,7 +29,7 @@ export const LogoMarquee = React.forwardRef<HTMLDivElement, LogoMarqueeProps>(
       gap = 48,
       logos = defaultLogos,
       pauseOnHover,
-      speed = 32,
+      speed = 42,
       style,
       ...props
     },
