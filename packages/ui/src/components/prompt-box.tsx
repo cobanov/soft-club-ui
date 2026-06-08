@@ -12,7 +12,7 @@ export const PromptBox = React.forwardRef<HTMLFormElement, PromptBoxProps>(
     {
       className,
       defaultValue,
-      placeholder = "Describe the glass pass...",
+      placeholder = "Describe the glass pass…",
       onSubmit,
       ...props
     },
@@ -33,6 +33,7 @@ export const PromptBox = React.forwardRef<HTMLFormElement, PromptBoxProps>(
       <input
         className="sc-prompt-box__input"
         defaultValue={defaultValue}
+        name="soft-club-prompt"
         placeholder={placeholder}
       />
       <button aria-label="Voice input" className="sc-prompt-box__icon" type="button">

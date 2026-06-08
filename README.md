@@ -4,6 +4,12 @@ Soft Club UI is a reusable React component library shaped by late-90s Sony-adjac
 
 The package is publish-ready as `@cobanov/soft-club-ui`.
 
+## Demo
+
+The component catalog is deployed to GitHub Pages:
+
+[soft-club-ui demo](https://cobanov.github.io/soft-club-ui/)
+
 ## Install
 
 ```sh

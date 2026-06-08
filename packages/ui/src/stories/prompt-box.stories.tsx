@@ -15,5 +15,5 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const ExampleUsage: Story = {
-  render: () => <PromptBox placeholder="Describe the glass pass..." />
+  render: () => <PromptBox placeholder="Describe the glass pass…" />
 };
