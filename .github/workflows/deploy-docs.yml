@@ -36,8 +36,8 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Docs
-        run: pnpm --filter @cobanov/soft-club-docs build
+      - name: Build Workspace
+        run: pnpm build
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
