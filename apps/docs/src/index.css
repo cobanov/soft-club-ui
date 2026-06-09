@@ -1439,7 +1439,7 @@ code {
 }
 
 .copy-btn:hover {
-  background: rgb(var(--sc-theme-rgb-primary) / 0.18);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.18);
 }
 
 .landing-hero__actions {

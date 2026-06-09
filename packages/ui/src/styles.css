@@ -120,7 +120,9 @@
 }
 
 .sc-button--outline:hover:not(:disabled) {
-  background: rgb(var(--sc-theme-rgb-panel) / 0.11);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.12);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.55);
+  color: var(--sc-color-warning);
 }
 
 .sc-button--ghost {
@@ -131,9 +133,9 @@
 }
 
 .sc-button--ghost:hover:not(:disabled) {
-  background: rgb(var(--sc-theme-rgb-panel) / 0.07);
-  border-color: var(--sc-color-border);
-  color: var(--sc-color-text);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.1);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.4);
+  color: var(--sc-color-warning);
 }
 
 .sc-button--danger {
@@ -688,7 +690,8 @@
 }
 
 .sc-dropdown-item[data-highlighted] {
-  background: rgb(var(--sc-theme-rgb-primary) / 0.14);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.16);
+  color: var(--sc-color-warning);
 }
 
 .sc-dropdown-item[data-disabled] {
@@ -1046,7 +1049,7 @@
 }
 
 .sc-glass-card--glow-hover:hover {
-  border-color: color-mix(in srgb, var(--sc-color-accent-green), transparent 42%);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.5);
 }
 
 .sc-glass-card--breathing {
@@ -2405,7 +2408,7 @@
 }
 
 .sc-breadcrumb__link:hover {
-  color: var(--sc-color-text);
+  color: var(--sc-color-warning);
 }
 
 .sc-breadcrumb__page {
@@ -2521,7 +2524,7 @@
 }
 
 .sc-table__row:hover .sc-table__cell {
-  background: rgb(var(--sc-theme-rgb-primary) / 0.05);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.08);
   color: var(--sc-color-text);
 }
 
@@ -2568,7 +2571,7 @@
 }
 
 .sc-scroll-area::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--sc-theme-rgb-primary) / 0.5);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.55);
   background-clip: padding-box;
 }
 
@@ -3009,7 +3012,7 @@
 }
 
 .sc-community-badge--ghost:hover {
-  background: rgb(var(--sc-theme-rgb-primary) / 0.06);
+  background: rgb(var(--sc-theme-rgb-warm) / 0.08);
 }
 
 .sc-community-badge--solid {
