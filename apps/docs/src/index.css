@@ -1160,29 +1160,122 @@ code {
   width: 1px;
 }
 
+.docs-topbar {
+  display: none;
+}
+
+.docs-menu-toggle {
+  align-items: center;
+  background: transparent;
+  border: var(--sc-border);
+  border-radius: var(--sc-radius-1);
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 2.3rem;
+  justify-content: center;
+  padding: 0;
+  width: 2.3rem;
+}
+
+.docs-menu-toggle span {
+  background: var(--sc-color-text);
+  border-radius: 2px;
+  height: 2px;
+  transition:
+    opacity 160ms var(--sc-motion-ease),
+    transform 160ms var(--sc-motion-ease);
+  width: 1.05rem;
+}
+
+.docs-menu-toggle--open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.docs-menu-toggle--open span:nth-child(2) {
+  opacity: 0;
+}
+
+.docs-menu-toggle--open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.docs-menu-toggle:focus-visible {
+  outline: 2px solid var(--sc-color-focus);
+  outline-offset: 2px;
+}
+
 @media (max-width: 860px) {
   .docs-shell {
     grid-template-columns: 1fr;
   }
 
+  .docs-topbar {
+    align-items: center;
+    backdrop-filter: blur(18px) saturate(120%);
+    background: var(--sc-color-overlay);
+    border-bottom: var(--sc-border);
+    display: flex;
+    gap: var(--sc-space-3);
+    justify-content: space-between;
+    left: 0;
+    padding: var(--sc-space-3) var(--sc-space-4);
+    position: sticky;
+    right: 0;
+    top: 0;
+    z-index: 50;
+  }
+
+  .docs-topbar__brand {
+    display: grid;
+    line-height: 1.1;
+    text-decoration: none;
+  }
+
+  .docs-topbar__brand strong {
+    color: var(--sc-color-accent-green);
+    font-family: var(--sc-font-mono);
+    font-size: var(--sc-font-size-1);
+  }
+
+  .docs-topbar__brand span {
+    font-size: var(--sc-font-size-4);
+    font-weight: var(--sc-font-weight-bold);
+  }
+
+  .docs-topbar__actions {
+    align-items: center;
+    display: flex;
+    gap: var(--sc-space-2);
+  }
+
   .docs-nav {
     border-bottom: var(--sc-border);
     border-right: 0;
+    display: none;
     height: auto;
-    max-height: 22rem;
-    overflow-y: auto;
+    overflow: visible;
+    padding: var(--sc-space-4);
     position: static;
     width: auto;
   }
 
-  .docs-nav nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sc-space-3);
+  .docs-nav--open {
+    display: block;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
   }
 
-  .docs-nav-group {
-    flex: 1 1 11rem;
+  .docs-nav > .docs-brand,
+  .docs-nav > .theme-switcher {
+    display: none;
+  }
+
+  .docs-nav nav {
+    display: grid;
+    gap: var(--sc-space-4);
+    margin-top: 0;
   }
 
   .docs-main {
