@@ -1496,6 +1496,12 @@ function App() {
     }, 0);
   }, [activeComponentSlug, route]);
 
+  const [navOpen, setNavOpen] = useState(false);
+
+  useEffect(() => {
+    setNavOpen(false);
+  }, [route]);
+
   const showToast = () => setToastOpen(true);
   const isDocsView = Boolean(activeDemoPage || activeCategory);
 
@@ -1506,7 +1512,32 @@ function App() {
       </a>
       {isDocsView ? (
         <div className="docs-shell">
-          <aside className="docs-nav">
+          <header className="docs-topbar">
+            <a className="docs-topbar__brand" href="#/">
+              <strong translate="no">GEN X</strong>
+              <span>Soft Club UI</span>
+            </a>
+            <div className="docs-topbar__actions">
+              <ThemeSwitcher
+                activeTheme={activeTheme}
+                setActiveTheme={setActiveTheme}
+                variant="bar"
+              />
+              <button
+                aria-controls="docs-nav"
+                aria-expanded={navOpen}
+                aria-label={navOpen ? "Close menu" : "Open menu"}
+                className={`docs-menu-toggle${navOpen ? " docs-menu-toggle--open" : ""}`}
+                onClick={() => setNavOpen((open) => !open)}
+                type="button"
+              >
+                <span />
+                <span />
+                <span />
+              </button>
+            </div>
+          </header>
+          <aside className={`docs-nav${navOpen ? " docs-nav--open" : ""}`} id="docs-nav">
             <a className="docs-brand" href="#/">
               <strong translate="no">GEN X</strong>
               <span>Soft Club UI</span>
@@ -1516,7 +1547,7 @@ function App() {
               setActiveTheme={setActiveTheme}
               variant="rail"
             />
-            <nav aria-label="Component documentation">
+            <nav aria-label="Component documentation" onClick={() => setNavOpen(false)}>
               <div className="docs-nav-group">
                 <span>Overview</span>
                 <a href="#/">Home</a>
