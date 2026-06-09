@@ -76,6 +76,9 @@ import {
   Avatar,
   Breadcrumb,
   ButtonGroup,
+  Calendar,
+  DateInput,
+  DatePicker,
   DuotoneCard,
   DuotoneImage,
   GlitchText,
@@ -1297,6 +1300,44 @@ const componentEntries: ComponentEntry[] = [
       </div>
     ),
     slug: "duotone-card"
+  },
+  {
+    category: "Date & Time",
+    code: `<Calendar defaultValue={new Date()} />`,
+    description: "Month-grid calendar with keyboard navigation and single-date selection.",
+    name: "Calendar",
+    preview: () => <Calendar defaultMonth={new Date(2026, 5, 1)} defaultValue={new Date(2026, 5, 14)} />,
+    slug: "calendar"
+  },
+  {
+    category: "Date & Time",
+    code: `<Calendar mode="range" defaultValue={{ start, end }} />`,
+    description: "Range mode picks a start and end date across a connected highlight.",
+    name: "CalendarRange",
+    preview: () => (
+      <Calendar
+        defaultMonth={new Date(2026, 5, 1)}
+        defaultValue={{ end: new Date(2026, 5, 19), start: new Date(2026, 5, 11) }}
+        mode="range"
+      />
+    ),
+    slug: "calendar-range"
+  },
+  {
+    category: "Date & Time",
+    code: `<DatePicker defaultValue={new Date()} />`,
+    description: "Button-triggered calendar in a popover that shows the chosen date.",
+    name: "DatePicker",
+    preview: () => <DatePicker defaultValue={new Date(2026, 5, 14)} />,
+    slug: "date-picker"
+  },
+  {
+    category: "Date & Time",
+    code: `<DateInput defaultValue="2026-06-14" />`,
+    description: "Styled native date field with the browser's date picker.",
+    name: "DateInput",
+    preview: () => <DateInput aria-label="Pick a date" defaultValue="2026-06-14" name="demo-date" />,
+    slug: "date-input"
   }
 ];
 
@@ -1312,6 +1353,7 @@ const categoryDescriptions: Record<string, string> = {
   "Actions & Inputs": "Buttons, form controls, switches, and prompt entry surfaces.",
   Banners: "Dense notice bars for release and state updates.",
   Conversation: "Chat surfaces, bubbles, and prompt docks.",
+  "Date & Time": "Calendars, date pickers, and date entry fields.",
   Feedback: "Toast, loading, streaming, counters, and status motion.",
   Foundations: "Small primitives that carry state, spacing, and separators.",
   "Live & Reactive": "Canvas-driven, cursor-aware, always-moving surfaces.",
@@ -1340,6 +1382,8 @@ const wideExampleSlugs = new Set([
   "ascii-hero",
   "aurora-field",
   "before-after",
+  "calendar",
+  "calendar-range",
   "chat-dock",
   "duotone-card",
   "duotone-image",

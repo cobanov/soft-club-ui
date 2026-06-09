@@ -3243,3 +3243,178 @@
     transparent 3px
   );
 }
+
+/* ============================================================
+   Calendar / DatePicker / DateInput
+   ============================================================ */
+.sc-calendar {
+  background: var(--sc-color-surface-raised);
+  border: var(--sc-border);
+  border-radius: var(--sc-radius-3);
+  box-shadow: var(--sc-shadow-1), var(--sc-shadow-inset);
+  color: var(--sc-color-text);
+  display: grid;
+  font-family: var(--sc-font-sans);
+  gap: var(--sc-space-3);
+  padding: var(--sc-space-4);
+  width: max-content;
+}
+
+.sc-calendar__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sc-calendar__title {
+  font-size: var(--sc-font-size-3);
+  font-weight: var(--sc-font-weight-medium);
+  text-transform: capitalize;
+}
+
+.sc-calendar__nav {
+  align-items: center;
+  background: rgb(var(--sc-theme-rgb-panel) / 0.05);
+  border: var(--sc-border);
+  border-radius: var(--sc-radius-1);
+  color: var(--sc-color-text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  height: 1.85rem;
+  justify-content: center;
+  width: 1.85rem;
+}
+
+.sc-calendar__nav:hover {
+  background: rgb(var(--sc-theme-rgb-warm) / 0.12);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.5);
+  color: var(--sc-color-warning);
+}
+
+.sc-calendar__nav:focus-visible,
+.sc-calendar__day:focus-visible {
+  outline: 2px solid var(--sc-color-focus);
+  outline-offset: 1px;
+}
+
+.sc-calendar__weekdays,
+.sc-calendar__week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.sc-calendar__weekday {
+  color: var(--sc-color-text-subtle);
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-font-size-1);
+  padding-bottom: var(--sc-space-1);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.sc-calendar__grid {
+  display: grid;
+  gap: 2px;
+}
+
+.sc-calendar__cell {
+  display: flex;
+  justify-content: center;
+}
+
+.sc-calendar__day {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--sc-radius-1);
+  color: var(--sc-color-text);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: var(--sc-font-size-2);
+  height: 2rem;
+  justify-content: center;
+  width: 2rem;
+}
+
+.sc-calendar__day:hover:not(:disabled) {
+  background: rgb(var(--sc-theme-rgb-warm) / 0.14);
+  border-color: rgb(var(--sc-theme-rgb-warm) / 0.5);
+  color: var(--sc-color-warning);
+}
+
+.sc-calendar__day--outside {
+  color: var(--sc-color-text-subtle);
+  opacity: 0.55;
+}
+
+.sc-calendar__day--today {
+  border-color: var(--sc-color-border-strong);
+  font-weight: var(--sc-font-weight-bold);
+}
+
+.sc-calendar__day--in-range {
+  background: rgb(var(--sc-theme-rgb-primary) / 0.13);
+  border-radius: 0;
+}
+
+.sc-calendar__day--selected,
+.sc-calendar__day--range-start,
+.sc-calendar__day--range-end {
+  background: var(--sc-color-accent-green);
+  border-color: var(--sc-color-accent-green);
+  color: #07120f;
+  font-weight: var(--sc-font-weight-medium);
+}
+
+.sc-calendar__day--selected:hover:not(:disabled),
+.sc-calendar__day--range-start:hover:not(:disabled),
+.sc-calendar__day--range-end:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--sc-color-accent-green), white 12%);
+  border-color: var(--sc-color-accent-green);
+  color: #07120f;
+}
+
+.sc-calendar__day:disabled {
+  cursor: not-allowed;
+  opacity: 0.32;
+}
+
+/* DatePicker */
+.sc-datepicker__trigger {
+  gap: var(--sc-space-2);
+  justify-content: flex-start;
+  min-width: 13rem;
+}
+
+.sc-datepicker__trigger--empty {
+  color: var(--sc-color-text-subtle);
+}
+
+.sc-datepicker__popover {
+  padding: 0;
+}
+
+.sc-datepicker__popover .sc-calendar {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: var(--sc-space-1);
+}
+
+/* DateInput (styled native date field) */
+.sc-date-input {
+  align-items: center;
+  height: 2.5rem;
+  padding: 0 var(--sc-space-3);
+}
+
+.sc-date-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(1) brightness(1.4);
+  opacity: 0.65;
+}
+
+.sc-date-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
