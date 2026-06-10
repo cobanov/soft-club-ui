@@ -119,6 +119,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
+  Combobox,
+  Command,
   Drawer,
   DrawerClose,
   DrawerContent,
@@ -624,6 +626,50 @@ const componentEntries: ComponentEntry[] = [
     name: "NumberInput",
     preview: () => <NumberInput defaultValue={4} max={10} min={0} />,
     slug: "number-input"
+  },
+  {
+    category: "Pickers",
+    code: `<Combobox options={options} placeholder="Select frame" />`,
+    description: "Searchable single-select with arrow-key navigation, on the Popover surface.",
+    name: "Combobox",
+    preview: () => (
+      <Combobox
+        options={[
+          { label: "Bleach Bypass", value: "bleach" },
+          { label: "Cross Process", value: "crossproc" },
+          { label: "Duotone Petrol", value: "petrol" },
+          { label: "Night City Red", value: "neon" },
+          { label: "Soft Terrain", value: "terrain" }
+        ]}
+        placeholder="Select a grade"
+      />
+    ),
+    slug: "combobox"
+  },
+  {
+    category: "Pickers",
+    code: `<Command><Command.Input /><Command.List>…</Command.List></Command>`,
+    description: "Command palette with live substring filtering and grouped items.",
+    name: "Command",
+    preview: () => (
+      <Command>
+        <Command.Input placeholder="Search the deck…" />
+        <Command.List>
+          <Command.Empty>No command found.</Command.Empty>
+          <Command.Group heading="Frame">
+            <Command.Item value="Scan plate">Scan plate</Command.Item>
+            <Command.Item value="Route through bus B2">Route through bus B2</Command.Item>
+            <Command.Item value="Freeze frame">Freeze frame</Command.Item>
+          </Command.Group>
+          <Command.Separator />
+          <Command.Group heading="Theme">
+            <Command.Item value="Green glass" keywords="default">Green glass</Command.Item>
+            <Command.Item value="Night City" keywords="neon red">Night City</Command.Item>
+          </Command.Group>
+        </Command.List>
+      </Command>
+    ),
+    slug: "command"
   },
   {
     category: "Feedback",
@@ -1664,6 +1710,7 @@ const categoryDescriptions: Record<string, string> = {
   Navigation: "Tabs, disclosure, menus, dialogs, popovers, and tooltips.",
   Overlays: "Sheets, drawers, confirmation dialogs, and hover cards.",
   "Page Sections": "Headers, footers, and animated film-graded gradient banners.",
+  Pickers: "Searchable selects and command palettes.",
   "Proof & Commerce": "Social proof, marquees, badges, and pricing surfaces.",
   Surfaces: "Cards, glass panels, mock interfaces, and ambient displays."
 };
@@ -1717,6 +1764,8 @@ const standardExampleSlugs = new Set([
   "accordion",
   "alert-dialog",
   "card",
+  "combobox",
+  "command",
   "dialog",
   "drawer",
   "dropdown-menu",

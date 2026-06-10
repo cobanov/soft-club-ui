@@ -17,6 +17,8 @@ export * from "./components/date-picker";
 export * from "./components/chat-bubble";
 export * from "./components/chat-dock";
 export * from "./components/checkbox";
+export * from "./components/combobox";
+export * from "./components/command";
 export * from "./components/community-badge";
 export * from "./components/dialog";
 export * from "./components/drawer";
