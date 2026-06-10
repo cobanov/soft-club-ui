@@ -145,6 +145,23 @@ import {
   Timeline,
   Tree
 } from "@cobanov/soft-club-ui";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuTrigger,
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+  NavigationMenu
+} from "@cobanov/soft-club-ui";
 
 interface ComponentEntry {
   category: string;
@@ -470,6 +487,94 @@ const componentEntries: ComponentEntry[] = [
       </Tooltip>
     ),
     slug: "tooltip"
+  },
+  {
+    category: "Menus",
+    code: `<Menubar><MenubarMenu>…</MenubarMenu></Menubar>`,
+    description: "Persistent application menu bar with keyboard navigation.",
+    name: "Menubar",
+    preview: () => (
+      <Menubar>
+        <MenubarMenu>
+          <MenubarTrigger>Frame</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>
+              New Plate <MenubarShortcut>⌘N</MenubarShortcut>
+            </MenubarItem>
+            <MenubarItem>
+              Scan <MenubarShortcut>⌘S</MenubarShortcut>
+            </MenubarItem>
+            <MenubarSeparator />
+            <MenubarItem>Freeze Frame</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>Route</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>Bus B1</MenubarItem>
+            <MenubarItem>Bus B2</MenubarItem>
+            <MenubarItem>Bus B3</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>View</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>Toggle Scanlines</MenubarItem>
+            <MenubarItem>Theme: Night City</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
+    ),
+    slug: "menubar"
+  },
+  {
+    category: "Menus",
+    code: `<ContextMenu><ContextMenuTrigger>…</ContextMenuTrigger><ContextMenuContent>…</ContextMenuContent></ContextMenu>`,
+    description: "Right-click menu anchored to its trigger region.",
+    name: "ContextMenu",
+    preview: () => (
+      <ContextMenu>
+        <ContextMenuTrigger className="preview-context-target">
+          Right-click the plate
+        </ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuLabel>Plate 02</ContextMenuLabel>
+          <ContextMenuItem>
+            Scan <ContextMenuShortcut>⌘S</ContextMenuShortcut>
+          </ContextMenuItem>
+          <ContextMenuItem>
+            Route <ContextMenuShortcut>⌘R</ContextMenuShortcut>
+          </ContextMenuItem>
+          <ContextMenuSeparator />
+          <ContextMenuItem>Freeze Frame</ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>
+    ),
+    slug: "context-menu"
+  },
+  {
+    category: "Menus",
+    code: `<NavigationMenu><NavigationMenu.List>…</NavigationMenu.List></NavigationMenu>`,
+    description: "Top-level navigation with a sliding content viewport.",
+    name: "NavigationMenu",
+    preview: () => (
+      <NavigationMenu>
+        <NavigationMenu.List>
+          <NavigationMenu.Item>
+            <NavigationMenu.Trigger>Frames</NavigationMenu.Trigger>
+            <NavigationMenu.Content>
+              <NavigationMenu.Link href="#scan">Scan Plate</NavigationMenu.Link>
+              <NavigationMenu.Link href="#route">Route Through Bus</NavigationMenu.Link>
+              <NavigationMenu.Link href="#render">Render Settle</NavigationMenu.Link>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
+          <NavigationMenu.Item>
+            <NavigationMenu.Link href="#docs">Docs</NavigationMenu.Link>
+          </NavigationMenu.Item>
+        </NavigationMenu.List>
+      </NavigationMenu>
+    ),
+    slug: "navigation-menu"
   },
   {
     category: "Overlays",
@@ -1777,6 +1882,7 @@ const categoryDescriptions: Record<string, string> = {
   Foundations: "Small primitives that carry state, spacing, and separators.",
   "Live & Reactive": "Canvas-driven, cursor-aware, always-moving surfaces.",
   Media: "Image treatments that recolor to a chosen hue or the active theme.",
+  Menus: "Menu bars, right-click menus, and navigation menus.",
   "Motion & Type": "Animated type and controlled emphasis components.",
   Navigation: "Tabs, disclosure, menus, dialogs, popovers, and tooltips.",
   Overlays: "Sheets, drawers, confirmation dialogs, and hover cards.",
@@ -1838,12 +1944,15 @@ const standardExampleSlugs = new Set([
   "card",
   "combobox",
   "command",
+  "context-menu",
   "dialog",
   "drawer",
   "dropdown-menu",
   "glass-card",
   "glass-panel",
   "hover-card",
+  "menubar",
+  "navigation-menu",
   "popover",
   "rotator",
   "sheet",

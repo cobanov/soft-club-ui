@@ -873,6 +873,22 @@ textarea {
   font-weight: var(--sc-font-weight-bold);
 }
 
+.preview-context-target {
+  align-items: center;
+  border: 1px dashed var(--sc-color-border-strong);
+  border-radius: var(--sc-radius-3);
+  color: var(--sc-color-text-muted);
+  cursor: context-menu;
+  display: flex;
+  font-size: var(--sc-font-size-3);
+  justify-content: center;
+  min-height: 6rem;
+  padding: var(--sc-space-4);
+  text-align: center;
+  user-select: none;
+  width: 100%;
+}
+
 .category-tabs {
   align-items: center;
   display: flex;

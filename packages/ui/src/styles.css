@@ -4729,3 +4729,170 @@
     transition: none;
   }
 }
+
+
+/* ============================================================
+   Menus: Menubar, ContextMenu, NavigationMenu
+   ============================================================ */
+
+/* Shared menu popup behaviour (reuses .sc-dropdown-* surface + item styles) */
+.sc-menu-content {
+  transform-origin: var(
+    --radix-context-menu-content-transform-origin,
+    var(--radix-menubar-content-transform-origin)
+  );
+}
+.sc-menu-content[data-state="open"] {
+  animation: sc-popover-in 200ms var(--sc-motion-ease);
+}
+.sc-menu-subtrigger {
+  justify-content: space-between;
+}
+.sc-menu-subtrigger[data-state="open"] {
+  background: rgb(var(--sc-theme-rgb-warm) / 0.16);
+  color: var(--sc-color-warning);
+}
+.sc-menu-subtrigger__icon {
+  margin-left: var(--sc-space-3);
+}
+.sc-menu-shortcut {
+  color: var(--sc-color-text-muted);
+  font-size: var(--sc-font-size-2);
+  letter-spacing: 0.08em;
+  margin-left: auto;
+  padding-left: var(--sc-space-4);
+}
+
+/* Menubar */
+.sc-menubar {
+  align-items: center;
+  background: var(--sc-color-surface-raised);
+  border: var(--sc-border-strong);
+  border-radius: var(--sc-radius-2);
+  box-shadow: var(--sc-shadow-inset);
+  display: inline-flex;
+  font-family: var(--sc-font-sans);
+  gap: 2px;
+  padding: var(--sc-space-1);
+}
+.sc-menubar-trigger {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-radius: var(--sc-radius-1);
+  color: var(--sc-color-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--sc-font-size-3);
+  outline: none;
+  padding: var(--sc-space-1) var(--sc-space-3);
+  transition: background 140ms var(--sc-motion-ease), color 140ms var(--sc-motion-ease);
+}
+.sc-menubar-trigger[data-highlighted],
+.sc-menubar-trigger[data-state="open"] {
+  background: rgb(var(--sc-theme-rgb-warm) / 0.16);
+  color: var(--sc-color-warning);
+}
+.sc-menubar-trigger:focus-visible {
+  outline: 2px solid var(--sc-color-focus);
+  outline-offset: -2px;
+}
+
+/* Navigation menu */
+.sc-nav-menu {
+  display: flex;
+  font-family: var(--sc-font-sans);
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.sc-nav-menu__list {
+  align-items: center;
+  display: flex;
+  gap: var(--sc-space-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sc-nav-menu__trigger,
+.sc-nav-menu__link {
+  align-items: center;
+  appearance: none;
+  background: none;
+  border: 0;
+  border-radius: var(--sc-radius-2);
+  color: var(--sc-color-text);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: var(--sc-font-size-3);
+  gap: var(--sc-space-1);
+  outline: none;
+  padding: var(--sc-space-2) var(--sc-space-3);
+  text-decoration: none;
+  transition: background 140ms var(--sc-motion-ease), color 140ms var(--sc-motion-ease);
+}
+.sc-nav-menu__trigger:hover,
+.sc-nav-menu__trigger[data-state="open"],
+.sc-nav-menu__link:hover {
+  background: rgb(var(--sc-theme-rgb-warm) / 0.16);
+  color: var(--sc-color-warning);
+}
+.sc-nav-menu__trigger:focus-visible,
+.sc-nav-menu__link:focus-visible {
+  outline: 2px solid var(--sc-color-focus);
+  outline-offset: -2px;
+}
+.sc-nav-menu__trigger-icon {
+  transition: transform 180ms var(--sc-motion-ease);
+}
+.sc-nav-menu__trigger[data-state="open"] .sc-nav-menu__trigger-icon {
+  transform: rotate(180deg);
+}
+.sc-nav-menu__content {
+  display: grid;
+  gap: 2px;
+  left: 0;
+  min-width: 16rem;
+  padding: var(--sc-space-2);
+  position: absolute;
+  top: 0;
+  width: max-content;
+}
+.sc-nav-menu__viewport-wrap {
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+.sc-nav-menu__viewport {
+  background: var(--sc-color-surface-raised);
+  border: var(--sc-border-strong);
+  border-radius: var(--sc-radius-3);
+  box-shadow: var(--sc-shadow-2), var(--sc-shadow-inset);
+  height: var(--radix-navigation-menu-viewport-height);
+  margin-top: var(--sc-space-2);
+  overflow: hidden;
+  position: relative;
+  transform-origin: top center;
+  transition: height 240ms var(--sc-motion-ease), width 240ms var(--sc-motion-ease);
+  width: var(--radix-navigation-menu-viewport-width);
+}
+.sc-nav-menu__viewport[data-state="open"] {
+  animation: sc-popover-in 200ms var(--sc-motion-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-menubar-trigger,
+  .sc-nav-menu__trigger,
+  .sc-nav-menu__link,
+  .sc-nav-menu__trigger-icon,
+  .sc-menu-content[data-state="open"],
+  .sc-nav-menu__viewport,
+  .sc-nav-menu__viewport[data-state="open"] {
+    animation: none;
+    transition: none;
+  }
+}
