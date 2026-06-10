@@ -1,5 +1,5 @@
 {
-  "name": "@cobanov/soft-club-ui",
+  "name": "@softclub/ui",
   "version": "0.1.0",
   "description": "A late-90s green-glass Gen X Soft Club React component library.",
   "type": "module",
@@ -40,7 +40,7 @@
     "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@cobanov/soft-club-tokens": "workspace:*",
+    "@softclub/tokens": "workspace:*",
     "@radix-ui/react-context-menu": "^2.2.6",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-dropdown-menu": "^2.1.6",

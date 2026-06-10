@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import "@cobanov/soft-club-ui/styles.css";
+import "@softclub/ui/styles.css";
 import "./preview.css";
 
 const preview: Preview = {

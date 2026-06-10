@@ -70,7 +70,7 @@ import {
   TokenStream,
   Tooltip,
   WordRoll
-} from "@cobanov/soft-club-ui";
+} from "@softclub/ui";
 import {
   Alert,
   AnnouncementBar,
@@ -108,7 +108,7 @@ import {
   ToggleGroup,
   ToolCall,
   Waveform
-} from "@cobanov/soft-club-ui";
+} from "@softclub/ui";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -144,7 +144,7 @@ import {
   Stepper,
   Timeline,
   Tree
-} from "@cobanov/soft-club-ui";
+} from "@softclub/ui";
 import {
   AspectRatio,
   Collapsible,
@@ -164,7 +164,7 @@ import {
   MenubarTrigger,
   NavigationMenu,
   InputOTP
-} from "@cobanov/soft-club-ui";
+} from "@softclub/ui";
 
 interface ComponentEntry {
   category: string;
@@ -2464,23 +2464,23 @@ function DemoPageHeader({ copy, title }: { copy: string; title: string }) {
 }
 
 const githubUrl = "https://github.com/cobanov/soft-club-ui";
-const npmUrl = "https://www.npmjs.com/package/@cobanov/soft-club-ui";
+const npmUrl = "https://www.npmjs.com/package/@softclub/ui";
 const licenseUrl = "https://github.com/cobanov/soft-club-ui/blob/main/LICENSE";
 const contributingUrl = "https://github.com/cobanov/soft-club-ui/blob/main/CONTRIBUTING.md";
-const installCommand = "pnpm add @cobanov/soft-club-ui @cobanov/soft-club-tokens";
+const installCommand = "pnpm add @softclub/ui @softclub/tokens";
 const logoUrl = `${import.meta.env.BASE_URL}logo.png`;
 const registryBaseUrl = "https://cobanov.github.io/soft-club-ui/r";
 const registryCommand = (name: string) => `npx shadcn@latest add ${registryBaseUrl}/${name}.json`;
 
 const packageManagers = [
-  { command: "pnpm add @cobanov/soft-club-ui @cobanov/soft-club-tokens", id: "pnpm" },
-  { command: "npm install @cobanov/soft-club-ui @cobanov/soft-club-tokens", id: "npm" },
-  { command: "yarn add @cobanov/soft-club-ui @cobanov/soft-club-tokens", id: "yarn" },
-  { command: "bun add @cobanov/soft-club-ui @cobanov/soft-club-tokens", id: "bun" }
+  { command: "pnpm add @softclub/ui @softclub/tokens", id: "pnpm" },
+  { command: "npm install @softclub/ui @softclub/tokens", id: "npm" },
+  { command: "yarn add @softclub/ui @softclub/tokens", id: "yarn" },
+  { command: "bun add @softclub/ui @softclub/tokens", id: "bun" }
 ] as const;
 
-const usageSnippet = `import "@cobanov/soft-club-ui/styles.css";
-import { Button, Card, CardHeader, CardTitle } from "@cobanov/soft-club-ui";
+const usageSnippet = `import "@softclub/ui/styles.css";
+import { Button, Card, CardHeader, CardTitle } from "@softclub/ui";
 
 export function Room() {
   return (
@@ -2920,7 +2920,7 @@ function LandingPage({
                 { children: "import ", tone: "keyword" },
                 { children: "{ Button, Card } " },
                 { children: "from ", tone: "keyword" },
-                { children: '"@cobanov/soft-club-ui"', tone: "string" },
+                { children: '"@softclub/ui"', tone: "string" },
                 { children: ";\n\n" },
                 { children: "export ", tone: "keyword" },
                 { children: "function ", tone: "keyword" },
@@ -3049,7 +3049,7 @@ function LandingPage({
                 ))}
               </Tabs>
               <p className="landing-install__note">
-                Tokens ship separately as <code>@cobanov/soft-club-tokens</code> &mdash; pure CSS
+                Tokens ship separately as <code>@softclub/tokens</code> &mdash; pure CSS
                 variables you can reuse in any framework while you migrate.
               </p>
               <p className="landing-install__note">

@@ -11,8 +11,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cobanov/soft-club-tokens": "workspace:*",
-    "@cobanov/soft-club-ui": "workspace:*",
+    "@softclub/tokens": "workspace:*",
+    "@softclub/ui": "workspace:*",
     "@tailwindcss/vite": "^4.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

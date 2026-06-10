@@ -32,10 +32,10 @@ importers:
 
   apps/docs:
     dependencies:
-      '@cobanov/soft-club-tokens':
+      '@softclub/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@cobanov/soft-club-ui':
+      '@softclub/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       '@tailwindcss/vite':
@@ -93,9 +93,6 @@ importers:
 
   packages/ui:
     dependencies:
-      '@cobanov/soft-club-tokens':
-        specifier: workspace:*
-        version: link:../tokens
       '@radix-ui/react-context-menu':
         specifier: ^2.2.6
         version: 2.3.0(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -123,6 +120,9 @@ importers:
       '@radix-ui/react-toast':
         specifier: ^1.2.6
         version: 1.2.16(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@softclub/tokens':
+        specifier: workspace:*
+        version: link:../tokens
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1

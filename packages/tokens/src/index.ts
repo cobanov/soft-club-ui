@@ -1,1 +1,1 @@
-export const softClubTokenCss = "@cobanov/soft-club-tokens/style.css";
+export const softClubTokenCss = "@softclub/tokens/style.css";

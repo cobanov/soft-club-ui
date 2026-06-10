@@ -110,7 +110,7 @@ const useClient = (code) => `"use client";\n\n${code}`;
 const tokensCss = fs.readFileSync(TOKENS_CSS, "utf8");
 const stylesCss = fs
   .readFileSync(STYLES_CSS, "utf8")
-  .replace('@import "@cobanov/soft-club-tokens/style.css";', '@import "./soft-club-tokens.css";');
+  .replace('@import "@softclub/tokens/style.css";', '@import "./soft-club-tokens.css";');
 
 if (!stylesCss.startsWith('@import "./soft-club-tokens.css";')) {
   throw new Error("styles.css no longer starts with the tokens @import; update build-registry.mjs");

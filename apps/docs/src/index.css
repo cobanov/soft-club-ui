@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@cobanov/soft-club-ui/styles.css";
+@import "@softclub/ui/styles.css";
 
 * {
   box-sizing: border-box;

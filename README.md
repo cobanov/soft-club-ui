@@ -6,7 +6,7 @@
 
 Soft Club UI is a reusable React component library shaped by late-90s Sony-adjacent soft club graphics: dark glass, phosphor green, cold blue, smoke, blurred photography, underground transit grids, concrete interiors, and restrained cyber/Y2K technology.
 
-The package is publish-ready as `@cobanov/soft-club-ui`.
+The package is publish-ready as `@softclub/ui`.
 
 ## Demo
 
@@ -21,19 +21,19 @@ The same deployment also includes a product-style demo website built with the li
 ## Install
 
 ```sh
-pnpm add @cobanov/soft-club-ui @cobanov/soft-club-tokens
+pnpm add @softclub/ui @softclub/tokens
 ```
 
 Import the component styles once in your app:
 
 ```tsx
-import "@cobanov/soft-club-ui/styles.css";
+import "@softclub/ui/styles.css";
 ```
 
 Use components from the package:
 
 ```tsx
-import { Badge, Button, Card, CardContent, CardHeader, CardTitle } from "@cobanov/soft-club-ui";
+import { Badge, Button, Card, CardContent, CardHeader, CardTitle } from "@softclub/ui";
 
 export function Example() {
   return (

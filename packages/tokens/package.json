@@ -1,5 +1,5 @@
 {
-  "name": "@cobanov/soft-club-tokens",
+  "name": "@softclub/tokens",
   "version": "0.1.0",
   "description": "Design tokens for Soft Club UI.",
   "type": "module",
