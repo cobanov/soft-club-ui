@@ -119,6 +119,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
+  Carousel,
   Combobox,
   Command,
   Drawer,
@@ -141,7 +142,8 @@ import {
   SheetTitle,
   SheetTrigger,
   Stepper,
-  Timeline
+  Timeline,
+  Tree
 } from "@cobanov/soft-club-ui";
 
 interface ComponentEntry {
@@ -628,6 +630,38 @@ const componentEntries: ComponentEntry[] = [
     slug: "number-input"
   },
   {
+    category: "Data & Flow",
+    code: `<Tree items={nodes} defaultSelectedId="b2" />`,
+    description: "Collapsible tree for nested data with click-to-select leaves.",
+    name: "Tree",
+    preview: () => (
+      <Tree
+        defaultSelectedId="bus-b2"
+        items={[
+          {
+            children: [
+              { id: "bus-b1", label: "Bus B1" },
+              { id: "bus-b2", label: "Bus B2" },
+              { id: "bus-b3", label: "Bus B3" }
+            ],
+            defaultExpanded: true,
+            id: "deck",
+            label: "Deck"
+          },
+          {
+            children: [
+              { id: "plate-01", label: "Plate 01" },
+              { id: "plate-02", label: "Plate 02" }
+            ],
+            id: "plates",
+            label: "Plates"
+          }
+        ]}
+      />
+    ),
+    slug: "tree"
+  },
+  {
     category: "Pickers",
     code: `<Combobox options={options} placeholder="Select frame" />`,
     description: "Searchable single-select with arrow-key navigation, on the Popover surface.",
@@ -753,6 +787,43 @@ const componentEntries: ComponentEntry[] = [
       </Card>
     ),
     slug: "card"
+  },
+  {
+    category: "Surfaces",
+    code: `<Carousel><Carousel.Content><Carousel.Item>…</Carousel.Item></Carousel.Content></Carousel>`,
+    description: "Slide container with overlay arrows and dot navigation.",
+    name: "Carousel",
+    preview: () => (
+      <Carousel loop>
+        <Carousel.Content>
+          {[
+            { hue: "133, 168, 122", label: "Plate 01 · Bleach Bypass" },
+            { hue: "96, 142, 160", label: "Plate 02 · Cross Process" },
+            { hue: "178, 132, 96", label: "Plate 03 · Soft Terrain" }
+          ].map((slide) => (
+            <Carousel.Item key={slide.label}>
+              <div
+                style={{
+                  alignItems: "flex-end",
+                  aspectRatio: "16 / 9",
+                  background: `linear-gradient(135deg, rgb(${slide.hue} / 0.42), rgb(${slide.hue} / 0.08))`,
+                  display: "flex",
+                  padding: "var(--sc-space-4)"
+                }}
+              >
+                <span style={{ fontSize: "var(--sc-font-size-3)", fontWeight: 600 }}>
+                  {slide.label}
+                </span>
+              </div>
+            </Carousel.Item>
+          ))}
+        </Carousel.Content>
+        <Carousel.Previous />
+        <Carousel.Next />
+        <Carousel.Dots />
+      </Carousel>
+    ),
+    slug: "carousel"
   },
   {
     category: "Surfaces",
@@ -1700,7 +1771,7 @@ const categoryDescriptions: Record<string, string> = {
   "Actions & Inputs": "Buttons, form controls, switches, and prompt entry surfaces.",
   Banners: "Dense notice bars for release and state updates.",
   Conversation: "Chat surfaces, bubbles, and prompt docks.",
-  "Data & Flow": "Steppers, timelines, ratings, and numeric inputs.",
+  "Data & Flow": "Steppers, timelines, trees, ratings, and numeric inputs.",
   "Date & Time": "Calendars, date pickers, and date entry fields.",
   Feedback: "Toast, loading, streaming, counters, and status motion.",
   Foundations: "Small primitives that carry state, spacing, and separators.",
@@ -1735,6 +1806,7 @@ const wideExampleSlugs = new Set([
   "before-after",
   "calendar",
   "calendar-range",
+  "carousel",
   "chat-dock",
   "duotone-card",
   "duotone-image",
