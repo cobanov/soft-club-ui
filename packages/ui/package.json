@@ -52,7 +52,7 @@
     "@radix-ui/react-toast": "^1.2.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.468.0"
+    "lucide-react": "^1.17.0"
   },
   "devDependencies": {
     "@storybook/react": "^8.5.1",

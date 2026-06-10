@@ -10,7 +10,8 @@
     "build": "pnpm -r build",
     "storybook": "pnpm --filter @cobanov/soft-club-docs storybook",
     "lint": "eslint . --max-warnings=0",
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r typecheck",
+    "build:registry": "node scripts/build-registry.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",

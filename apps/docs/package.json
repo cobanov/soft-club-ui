@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p tsconfig.json --noEmit && vite build",
+    "build": "node ../../scripts/build-registry.mjs && tsc -p tsconfig.json --noEmit && vite build",
     "storybook": "storybook dev -p 6006 --disable-telemetry",
     "build-storybook": "storybook build --disable-telemetry",
     "typecheck": "tsc -p tsconfig.json --noEmit"

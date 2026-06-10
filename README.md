@@ -46,6 +46,48 @@ export function Example() {
 }
 ```
 
+## Install single components with the shadcn CLI
+
+Soft Club UI also ships a shadcn-compatible registry. You can copy any component into your project, own the source, and edit it freely. No custom CLI needed, the official `shadcn` CLI does the work.
+
+Add a component by URL:
+
+```sh
+npx shadcn@latest add https://cobanov.github.io/soft-club-ui/r/sheet.json
+```
+
+Or register the namespace once in your `components.json`:
+
+```json
+{
+  "registries": {
+    "@soft-club": "https://cobanov.github.io/soft-club-ui/r/{name}.json"
+  }
+}
+```
+
+Then install by name:
+
+```sh
+npx shadcn@latest add @soft-club/sheet
+```
+
+The CLI resolves everything the component needs: sibling components it imports, shared hooks and utilities, npm dependencies, and the `base` item with the design tokens and stylesheet. Files land in your project under `components/soft-club/`, `hooks/soft-club/`, `lib/soft-club/`, and `styles/`.
+
+After the first install, import the stylesheet once in your global CSS and pick a theme on `<html>`:
+
+```css
+@import "./styles/soft-club.css";
+```
+
+```html
+<html data-sc-theme="night-city">
+```
+
+Themes: `green` (default), `blue`, `orange`, `night-city`.
+
+The registry index lives at [`registry.json`](https://cobanov.github.io/soft-club-ui/registry.json) and is generated from the component sources by `scripts/build-registry.mjs` on every docs build. Run `pnpm build:registry` to regenerate it locally.
+
 ## Packages
 
 - `packages/ui`: React components, Radix UI wrappers, TypeScript exports, and component CSS.
