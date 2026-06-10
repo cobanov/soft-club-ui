@@ -2119,6 +2119,7 @@ function App() {
         <div className="docs-shell">
           <header className="docs-topbar">
             <a className="docs-topbar__brand" href="#/">
+              <img alt="" className="brand-logo" src={logoUrl} />
               <strong translate="no">GEN X</strong>
               <span>Soft Club UI</span>
             </a>
@@ -2144,6 +2145,7 @@ function App() {
           </header>
           <aside className={`docs-nav${navOpen ? " docs-nav--open" : ""}`} id="docs-nav">
             <a className="docs-brand" href="#/">
+              <img alt="" className="brand-logo" src={logoUrl} />
               <strong translate="no">GEN X</strong>
               <span>Soft Club UI</span>
             </a>
@@ -2466,6 +2468,7 @@ const npmUrl = "https://www.npmjs.com/package/@cobanov/soft-club-ui";
 const licenseUrl = "https://github.com/cobanov/soft-club-ui/blob/main/LICENSE";
 const contributingUrl = "https://github.com/cobanov/soft-club-ui/blob/main/CONTRIBUTING.md";
 const installCommand = "pnpm add @cobanov/soft-club-ui @cobanov/soft-club-tokens";
+const logoUrl = `${import.meta.env.BASE_URL}logo.png`;
 const registryBaseUrl = "https://cobanov.github.io/soft-club-ui/r";
 const registryCommand = (name: string) => `npx shadcn@latest add ${registryBaseUrl}/${name}.json`;
 
@@ -2700,6 +2703,7 @@ function LandingBar({
     <header className="landing-bar">
       <div className="landing-bar__inner">
         <a className="landing-brand" href="#/">
+          <img alt="" className="brand-logo" src={logoUrl} />
           <strong translate="no">GEN X</strong>
           <span>Soft Club UI</span>
         </a>

@@ -1,3 +1,7 @@
+<p align="center">
+  <img alt="Soft Club UI logo" src="assets/logo.png" width="128" />
+</p>
+
 # Soft Club UI
 
 Soft Club UI is a reusable React component library shaped by late-90s Sony-adjacent soft club graphics: dark glass, phosphor green, cold blue, smoke, blurred photography, underground transit grids, concrete interiors, and restrained cyber/Y2K technology.
