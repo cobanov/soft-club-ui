@@ -146,6 +146,8 @@ import {
   Tree
 } from "@cobanov/soft-club-ui";
 import {
+  AspectRatio,
+  Collapsible,
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
@@ -160,7 +162,8 @@ import {
   MenubarSeparator,
   MenubarShortcut,
   MenubarTrigger,
-  NavigationMenu
+  NavigationMenu,
+  InputOTP
 } from "@cobanov/soft-club-ui";
 
 interface ComponentEntry {
@@ -268,6 +271,28 @@ const componentEntries: ComponentEntry[] = [
   },
   {
     category: "Foundations",
+    code: `<AspectRatio ratio={16 / 9}>…</AspectRatio>`,
+    description: "Locks content to a fixed width-to-height ratio.",
+    name: "AspectRatio",
+    preview: () => (
+      <AspectRatio ratio={16 / 9}>
+        <div
+          style={{
+            alignItems: "flex-end",
+            background: "linear-gradient(135deg, rgb(133 168 122 / 0.45), rgb(96 142 160 / 0.12))",
+            borderRadius: "var(--sc-radius-3)",
+            display: "flex",
+            padding: "var(--sc-space-3)"
+          }}
+        >
+          <span style={{ fontSize: "var(--sc-font-size-2)" }}>16 : 9</span>
+        </div>
+      </AspectRatio>
+    ),
+    slug: "aspect-ratio"
+  },
+  {
+    category: "Foundations",
     code: `<Skeleton style={{ width: "72%" }} />`,
     description: "Reduced-motion aware loading placeholder.",
     name: "Skeleton",
@@ -324,6 +349,14 @@ const componentEntries: ComponentEntry[] = [
       />
     ),
     slug: "textarea"
+  },
+  {
+    category: "Actions & Inputs",
+    code: `<InputOTP length={6} defaultValue="133" />`,
+    description: "Segmented one-time-code field with auto-advance and paste support.",
+    name: "InputOTP",
+    preview: () => <InputOTP defaultValue="133" length={6} />,
+    slug: "input-otp"
   },
   {
     category: "Actions & Inputs",
@@ -415,6 +448,28 @@ const componentEntries: ComponentEntry[] = [
       </Accordion>
     ),
     slug: "accordion"
+  },
+  {
+    category: "Navigation",
+    code: `<Collapsible><Collapsible.Trigger>…</Collapsible.Trigger><Collapsible.Content>…</Collapsible.Content></Collapsible>`,
+    description: "Single disclosure that animates open height with a grid transition.",
+    name: "Collapsible",
+    preview: () => (
+      <Collapsible defaultOpen style={{ width: "100%" }}>
+        <Collapsible.Trigger>
+          <span>Route manifest</span>
+          <span aria-hidden="true">⌄</span>
+        </Collapsible.Trigger>
+        <Collapsible.Content>
+          <div style={{ display: "grid", gap: "var(--sc-space-1)", padding: "var(--sc-space-3) 0" }}>
+            <span>Bus B1 · idle</span>
+            <span>Bus B2 · routing</span>
+            <span>Bus B3 · armed</span>
+          </div>
+        </Collapsible.Content>
+      </Collapsible>
+    ),
+    slug: "collapsible"
   },
   {
     category: "Navigation",
@@ -1941,10 +1996,13 @@ const wideExampleSlugs = new Set([
 const standardExampleSlugs = new Set([
   "accordion",
   "alert-dialog",
+  "aspect-ratio",
   "card",
+  "collapsible",
   "combobox",
   "command",
   "context-menu",
+  "input-otp",
   "dialog",
   "drawer",
   "dropdown-menu",

@@ -4896,3 +4896,141 @@
     transition: none;
   }
 }
+
+
+/* ============================================================
+   Primitives: Collapsible, AspectRatio, InputOTP
+   ============================================================ */
+
+/* Collapsible */
+.sc-collapsible {
+  font-family: var(--sc-font-sans);
+}
+.sc-collapsible__trigger {
+  align-items: center;
+  appearance: none;
+  background: var(--sc-color-surface-raised);
+  border: var(--sc-border-strong);
+  border-radius: var(--sc-radius-2);
+  color: var(--sc-color-text);
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: var(--sc-font-size-3);
+  gap: var(--sc-space-2);
+  justify-content: space-between;
+  padding: var(--sc-space-2) var(--sc-space-3);
+  transition: background 140ms var(--sc-motion-ease), color 140ms var(--sc-motion-ease);
+  width: 100%;
+}
+.sc-collapsible__trigger:hover {
+  background: rgb(var(--sc-theme-rgb-warm) / 0.16);
+  color: var(--sc-color-warning);
+}
+.sc-collapsible__trigger:focus-visible {
+  outline: 2px solid var(--sc-color-focus);
+  outline-offset: 2px;
+}
+.sc-collapsible__content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 240ms var(--sc-motion-ease);
+}
+.sc-collapsible__content[data-state="open"] {
+  grid-template-rows: 1fr;
+}
+.sc-collapsible__inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* AspectRatio */
+.sc-aspect-ratio {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.sc-aspect-ratio > * {
+  height: 100%;
+  width: 100%;
+}
+.sc-aspect-ratio > img,
+.sc-aspect-ratio > video {
+  display: block;
+  object-fit: cover;
+}
+
+/* InputOTP */
+.sc-input-otp {
+  display: inline-flex;
+  position: relative;
+}
+.sc-input-otp__input {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  caret-color: transparent;
+  color: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  inset: 0;
+  outline: none;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+.sc-input-otp__slots {
+  display: flex;
+  gap: var(--sc-space-2);
+  pointer-events: none;
+}
+.sc-input-otp__slot {
+  align-items: center;
+  background: var(--sc-color-surface-raised);
+  border: var(--sc-border-strong);
+  border-radius: var(--sc-radius-2);
+  box-shadow: var(--sc-shadow-inset);
+  color: var(--sc-color-text);
+  display: flex;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-font-size-5);
+  font-variant-numeric: tabular-nums;
+  height: 3rem;
+  justify-content: center;
+  position: relative;
+  transition: border-color 140ms var(--sc-motion-ease), box-shadow 140ms var(--sc-motion-ease);
+  width: 2.5rem;
+}
+.sc-input-otp__slot--active {
+  border-color: rgb(var(--sc-theme-rgb-primary) / 0.7);
+  box-shadow: var(--sc-shadow-inset), 0 0 0 3px rgb(var(--sc-theme-rgb-primary) / 0.16);
+}
+.sc-input-otp__caret {
+  animation: sc-otp-blink 1.1s steps(2, start) infinite;
+  background: rgb(var(--sc-theme-rgb-primary));
+  border-radius: 1px;
+  height: 1.4rem;
+  position: absolute;
+  width: 2px;
+}
+@keyframes sc-otp-blink {
+  50% {
+    opacity: 0;
+  }
+}
+.sc-input-otp--disabled {
+  opacity: 0.55;
+}
+.sc-input-otp--disabled .sc-input-otp__input {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-collapsible__content,
+  .sc-input-otp__slot {
+    transition: none;
+  }
+  .sc-input-otp__caret {
+    animation: none;
+  }
+}
