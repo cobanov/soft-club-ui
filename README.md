@@ -99,6 +99,7 @@ The registry index lives at [`registry.json`](https://cobanov.github.io/soft-clu
 ```sh
 pnpm dev
 pnpm build
+pnpm build:registry
 pnpm storybook
 pnpm lint
 pnpm typecheck

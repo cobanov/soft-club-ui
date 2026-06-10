@@ -835,6 +835,33 @@ textarea {
   padding: var(--sc-space-5);
 }
 
+.example-block__install {
+  align-items: center;
+  background: #050506;
+  border-top: var(--sc-border);
+  display: flex;
+  gap: var(--sc-space-2);
+  min-width: 0;
+  padding: var(--sc-space-2) var(--sc-space-3);
+}
+
+.example-block__install-label {
+  color: var(--sc-color-text-muted);
+  flex: 0 0 auto;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-font-size-1);
+  letter-spacing: 0.08em;
+}
+
+.example-block__install code {
+  color: var(--sc-color-text-muted);
+  flex: 1 1 auto;
+  font-size: var(--sc-font-size-1);
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
 .example-block__code {
   background: #050506;
   border-top: var(--sc-border);

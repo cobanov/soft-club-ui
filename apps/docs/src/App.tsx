@@ -172,6 +172,8 @@ interface ComponentEntry {
   description: string;
   name: string;
   preview: (helpers: { showToast: () => void }) => ReactNode;
+  /** Registry item name when it differs from the docs slug (variant entries). */
+  registry?: string;
   slug: string;
 }
 
@@ -1049,6 +1051,7 @@ const componentEntries: ComponentEntry[] = [
         variant="banner"
       />
     ),
+    registry: "ascii-hero",
     slug: "ascii-banner"
   },
   {
@@ -1792,6 +1795,7 @@ const componentEntries: ComponentEntry[] = [
         mode="range"
       />
     ),
+    registry: "calendar",
     slug: "calendar-range"
   },
   {
@@ -2462,6 +2466,8 @@ const npmUrl = "https://www.npmjs.com/package/@cobanov/soft-club-ui";
 const licenseUrl = "https://github.com/cobanov/soft-club-ui/blob/main/LICENSE";
 const contributingUrl = "https://github.com/cobanov/soft-club-ui/blob/main/CONTRIBUTING.md";
 const installCommand = "pnpm add @cobanov/soft-club-ui @cobanov/soft-club-tokens";
+const registryBaseUrl = "https://cobanov.github.io/soft-club-ui/r";
+const registryCommand = (name: string) => `npx shadcn@latest add ${registryBaseUrl}/${name}.json`;
 
 const packageManagers = [
   { command: "pnpm add @cobanov/soft-club-ui @cobanov/soft-club-tokens", id: "pnpm" },
@@ -2508,7 +2514,7 @@ const landingFeatures: { body: string; icon: ReactNode; title: string }[] = [
     title: "Framework-agnostic tokens"
   },
   {
-    body: "Install the package or lift the source. Components forward refs and accept className, so the markup stays yours to extend, the shadcn way.",
+    body: "Install the package, or copy any single component into your repo with the shadcn CLI. Components forward refs and accept className, so the markup stays yours to extend.",
     icon: (
       <svg {...featureIconProps}>
         <line x1="6" x2="6" y1="3" y2="15" />
@@ -3013,9 +3019,9 @@ function LandingPage({
 
         <section className="landing-section" id="install">
           <SectionHead
-            copy="Add the package, import the stylesheet once, and start composing. The token sheet is plain CSS, so it drops into any build during a migration."
+            copy="Add the package and import the stylesheet once, or copy single components into your repo with the shadcn CLI and own the source. The token sheet is plain CSS, so it drops into any build during a migration."
             kicker="Quick start"
-            title="Install and ship in two imports"
+            title="Install the package, or copy the source"
           />
           <div className="landing-install">
             <div className="landing-install__col">
@@ -3041,6 +3047,20 @@ function LandingPage({
               <p className="landing-install__note">
                 Tokens ship separately as <code>@cobanov/soft-club-tokens</code> &mdash; pure CSS
                 variables you can reuse in any framework while you migrate.
+              </p>
+              <p className="landing-install__note">
+                Prefer owning the source? Every component is also a shadcn registry item. The CLI
+                copies the component, its dependencies, and the stylesheet into your project:
+              </p>
+              <div className="landing-code">
+                <pre>
+                  <code>{registryCommand("button")}</code>
+                </pre>
+                <CopyButton label="Copy" value={registryCommand("button")} />
+              </div>
+              <p className="landing-install__note">
+                Each component page shows its own install command, and the full index lives at{" "}
+                <a href={`${registryBaseUrl.replace(/\/r$/, "")}/registry.json`}>registry.json</a>.
               </p>
             </div>
             <div className="landing-install__col">
@@ -3180,6 +3200,13 @@ function CategoryPage({
               </div>
             </div>
             <div className="example-block__preview">{entry.preview({ showToast })}</div>
+            <div className="example-block__install">
+              <span className="example-block__install-label" translate="no">
+                CLI
+              </span>
+              <code translate="no">{registryCommand(entry.registry ?? entry.slug)}</code>
+              <CopyButton label="Copy" value={registryCommand(entry.registry ?? entry.slug)} />
+            </div>
             <div className="example-block__code">
               <pre>
                 <code>{entry.code}</code>
