@@ -109,6 +109,34 @@ import {
   ToolCall,
   Waveform
 } from "@cobanov/soft-club-ui";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+  HoverCard,
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
+} from "@cobanov/soft-club-ui";
 
 interface ComponentEntry {
   category: string;
@@ -434,6 +462,106 @@ const componentEntries: ComponentEntry[] = [
       </Tooltip>
     ),
     slug: "tooltip"
+  },
+  {
+    category: "Overlays",
+    code: `<Sheet><SheetTrigger asChild>…</SheetTrigger><SheetContent side="right">…</SheetContent></Sheet>`,
+    description: "Edge-anchored panel that slides in from any side of the viewport.",
+    name: "Sheet",
+    preview: () => (
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline">Open Sheet</Button>
+        </SheetTrigger>
+        <SheetContent side="right">
+          <SheetHeader>
+            <SheetTitle>Session Panel</SheetTitle>
+            <SheetDescription>Slide-in surface for settings and detail views.</SheetDescription>
+          </SheetHeader>
+          <SheetFooter>
+            <SheetClose asChild>
+              <Button variant="ghost">Close</Button>
+            </SheetClose>
+            <SheetClose asChild>
+              <Button>Save</Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+    ),
+    slug: "sheet"
+  },
+  {
+    category: "Overlays",
+    code: `<Drawer><DrawerTrigger asChild>…</DrawerTrigger><DrawerContent>…</DrawerContent></Drawer>`,
+    description: "Bottom-anchored drawer with a grab handle for mobile-style flows.",
+    name: "Drawer",
+    preview: () => (
+      <Drawer>
+        <DrawerTrigger asChild>
+          <Button variant="outline">Open Drawer</Button>
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Frame Controls</DrawerTitle>
+            <DrawerDescription>Pull up the deck to adjust the live signal.</DrawerDescription>
+          </DrawerHeader>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button>Apply</Button>
+            </DrawerClose>
+            <DrawerClose asChild>
+              <Button variant="ghost">Dismiss</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    ),
+    slug: "drawer"
+  },
+  {
+    category: "Overlays",
+    code: `<AlertDialog><AlertDialogTrigger asChild>…</AlertDialogTrigger><AlertDialogContent>…</AlertDialogContent></AlertDialog>`,
+    description: "Confirmation modal that requires an explicit choice before closing.",
+    name: "AlertDialog",
+    preview: () => (
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button variant="danger">Purge Frame</Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Purge this frame?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This clears the buffered signal. The action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Keep</AlertDialogCancel>
+            <AlertDialogAction variant="danger">Purge</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    ),
+    slug: "alert-dialog"
+  },
+  {
+    category: "Overlays",
+    code: `<HoverCard><HoverCard.Trigger>…</HoverCard.Trigger><HoverCard.Content>…</HoverCard.Content></HoverCard>`,
+    description: "Hover- and focus-revealed card for inline context, no positioning dependency.",
+    name: "HoverCard",
+    preview: () => (
+      <HoverCard>
+        <HoverCard.Trigger>
+          <Button variant="ghost">@soft-club</Button>
+        </HoverCard.Trigger>
+        <HoverCard.Content>
+          <strong>Soft Club</strong>
+          <p>Late-90s green-glass component library. Hover or focus to reveal.</p>
+        </HoverCard.Content>
+      </HoverCard>
+    ),
+    slug: "hover-card"
   },
   {
     category: "Feedback",
@@ -1471,6 +1599,7 @@ const categoryDescriptions: Record<string, string> = {
   Media: "Image treatments that recolor to a chosen hue or the active theme.",
   "Motion & Type": "Animated type and controlled emphasis components.",
   Navigation: "Tabs, disclosure, menus, dialogs, popovers, and tooltips.",
+  Overlays: "Sheets, drawers, confirmation dialogs, and hover cards.",
   "Page Sections": "Headers, footers, and animated film-graded gradient banners.",
   "Proof & Commerce": "Social proof, marquees, badges, and pricing surfaces.",
   Surfaces: "Cards, glass panels, mock interfaces, and ambient displays."
@@ -1522,13 +1651,17 @@ const wideExampleSlugs = new Set([
 
 const standardExampleSlugs = new Set([
   "accordion",
+  "alert-dialog",
   "card",
   "dialog",
+  "drawer",
   "dropdown-menu",
   "glass-card",
   "glass-panel",
+  "hover-card",
   "popover",
   "rotator",
+  "sheet",
   "tabs",
   "textarea"
 ]);
