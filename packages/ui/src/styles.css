@@ -4931,17 +4931,24 @@
   outline: 2px solid var(--sc-color-focus);
   outline-offset: 2px;
 }
+/* Height toggles instantly (always collapses correctly); the inner fades and
+   slides so the change still reads as motion without a janky height tween. */
 .sc-collapsible__content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 240ms var(--sc-motion-ease);
+  height: 0;
+  overflow: hidden;
 }
 .sc-collapsible__content[data-state="open"] {
-  grid-template-rows: 1fr;
+  height: auto;
 }
 .sc-collapsible__inner {
   min-height: 0;
-  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 200ms var(--sc-motion-ease), transform 200ms var(--sc-motion-ease);
+}
+.sc-collapsible__content[data-state="open"] .sc-collapsible__inner {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* AspectRatio */
@@ -5026,7 +5033,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sc-collapsible__content,
+  .sc-collapsible__inner,
   .sc-input-otp__slot {
     transition: none;
   }
