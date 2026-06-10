@@ -73,6 +73,7 @@ import {
 } from "@cobanov/soft-club-ui";
 import {
   Alert,
+  AnnouncementBar,
   Avatar,
   Breadcrumb,
   ButtonGroup,
@@ -82,6 +83,7 @@ import {
   DuotoneCard,
   DuotoneImage,
   GlitchText,
+  GradientBanner,
   Kbd,
   Label,
   Loader,
@@ -98,6 +100,8 @@ import {
   RadioGroup,
   ScrollArea,
   Slider,
+  SoftFooter,
+  SoftHeader,
   Spinner,
   Table,
   Toggle,
@@ -1338,6 +1342,113 @@ const componentEntries: ComponentEntry[] = [
     name: "DateInput",
     preview: () => <DateInput aria-label="Pick a date" defaultValue="2026-06-14" name="demo-date" />,
     slug: "date-input"
+  },
+  {
+    category: "Page Sections",
+    code: `<GradientBanner preset="transit">…</GradientBanner>`,
+    description: "Animated film-graded gradient banner with eyebrow, title, copy, and action slots.",
+    name: "GradientBanner",
+    preview: () => (
+      <GradientBanner preset="transit">
+        <GradientBanner.Eyebrow>Soft Club / Transit</GradientBanner.Eyebrow>
+        <GradientBanner.Title>Route the late-night room before the feed turns to noise.</GradientBanner.Title>
+        <GradientBanner.Text>
+          A drifting, cross-processed gradient tuned to the active theme. Six washed presets:
+          transit, crossproc, bleach, smoke, terrain, dusk.
+        </GradientBanner.Text>
+        <GradientBanner.Actions>
+          <Button>Open room</Button>
+          <Button variant="outline">See presets</Button>
+        </GradientBanner.Actions>
+      </GradientBanner>
+    ),
+    slug: "gradient-banner"
+  },
+  {
+    category: "Page Sections",
+    code: `<SoftHeader><SoftHeader.Brand kicker="GEN X">…</SoftHeader.Brand></SoftHeader>`,
+    description: "Frosted site header with subway-Helvetica brand, nav, actions, and a drifting gradient rule.",
+    name: "SoftHeader",
+    preview: () => (
+      <SoftHeader>
+        <SoftHeader.Brand href="#/" kicker="GEN X">
+          Soft Club UI
+        </SoftHeader.Brand>
+        <SoftHeader.Nav>
+          <SoftHeader.Link href="#/category/page-sections">Components</SoftHeader.Link>
+          <SoftHeader.Link href="#/demo">Demo</SoftHeader.Link>
+          <SoftHeader.Link href="#/category/page-sections/soft-footer">Footer</SoftHeader.Link>
+        </SoftHeader.Nav>
+        <SoftHeader.Actions>
+          <Button size="sm" variant="ghost">
+            Sign in
+          </Button>
+          <Button size="sm">Get started</Button>
+        </SoftHeader.Actions>
+      </SoftHeader>
+    ),
+    slug: "soft-header"
+  },
+  {
+    category: "Page Sections",
+    code: `<SoftFooter><SoftFooter.Inner>…</SoftFooter.Inner></SoftFooter>`,
+    description: "Rich footer with a brand block, link columns, a base row, and an animated gradient rule.",
+    name: "SoftFooter",
+    preview: () => (
+      <SoftFooter>
+        <SoftFooter.Inner>
+          <SoftFooter.Brand kicker="GEN X" name="Soft Club UI">
+            <p>Late-90s green-glass React components and a portable token system. MIT licensed.</p>
+          </SoftFooter.Brand>
+          <SoftFooter.Columns>
+            <SoftFooter.Column heading="Docs">
+              <SoftFooter.Link href="#components">Components</SoftFooter.Link>
+              <SoftFooter.Link href="#install">Quick start</SoftFooter.Link>
+              <SoftFooter.Link href="#themes">Theming</SoftFooter.Link>
+            </SoftFooter.Column>
+            <SoftFooter.Column heading="Project">
+              <SoftFooter.Link href="#">GitHub</SoftFooter.Link>
+              <SoftFooter.Link href="#">npm</SoftFooter.Link>
+              <SoftFooter.Link href="#">License</SoftFooter.Link>
+            </SoftFooter.Column>
+            <SoftFooter.Column heading="Channel">
+              <SoftFooter.Link href="#">Dispatch</SoftFooter.Link>
+              <SoftFooter.Link href="#">Room 33</SoftFooter.Link>
+            </SoftFooter.Column>
+          </SoftFooter.Columns>
+        </SoftFooter.Inner>
+        <SoftFooter.Base>
+          <span>&copy; Soft Club UI / @cobanov</span>
+          <span translate="no">Built with the library itself.</span>
+        </SoftFooter.Base>
+      </SoftFooter>
+    ),
+    slug: "soft-footer"
+  },
+  {
+    category: "Page Sections",
+    code: `<AnnouncementBar label="New" action={…}>…</AnnouncementBar>`,
+    description: "Dismissible top strip with an animated gradient sweep, tag, message, and action.",
+    name: "AnnouncementBar",
+    preview: () => (
+      <div className="preview-stack">
+        <AnnouncementBar
+          action={
+            <Button size="sm" variant="outline">
+              Open deck
+            </Button>
+          }
+          label="New"
+          preset="transit"
+        >
+          SC-133G04 — soft channel updated, six gradient presets shipped.
+        </AnnouncementBar>
+        <AnnouncementBar label="Live" preset="dusk">
+          Friday release room is open. Pricing and community routed.
+        </AnnouncementBar>
+      </div>
+    ),
+    slug: "announcement-bar"
   }
 ];
 
@@ -1360,6 +1471,7 @@ const categoryDescriptions: Record<string, string> = {
   Media: "Image treatments that recolor to a chosen hue or the active theme.",
   "Motion & Type": "Animated type and controlled emphasis components.",
   Navigation: "Tabs, disclosure, menus, dialogs, popovers, and tooltips.",
+  "Page Sections": "Headers, footers, and animated film-graded gradient banners.",
   "Proof & Commerce": "Social proof, marquees, badges, and pricing surfaces.",
   Surfaces: "Cards, glass panels, mock interfaces, and ambient displays."
 };
@@ -1387,7 +1499,11 @@ const wideExampleSlugs = new Set([
   "chat-dock",
   "duotone-card",
   "duotone-image",
+  "announcement-bar",
+  "gradient-banner",
   "loader",
+  "soft-footer",
+  "soft-header",
   "logo-marquee",
   "matrix-rain",
   "mock-console",
