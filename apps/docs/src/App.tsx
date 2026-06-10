@@ -128,6 +128,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
   HoverCard,
+  NumberInput,
+  Rating,
   Sheet,
   SheetClose,
   SheetContent,
@@ -135,7 +137,9 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger
+  SheetTrigger,
+  Stepper,
+  Timeline
 } from "@cobanov/soft-club-ui";
 
 interface ComponentEntry {
@@ -562,6 +566,64 @@ const componentEntries: ComponentEntry[] = [
       </HoverCard>
     ),
     slug: "hover-card"
+  },
+  {
+    category: "Data & Flow",
+    code: `<Stepper current={1} steps={[{ label: "Scan" }, { label: "Route" }]} />`,
+    description: "Numbered progress indicator for multi-step flows.",
+    name: "Stepper",
+    preview: () => (
+      <Stepper
+        current={1}
+        steps={[
+          { description: "Plate read", label: "Scan" },
+          { description: "Bus B2", label: "Route" },
+          { description: "Settle", label: "Render" }
+        ]}
+      />
+    ),
+    slug: "stepper"
+  },
+  {
+    category: "Data & Flow",
+    code: `<Timeline><Timeline.Item>…</Timeline.Item></Timeline>`,
+    description: "Vertical event log with status-aware nodes.",
+    name: "Timeline",
+    preview: () => (
+      <Timeline>
+        <Timeline.Item status="done">
+          <Timeline.Time>09:24</Timeline.Time>
+          <Timeline.Title>Frame buffered</Timeline.Title>
+          <Timeline.Description>Signal locked on bus B2.</Timeline.Description>
+        </Timeline.Item>
+        <Timeline.Item status="active">
+          <Timeline.Time>09:26</Timeline.Time>
+          <Timeline.Title>Routing through glass layer</Timeline.Title>
+          <Timeline.Description>Tinting plate to the active theme.</Timeline.Description>
+        </Timeline.Item>
+        <Timeline.Item>
+          <Timeline.Time>09:30</Timeline.Time>
+          <Timeline.Title>Render pending</Timeline.Title>
+        </Timeline.Item>
+      </Timeline>
+    ),
+    slug: "timeline"
+  },
+  {
+    category: "Data & Flow",
+    code: `<Rating defaultValue={3} />`,
+    description: "Interactive star rating with hover preview and keyboard support.",
+    name: "Rating",
+    preview: () => <Rating defaultValue={3} />,
+    slug: "rating"
+  },
+  {
+    category: "Data & Flow",
+    code: `<NumberInput defaultValue={4} min={0} max={10} />`,
+    description: "Numeric field with clamped increment and decrement controls.",
+    name: "NumberInput",
+    preview: () => <NumberInput defaultValue={4} max={10} min={0} />,
+    slug: "number-input"
   },
   {
     category: "Feedback",
@@ -1592,6 +1654,7 @@ const categoryDescriptions: Record<string, string> = {
   "Actions & Inputs": "Buttons, form controls, switches, and prompt entry surfaces.",
   Banners: "Dense notice bars for release and state updates.",
   Conversation: "Chat surfaces, bubbles, and prompt docks.",
+  "Data & Flow": "Steppers, timelines, ratings, and numeric inputs.",
   "Date & Time": "Calendars, date pickers, and date entry fields.",
   Feedback: "Toast, loading, streaming, counters, and status motion.",
   Foundations: "Small primitives that carry state, spacing, and separators.",
@@ -1643,6 +1706,7 @@ const wideExampleSlugs = new Set([
   "prompt-hero",
   "radar-sweep",
   "signal-marquee",
+  "stepper",
   "sticky-banner",
   "table",
   "token-stream",
