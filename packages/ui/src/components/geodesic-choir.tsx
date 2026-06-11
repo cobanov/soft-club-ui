@@ -206,11 +206,9 @@ export const GeodesicChoir = React.forwardRef<HTMLDivElement, GeodesicChoirProps
     const beginDrag = (event: React.PointerEvent<HTMLDivElement>) => {
       onPointerDown?.(event);
       dragRef.current = { active: true, vx: 0, vy: 0, x: event.clientX, y: event.clientY };
-      try {
-        event.currentTarget.setPointerCapture(event.pointerId);
-      } catch {
-        // Synthetic pointers (tests, some assistive input) have no active id.
-      }
+      // Only trusted events carry an active pointer id that can be captured;
+      // synthetic dispatches (tests, automation) skip capture cleanly.
+      if (event.isTrusted) event.currentTarget.setPointerCapture(event.pointerId);
     };
 
     const moveDrag = (event: React.PointerEvent<HTMLDivElement>) => {

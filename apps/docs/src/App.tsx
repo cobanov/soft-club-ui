@@ -146,14 +146,18 @@ import {
   Tree
 } from "@softclub/ui";
 import {
+  AccretionCluster,
   ChladniPlate,
   CliffordSmoke,
+  EpicycleOrrery,
   CurlField,
   GeodesicChoir,
   Instrument,
+  LSystemGarden,
   MorphogenField,
   PhyllotaxisSequencer,
   PhysarumTrails,
+  SandpileBasilica,
   VoronoiTerritories
 } from "@softclub/ui";
 import {
@@ -1065,6 +1069,122 @@ const componentEntries: ComponentEntry[] = [
       </Instrument>
     ),
     slug: "phyllotaxis-sequencer"
+  },
+  {
+    category: "Instruments",
+    code: `<AccretionCluster walkers={220} bands={7} />`,
+    description: "Diffusion-limited aggregation. The strata bands in the crust record arrival order.",
+    name: "AccretionCluster",
+    preview: () => (
+      <Instrument>
+        <Instrument.Viewport>
+          <AccretionCluster />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-08 / WITTEN-SANDER DLA"
+          tag="Signal Relic"
+          title="Accretion Reliquary"
+        />
+        <Instrument.Description>
+          A mineral that remembers its own arrival order. Nothing is drawn — everything is
+          deposited, one lost particle at a time, and the bands in the crust are the archive of
+          when.
+        </Instrument.Description>
+        <Instrument.Chips
+          items={["Diffusion-limited aggregation", "Stratigraphy ramp", "Nucleation seed"]}
+        />
+        <Instrument.Params>WALK HASTE 220 · STRATA BANDS 7 · DEPOSIT CAP 5200</Instrument.Params>
+        <Instrument.Actions fileName="accretion-reliquary.png" />
+      </Instrument>
+    ),
+    slug: "accretion-cluster"
+  },
+  {
+    category: "Instruments",
+    code: `<LSystemGarden branchAngle={24.5} specimens={3} />`,
+    description: "A stochastic L-system herbarium with growth replay. Click a specimen to reroll its sentence.",
+    name: "LSystemGarden",
+    preview: () => (
+      <Instrument>
+        <Instrument.Viewport>
+          <LSystemGarden />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-09 / PARAMETRIC L-SYSTEM"
+          tag="Mythic Botany"
+          title="Glyph Botany"
+        />
+        <Instrument.Description>
+          An herbarium that is also a grammar. Each specimen is a sentence; the wind you see is
+          the same wind the equations feel. Click a specimen and it regrows from the root,
+          labeled, still growing.
+        </Instrument.Description>
+        <Instrument.Chips
+          items={["Stochastic L-system", "Turtle interpreter", "Growth replay", "Wind sway"]}
+        />
+        <Instrument.Params>BRANCH ANGLE 24.5 · GRAMMAR DEPTH 4 · SPECIMENS 3</Instrument.Params>
+        <Instrument.Actions fileName="glyph-botany.png" />
+      </Instrument>
+    ),
+    slug: "lsystem-garden"
+  },
+  {
+    category: "Instruments",
+    code: `<SandpileBasilica drip={24} />`,
+    description: "The Abelian sandpile: whoever holds four, gives four away. Click to pour a handful.",
+    name: "SandpileBasilica",
+    preview: () => (
+      <Instrument>
+        <Instrument.Viewport>
+          <SandpileBasilica />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-11 / ABELIAN SANDPILE"
+          tag="Functional Poem"
+          title="Avalanche Basilica"
+        />
+        <Instrument.Description>
+          One rule: whoever holds four, gives four away. The floor anneals itself into windows
+          that nobody designed. The big collapses arrive on no schedule, which is the early
+          schedule criticality keeps.
+        </Instrument.Description>
+        <Instrument.Chips
+          items={["Sandpile topple", "Self-organized criticality", "Cascade drain"]}
+        />
+        <Instrument.Params>DRIP 24/FRAME · TOPPLE 4 · POUR 256 ON CLICK</Instrument.Params>
+        <Instrument.Actions fileName="avalanche-basilica.png" />
+      </Instrument>
+    ),
+    slug: "sandpile-basilica"
+  },
+  {
+    category: "Instruments",
+    code: `<EpicycleOrrery speed={0.16} />`,
+    description: "Deferent and epicycles tracing a heaven that never existed. The pointer retunes the court.",
+    name: "EpicycleOrrery",
+    preview: () => (
+      <Instrument>
+        <Instrument.Viewport>
+          <EpicycleOrrery />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-17 / DEFERENT + EPICYCLE"
+          tag="Mythic Interface"
+          title="Epicycle Court"
+        />
+        <Instrument.Description>
+          A model of a heaven that never existed, which is what every model is. When the court
+          agrees on its ratios the trace closes, the chord lands, and for a few seconds the
+          machine is true.
+        </Instrument.Description>
+        <Instrument.Chips
+          items={["Nested orbits", "Resonance mapping", "Untroubled trace"]}
+        />
+        <Instrument.Params>INNER YEAR 5.20 · EPICYCLE DEPTH 0.045 · TRACE HOLD 60S</Instrument.Params>
+        <Instrument.Actions fileName="epicycle-court.png" />
+      </Instrument>
+    ),
+    slug: "epicycle-orrery"
   },
   {
     category: "Pickers",
@@ -2220,8 +2340,12 @@ const wideExampleSlugs = new Set([
   "curl-field",
   "duotone-card",
   "duotone-image",
+  "accretion-cluster",
   "chladni-plate",
   "clifford-smoke",
+  "epicycle-orrery",
+  "lsystem-garden",
+  "sandpile-basilica",
   "geodesic-choir",
   "instrument",
   "morphogen-field",
