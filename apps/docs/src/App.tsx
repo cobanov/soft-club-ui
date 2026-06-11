@@ -146,6 +146,13 @@ import {
   Tree
 } from "@softclub/ui";
 import {
+  CurlField,
+  Instrument,
+  MorphogenField,
+  PhysarumTrails,
+  VoronoiTerritories
+} from "@softclub/ui";
+import {
   AspectRatio,
   Collapsible,
   ContextMenu,
@@ -822,6 +829,124 @@ const componentEntries: ComponentEntry[] = [
       />
     ),
     slug: "tree"
+  },
+  {
+    category: "Instruments",
+    code: `<Instrument><Instrument.Viewport>…</Instrument.Viewport><Instrument.Actions /></Instrument>`,
+    description: "Control-room card frame with Focus, Regen, and PNG export wired to the simulation inside.",
+    name: "Instrument",
+    preview: () => (
+      <Instrument onRegen={() => undefined}>
+        <Instrument.Viewport>
+          <PhysarumTrails />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-02 / JONES MODEL"
+          tag="Mythic Interface"
+          title="Physarum Chancel"
+        />
+        <Instrument.Description>
+          A congregation of blind agents discovers a cathedral. Routing is not drawn; it is
+          excavated. Nodes are extra food.
+        </Instrument.Description>
+        <Instrument.Chips items={["Agent trails", "Diffuse + evaporate", "Attractant nodes"]} />
+        <Instrument.Params>SENSE REACH 8.0 · TURN RATE 0.34 · STRIDE 1.15</Instrument.Params>
+        <Instrument.Actions fileName="physarum-chancel.png" />
+      </Instrument>
+    ),
+    slug: "instrument"
+  },
+  {
+    category: "Instruments",
+    code: `<MorphogenField feed={0.0367} kill={0.0649} />`,
+    description: "Gray-Scott reaction-diffusion with drifting constants. The pointer is a morphogen stylus.",
+    name: "MorphogenField",
+    preview: () => (
+      <Instrument>
+        <Instrument.Viewport>
+          <MorphogenField />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-01 / GRAY-SCOTT"
+          tag="Functional Poem"
+          title="Morphogen Reliquary"
+        />
+        <Instrument.Description>
+          A chemical argument settling into skin. Feed and kill are liturgical constants; the
+          pointer is a morphogen stylus. Contour lines read the tissue back as a diagram.
+        </Instrument.Description>
+        <Instrument.Chips
+          items={["Diffusion", "Marching bands", "Parameter drift", "Symmetry fold"]}
+        />
+        <Instrument.Params>FEED 0.0367 · KILL 0.0649 · CONTOUR BANDS 4</Instrument.Params>
+        <Instrument.Actions fileName="morphogen-reliquary.png" />
+      </Instrument>
+    ),
+    slug: "morphogen-field"
+  },
+  {
+    category: "Instruments",
+    code: `<CurlField speed={34} particles={650} />`,
+    description: "Divergence-free wind from a drifting stream function. Drag to file a storm report.",
+    name: "CurlField",
+    preview: () => (
+      <Instrument>
+        <Instrument.Viewport>
+          <CurlField />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-04 / CURL NOISE"
+          tag="Ideometric Plane"
+          title="Curl Weather Station"
+        />
+        <Instrument.Description>
+          Weather for a place that has no sky: a divergence-free wind measured by a grid of
+          vanes. Drag the pointer to file a storm report; the chart absorbs it without losing
+          its manners.
+        </Instrument.Description>
+        <Instrument.Chips
+          items={["Stream function", "Trail feedback", "Vortex injection", "Field ticks"]}
+        />
+        <Instrument.Params>WIND SPEED 34 · TRAIL FADE 0.050 · TIME DRIFT 0.080</Instrument.Params>
+        <Instrument.Actions fileName="curl-weather-station.png" />
+      </Instrument>
+    ),
+    slug: "curl-field"
+  },
+  {
+    category: "Instruments",
+    code: `<PhysarumTrails agents={2400} nodes={7} />`,
+    description: "Slime-mold agents excavating routes between attractant nodes. Hover to bait the swarm.",
+    name: "PhysarumTrails",
+    preview: () => <PhysarumTrails label="AT-ORR-02 / Jones model" />,
+    slug: "physarum-trails"
+  },
+  {
+    category: "Instruments",
+    code: `<VoronoiTerritories sites={24} />`,
+    description: "A Voronoi census with Lloyd relaxation and Kuramoto shading. Click a territory to rupture its file.",
+    name: "VoronoiTerritories",
+    preview: () => (
+      <Instrument>
+        <Instrument.Viewport>
+          <VoronoiTerritories />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-05 / VORONOI CENSUS"
+          tag="Signal Relic"
+          title="Archive Territories"
+        />
+        <Instrument.Description>
+          The archive surveyed as land. Holdings annex and concede pixels every frame; the
+          census never closes. Click a territory to rupture its file — the map keeps the damage
+          on record.
+        </Instrument.Description>
+        <Instrument.Chips items={["Voronoi grid", "Lloyd relaxation", "Kuramoto shading"]} />
+        <Instrument.Params>RELAXATION 0.080 · ANNEX BIAS 0.22 · LABEL CENSUS 8</Instrument.Params>
+        <Instrument.Actions fileName="archive-territories.png" />
+      </Instrument>
+    ),
+    slug: "voronoi-territories"
   },
   {
     category: "Pickers",
@@ -1939,6 +2064,7 @@ const categoryDescriptions: Record<string, string> = {
   "Date & Time": "Calendars, date pickers, and date entry fields.",
   Feedback: "Toast, loading, streaming, counters, and status motion.",
   Foundations: "Small primitives that carry state, spacing, and separators.",
+  Instruments: "Generative canvas instruments: live simulations you can play, regen, and export.",
   "Live & Reactive": "Canvas-driven, cursor-aware, always-moving surfaces.",
   Media: "Image treatments that recolor to a chosen hue or the active theme.",
   Menus: "Menu bars, right-click menus, and navigation menus.",
@@ -1973,8 +2099,13 @@ const wideExampleSlugs = new Set([
   "calendar-range",
   "carousel",
   "chat-dock",
+  "curl-field",
   "duotone-card",
   "duotone-image",
+  "instrument",
+  "morphogen-field",
+  "physarum-trails",
+  "voronoi-territories",
   "announcement-bar",
   "gradient-banner",
   "loader",
