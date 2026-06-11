@@ -146,9 +146,13 @@ import {
   Tree
 } from "@softclub/ui";
 import {
+  ChladniPlate,
+  CliffordSmoke,
   CurlField,
+  GeodesicChoir,
   Instrument,
   MorphogenField,
+  PhyllotaxisSequencer,
   PhysarumTrails,
   VoronoiTerritories
 } from "@softclub/ui";
@@ -947,6 +951,120 @@ const componentEntries: ComponentEntry[] = [
       </Instrument>
     ),
     slug: "voronoi-territories"
+  },
+  {
+    category: "Instruments",
+    code: `<GeodesicChoir coupling={1.4} spin={0.12} />`,
+    description: "Kuramoto voices on a triangulated sphere. Drag to spin; it sings in focus.",
+    name: "GeodesicChoir",
+    preview: () => (
+      <Instrument>
+        <Instrument.Viewport>
+          <GeodesicChoir />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-06 / ICOSPHERE + KURAMOTO"
+          tag="Mythic Interface"
+          title="Geodesic Choir"
+        />
+        <Instrument.Description>
+          A world model that hums. Voices on a triangulated sphere drift into unison along the
+          shortest paths between them. When the order parameter climbs, the dome holds one
+          note. Focus the instrument and the coupling rises.
+        </Instrument.Description>
+        <Instrument.Chips
+          items={["Icosphere subdivision", "Edge-coupled Kuramoto", "Orthographic spin", "Sings in focus"]}
+        />
+        <Instrument.Params>SUBDIVISION 2 · COUPLING K 1.40 · SPIN 0.12</Instrument.Params>
+        <Instrument.Actions fileName="geodesic-choir.png" />
+      </Instrument>
+    ),
+    slug: "geodesic-choir"
+  },
+  {
+    category: "Instruments",
+    code: `<ChladniPlate grains={2400} />`,
+    description: "Sand settling on the nodal lines of a standing wave. The pointer retunes the chord.",
+    name: "ChladniPlate",
+    preview: () => (
+      <Instrument>
+        <Instrument.Viewport>
+          <ChladniPlate />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-12 / CHLADNI PLATE"
+          tag="Functional Poem"
+          title="Cymatic Stele"
+        />
+        <Instrument.Description>
+          Sound carving stone, slowly. The grains find the silent lines of a chord they cannot
+          hear. Move the pointer to retune the plate: the figure and the music are one
+          equation.
+        </Instrument.Description>
+        <Instrument.Chips
+          items={["Standing-wave modes", "Gradient descent", "Harmonic snapping"]}
+        />
+        <Instrument.Params>FUNDAMENTAL 76 HZ · SAND SETTLE 1.60 · MODES 1..6</Instrument.Params>
+        <Instrument.Actions fileName="cymatic-stele.png" />
+      </Instrument>
+    ),
+    slug: "chladni-plate"
+  },
+  {
+    category: "Instruments",
+    code: `<CliffordSmoke rate={7000} />`,
+    description: "A Clifford attractor accumulated as smoke. Drag to bend the constants.",
+    name: "CliffordSmoke",
+    preview: () => (
+      <Instrument>
+        <Instrument.Viewport>
+          <CliffordSmoke />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-14 / CLIFFORD MAP"
+          tag="Functional Poem"
+          title="Attractor Censer"
+        />
+        <Instrument.Description>
+          Four constants and a spark. The same point is thrown thousands of times a frame and
+          lands as smoke, never twice in the same place. Drag to bend the constants; the smoke
+          obeys instantly and forgets slowly.
+        </Instrument.Description>
+        <Instrument.Chips
+          items={["Clifford attractor", "Density accumulation", "Parameter drift", "Smoke fade"]}
+        />
+        <Instrument.Params>CONSTANT A -1.40 · B 1.65 · C 1.10 · D 0.75</Instrument.Params>
+        <Instrument.Actions fileName="attractor-censer.png" />
+      </Instrument>
+    ),
+    slug: "clifford-smoke"
+  },
+  {
+    category: "Instruments",
+    code: `<PhyllotaxisSequencer seeds={200} speed={0.1} />`,
+    description: "A Vogel spiral asked to write music. The radar arm is the playhead; click a seed to mute it.",
+    name: "PhyllotaxisSequencer",
+    preview: () => (
+      <Instrument>
+        <Instrument.Viewport>
+          <PhyllotaxisSequencer />
+        </Instrument.Viewport>
+        <Instrument.Header
+          meta="AT-ORR-18 / VOGEL SPIRAL"
+          tag="Mythic Sequencer"
+          title="Hope Sequencer"
+        />
+        <Instrument.Description>
+          A spiral asked to write music. Seeds are steps, the radar arm is the playhead, and
+          137.507 degrees keeps the melody from ever quite repeating. Click a seed to mute the
+          step; the arm passes over it in silence.
+        </Instrument.Description>
+        <Instrument.Chips items={["Vogel spiral", "Radar playhead", "Mutable steps"]} />
+        <Instrument.Params>ANGLE 137.507 · SEEDS 200 · REV 0.10/S</Instrument.Params>
+        <Instrument.Actions fileName="hope-sequencer.png" />
+      </Instrument>
+    ),
+    slug: "phyllotaxis-sequencer"
   },
   {
     category: "Pickers",
@@ -2102,8 +2220,12 @@ const wideExampleSlugs = new Set([
   "curl-field",
   "duotone-card",
   "duotone-image",
+  "chladni-plate",
+  "clifford-smoke",
+  "geodesic-choir",
   "instrument",
   "morphogen-field",
+  "phyllotaxis-sequencer",
   "physarum-trails",
   "voronoi-territories",
   "announcement-bar",
