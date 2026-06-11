@@ -5,6 +5,8 @@ storybook-static
 *.local
 *.log
 
-# generated shadcn registry (built by scripts/build-registry.mjs)
+# generated shadcn registry + llms.txt (built by scripts/build-registry.mjs)
 apps/docs/public/r
 apps/docs/public/registry.json
+apps/docs/public/llms.txt
+apps/docs/public/llms-full.txt

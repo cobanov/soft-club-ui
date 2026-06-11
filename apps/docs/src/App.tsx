@@ -2469,7 +2469,9 @@ const licenseUrl = "https://github.com/cobanov/soft-club-ui/blob/main/LICENSE";
 const contributingUrl = "https://github.com/cobanov/soft-club-ui/blob/main/CONTRIBUTING.md";
 const installCommand = "pnpm add @softclub/ui @softclub/tokens";
 const logoUrl = `${import.meta.env.BASE_URL}logo.png`;
-const registryBaseUrl = "https://cobanov.github.io/soft-club-ui/r";
+const siteUrl = "https://cobanov.github.io/soft-club-ui";
+const registryBaseUrl = `${siteUrl}/r`;
+const llmsTxtUrl = `${siteUrl}/llms.txt`;
 const registryCommand = (name: string) => `npx shadcn@latest add ${registryBaseUrl}/${name}.json`;
 
 const packageManagers = [
@@ -2752,6 +2754,9 @@ function LandingFooter({ glass }: { glass: string }) {
             <a href="#install">Quick start</a>
             <a href="#themes">Theming</a>
             <a href="#/demo">Demo website</a>
+            <a href={llmsTxtUrl} rel="noreferrer" target="_blank" translate="no">
+              llms.txt
+            </a>
           </div>
           <div className="landing-footer-col">
             <strong>Project</strong>
@@ -3064,7 +3069,7 @@ function LandingPage({
               </div>
               <p className="landing-install__note">
                 Each component page shows its own install command, and the full index lives at{" "}
-                <a href={`${registryBaseUrl.replace(/\/r$/, "")}/registry.json`}>registry.json</a>.
+                <a href={`${siteUrl}/registry.json`}>registry.json</a>.
               </p>
             </div>
             <div className="landing-install__col">
@@ -3144,6 +3149,48 @@ function LandingPage({
                 </a>
               </Button>
             </div>
+          </div>
+        </section>
+
+        <section className="landing-section landing-llms" id="llms">
+          <SectionHead
+            copy="The whole library is published in machine-readable form. llms.txt follows the llmstxt.org convention: one document that teaches a coding agent the install commands, theming model, and token conventions, and links every component to its registry source."
+            kicker="For AI agents"
+            title="Machine-readable docs, one URL"
+          />
+          <div className="landing-llms__grid">
+            <div className="landing-llms__col">
+              <div className="landing-code">
+                <pre>
+                  <code translate="no">{llmsTxtUrl}</code>
+                </pre>
+                <CopyButton label="Copy" value={llmsTxtUrl} />
+              </div>
+              <p className="landing-install__note">
+                Hand the URL to Claude Code, Cursor, or any coding agent, for example: &ldquo;Read{" "}
+                <code>{llmsTxtUrl}</code> and use Soft Club UI for this page.&rdquo;
+              </p>
+            </div>
+            <ul className="landing-llms__list">
+              <li>
+                One fetch covers installation, theming via <code>data-sc-theme</code>, and the{" "}
+                <code>--sc-*</code> token conventions.
+              </li>
+              <li>
+                Every component entry links to a registry document with its full TypeScript
+                source, npm dependencies, and dependency graph, so agents can read the
+                implementation before composing with it.
+              </li>
+              <li>
+                Need everything in one document? <a href={`${siteUrl}/llms-full.txt`}>llms-full.txt</a>{" "}
+                inlines the token sheet, the component stylesheet, and the complete source of
+                every component and hook.
+              </li>
+              <li>
+                Regenerated from the component sources on every deploy. It cannot drift from the
+                library.
+              </li>
+            </ul>
           </div>
         </section>
       </main>

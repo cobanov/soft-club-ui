@@ -92,6 +92,15 @@ Themes: `green` (default), `blue`, `orange`, `night-city`.
 
 The registry index lives at [`registry.json`](https://cobanov.github.io/soft-club-ui/registry.json) and is generated from the component sources by `scripts/build-registry.mjs` on every docs build. Run `pnpm build:registry` to regenerate it locally.
 
+## For AI agents
+
+The project publishes machine-readable documentation following the [llmstxt.org](https://llmstxt.org) convention, regenerated from the component sources on every deploy:
+
+- [`llms.txt`](https://cobanov.github.io/soft-club-ui/llms.txt): a concise map of the library. Install commands, the theming model, token conventions, and a link to every component's registry document.
+- [`llms-full.txt`](https://cobanov.github.io/soft-club-ui/llms-full.txt): the expanded reference. It inlines the complete design token sheet, the component stylesheet, and the full TypeScript source of every component, hook, and utility.
+
+Point a coding agent at either URL, for example, "Read https://cobanov.github.io/soft-club-ui/llms.txt and use Soft Club UI for this page."
+
 ## Packages
 
 - `packages/ui`: React components, Radix UI wrappers, TypeScript exports, and component CSS.

@@ -2194,3 +2194,45 @@ code {
   column-gap: var(--sc-space-2);
   grid-template-columns: auto 1fr;
 }
+
+.landing-llms__grid {
+  align-items: start;
+  display: grid;
+  gap: var(--sc-space-4);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.landing-llms__col {
+  display: grid;
+  gap: var(--sc-space-3);
+  min-width: 0;
+}
+
+.landing-llms__list {
+  color: var(--sc-color-text-muted);
+  display: grid;
+  font-size: var(--sc-font-size-2);
+  gap: var(--sc-space-2);
+  line-height: var(--sc-line-height-normal);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.landing-llms__list li {
+  border-left: 2px solid rgb(var(--sc-theme-rgb-primary) / 0.4);
+  padding-left: var(--sc-space-3);
+}
+
+.landing-llms__list code,
+.landing-llms .landing-install__note code {
+  color: var(--sc-color-text);
+  font-size: var(--sc-font-size-1);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px) {
+  .landing-llms__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

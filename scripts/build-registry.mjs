@@ -46,6 +46,40 @@ const itemUrl = (name) => `${REGISTRY_URL}/${name}.json`;
 
 const uiPkg = JSON.parse(fs.readFileSync(UI_PKG, "utf8"));
 
+/**
+ * The docs catalog carries curated one-line descriptions that are usually
+ * better than a component's JSDoc. Scan App.tsx entry fields in order;
+ * a slug ends one entry, and a `registry` override maps variant entries
+ * (AsciiBanner, Calendar range) back onto their real item. Direct entries
+ * win over variant entries for the same item.
+ */
+const docsDescriptions = (() => {
+  const map = new Map();
+  let source;
+  try {
+    source = fs.readFileSync(path.join(ROOT, "apps/docs/src/App.tsx"), "utf8");
+  } catch {
+    return map;
+  }
+  let description = null;
+  let registry = null;
+  for (const match of source.matchAll(/\b(description|registry|slug): "((?:[^"\\]|\\.)*)"/g)) {
+    const [, key, value] = match;
+    // Keep the FIRST description since the last slug: an entry's own
+    // `description` field precedes any `description:` keys inside its preview
+    // data (e.g. Stepper steps).
+    if (key === "description") description ??= value;
+    else if (key === "registry") registry = value;
+    else {
+      const name = registry ?? value;
+      if (description && (registry === null || !map.has(name))) map.set(name, description);
+      description = null;
+      registry = null;
+    }
+  }
+  return map;
+})();
+
 /** "@radix-ui/react-dialog/sub" -> "@radix-ui/react-dialog", "clsx/x" -> "clsx" */
 const packageName = (source) => {
   const parts = source.split("/");
@@ -226,7 +260,10 @@ const componentItems = fs
       name: slug,
       type: "registry:ui",
       title: titleFromSlug(slug),
-      description: jsdocDescription(source) ?? `Soft Club ${titleFromSlug(slug)} component.`,
+      description:
+        docsDescriptions.get(slug) ??
+        jsdocDescription(source) ??
+        `Soft Club ${titleFromSlug(slug)} component.`,
       ...(npm.size ? { dependencies: [...npm].sort() } : {}),
       registryDependencies,
       files: [
@@ -269,6 +306,152 @@ const index = {
 };
 fs.writeFileSync(path.join(OUT_DIR, "registry.json"), `${JSON.stringify(index, null, 2)}\n`);
 
+// ---------------------------------------------------------------------------
+// llms.txt + llms-full.txt (llmstxt.org): LLM-readable maps of the project,
+// served from the docs site root and regenerated alongside the registry.
+// llms.txt is the concise index; llms-full.txt inlines everything, including
+// the token sheet, the component stylesheet, and every component's source.
+// ---------------------------------------------------------------------------
+
+const RAW = "https://raw.githubusercontent.com/cobanov/soft-club-ui/main";
+const componentLine = (item) => `- [${item.title}](${itemUrl(item.name)}): ${item.description}`;
+
+const summary = `> Open-source React component library with a late-90s Gen X Soft Club aesthetic: dark glass surfaces, phosphor green, cold blue, film-graded gradients, and CRT-era texture. ${componentItems.length} components, four switchable themes, Radix UI primitives underneath. MIT licensed.
+
+Soft Club UI ships two ways. As npm packages: \`@softclub/ui\` (components) plus \`@softclub/tokens\` (CSS design tokens). And as a shadcn-compatible registry, where any single component can be copied into a project as owned source code.`;
+
+const facts = `Facts that matter when generating code with this library:
+
+- Install the packages: \`pnpm add @softclub/ui @softclub/tokens\`, then \`import "@softclub/ui/styles.css"\` once at the app entry. Components are named exports: \`import { Button, Sheet } from "@softclub/ui"\`.
+- Or copy one component with the official shadcn CLI: \`npx shadcn@latest add ${REGISTRY_URL}/<name>.json\`. The CLI also installs the component's npm dependencies, sibling components, hooks, and the base stylesheet.
+- Themes are selected with the \`data-sc-theme\` attribute on \`<html>\`: \`green\` (default), \`blue\`, \`orange\`, or \`night-city\`.
+- Every visual value is a CSS custom property prefixed \`--sc-\` (color, spacing, radius, border, shadow, motion). Theme-aware alpha composition uses RGB triples, for example \`rgb(var(--sc-theme-rgb-primary) / 0.2)\`.
+- Components forward refs, accept \`className\`, and use \`sc-\`-prefixed class names. Interactive primitives (Dialog, Tabs, Popover, DropdownMenu, Toast, Sheet, Menubar, ContextMenu, NavigationMenu) wrap Radix UI, so open state, focus, and keyboard semantics follow Radix conventions.`;
+
+const llmsTxt = `# Soft Club UI
+
+${summary}
+
+${facts}
+- Every registry item linked below is a JSON document that contains the component's full TypeScript source, its npm dependencies, and its registry dependency graph. Fetch an item to read the implementation before using or modifying a component.
+
+## Documentation
+
+- [llms-full.txt](${HOMEPAGE}/llms-full.txt): this document expanded with the full source of every component, hook, stylesheet, and token sheet
+- [Component catalog](${HOMEPAGE}/): live previews, per-component install commands, and a theme switcher
+- [Registry index](${HOMEPAGE}/registry.json): machine-readable list of every registry item
+- [README](${RAW}/README.md): installation, usage, and project layout
+- [Design tokens source](${RAW}/packages/tokens/src/soft-club.css): every --sc-* custom property and all four theme blocks
+
+## Components
+
+${componentItems.map(componentLine).join("\n")}
+
+## Hooks and utilities
+
+${[baseItem, themeColorItem, ...hookItems].map(componentLine).join("\n")}
+
+## Optional
+
+- [Demo website](${HOMEPAGE}/demo/): product-style pages composed from the library
+- [Contributing guide](${RAW}/CONTRIBUTING.md): conventions for new components and the registry
+- [npm: @softclub/ui](https://www.npmjs.com/package/@softclub/ui)
+- [npm: @softclub/tokens](https://www.npmjs.com/package/@softclub/tokens)
+`;
+
+fs.writeFileSync(path.join(OUT_DIR, "llms.txt"), llmsTxt);
+
+const registryDepNames = (item) =>
+  (item.registryDependencies ?? [])
+    .map((url) => url.split("/").pop().replace(/\.json$/, ""))
+    .join(", ") || "none";
+
+const fullSection = (item) => {
+  const file = item.files[0];
+  const fence = file.target.endsWith(".tsx") ? "tsx" : "ts";
+  return `### ${item.title} (\`${item.name}\`)
+
+${item.description}
+
+- Registry item: ${itemUrl(item.name)}
+- Install: \`npx shadcn@latest add ${itemUrl(item.name)}\`
+- npm dependencies: ${item.dependencies?.join(", ") || "none"}
+- Registry dependencies: ${registryDepNames(item)}
+- Installs to: \`${file.target}\`
+
+\`\`\`${fence}
+${file.content.trim()}
+\`\`\`
+`;
+};
+
+const llmsFullTxt = `# Soft Club UI (full reference)
+
+${summary}
+
+This is the expanded companion to [llms.txt](${HOMEPAGE}/llms.txt). It inlines the complete design token sheet, the complete component stylesheet, and the full TypeScript source of every component, hook, and utility, exactly as the shadcn registry distributes them. Nothing else is required to understand or use the library.
+
+${facts}
+- The sources below are the registry variants: imports use the \`@/\` alias convention (\`@/lib/soft-club/cx\`, \`@/components/soft-club/<name>\`) and carry a \`"use client"\` directive. The npm package ships the same components with relative imports.
+
+## Using the npm package
+
+\`\`\`tsx
+import "@softclub/ui/styles.css";
+import { Badge, Button, Card, CardContent, CardHeader, CardTitle } from "@softclub/ui";
+
+export function Example() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Room A3</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Badge variant="green">Glass</Badge>
+        <Button>Sync channel</Button>
+      </CardContent>
+    </Card>
+  );
+}
+\`\`\`
+
+Select a theme on the root element: \`<html data-sc-theme="night-city">\`.
+
+## Design tokens (@softclub/tokens)
+
+Every \`--sc-*\` custom property and all four theme blocks. The registry \`base\` item installs this file to \`styles/soft-club-tokens.css\`.
+
+\`\`\`css
+${tokensCss.trim()}
+\`\`\`
+
+## Component stylesheet (@softclub/ui)
+
+All \`sc-*\` component class names are defined here. The registry \`base\` item installs this file to \`styles/soft-club.css\`.
+
+\`\`\`css
+${stylesCss.trim()}
+\`\`\`
+
+## Utilities
+
+${[
+  { ...baseItem, files: baseItem.files.filter((file) => file.target.endsWith("cx.ts")) },
+  themeColorItem
+]
+  .map(fullSection)
+  .join("\n")}
+
+## Hooks
+
+${hookItems.map(fullSection).join("\n")}
+
+## Components
+
+${componentItems.map(fullSection).join("\n")}`;
+
+fs.writeFileSync(path.join(OUT_DIR, "llms-full.txt"), llmsFullTxt);
+
 process.stdout.write(
-  `registry: ${items.length} items (${componentItems.length} components) -> ${path.relative(ROOT, rDir)}\n`
+  `registry: ${items.length} items (${componentItems.length} components) + llms.txt + llms-full.txt -> ${path.relative(ROOT, OUT_DIR)}\n`
 );

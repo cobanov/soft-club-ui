@@ -32,7 +32,7 @@ pnpm build
 
 ## Component Registry
 
-Every component in `packages/ui/src/components/` is also published as a shadcn-compatible registry item. `scripts/build-registry.mjs` derives each item from the component source: npm dependencies, sibling component imports, hooks, and libs become the dependency graph automatically, so there is nothing to register by hand. New components join the registry on the next docs build. Run `pnpm build:registry` to regenerate it locally.
+Every component in `packages/ui/src/components/` is also published as a shadcn-compatible registry item. `scripts/build-registry.mjs` derives each item from the component source: npm dependencies, sibling component imports, hooks, and libs become the dependency graph automatically, so there is nothing to register by hand. New components join the registry, `llms.txt`, and `llms-full.txt` on the next docs build. Run `pnpm build:registry` to regenerate them locally.
 
 ## Release Notes
 
