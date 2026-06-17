@@ -5150,3 +5150,201 @@
     transition: none;
   }
 }
+
+/* ============================================================
+   Image effects (canvas): ASCII, mosaic, dither, halftone
+   Each is a .sc-live surface with a signature ground the
+   transparent canvas prints over. Grounds read the active theme.
+   ============================================================ */
+.sc-ascii-image,
+.sc-mosaic-image,
+.sc-dither-image,
+.sc-halftone-image {
+  isolation: isolate;
+}
+
+.sc-ascii-image {
+  background:
+    radial-gradient(120% 90% at 50% 36%, rgb(var(--sc-theme-rgb-secondary) / 0.16), transparent 60%),
+    radial-gradient(150% 130% at 50% 120%, rgb(var(--sc-theme-rgb-primary) / 0.1), transparent 55%),
+    #05060a;
+}
+
+.sc-mosaic-image {
+  background:
+    linear-gradient(125deg, rgb(var(--sc-theme-rgb-secondary) / 0.22), transparent 46%),
+    linear-gradient(305deg, rgb(var(--sc-theme-rgb-primary) / 0.2), transparent 48%),
+    #0a0d0c;
+}
+
+.sc-dither-image {
+  background:
+    linear-gradient(
+      158deg,
+      rgb(var(--sc-theme-rgb-secondary) / 0.94),
+      rgb(var(--sc-theme-rgb-primary) / 0.68) 72%
+    ),
+    #0a1430;
+}
+
+.sc-halftone-image {
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgb(var(--sc-theme-rgb-primary) / 0.18), transparent 58%),
+    linear-gradient(180deg, rgba(8, 16, 12, 0.45), #04070a 78%);
+}
+
+/* ============================================================
+   ASCII snapshot — framed shareable card
+   ============================================================ */
+.sc-ascii-snapshot {
+  backdrop-filter: blur(18px) saturate(126%);
+  background: var(--sc-color-surface);
+  border: var(--sc-border);
+  border-radius: var(--sc-radius-3);
+  box-shadow: var(--sc-shadow-1), var(--sc-shadow-inset);
+  color: var(--sc-color-text);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--sc-font-sans);
+  gap: var(--sc-space-4);
+  padding: var(--sc-space-5);
+  position: relative;
+}
+
+.sc-ascii-snapshot__frame {
+  inset: var(--sc-space-3);
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.sc-ascii-snapshot__corner {
+  border: 0 solid rgb(var(--sc-theme-rgb-primary) / 0.5);
+  height: 14px;
+  position: absolute;
+  width: 14px;
+}
+
+.sc-ascii-snapshot__corner--tl {
+  border-left-width: 1.5px;
+  border-top-width: 1.5px;
+  left: 0;
+  top: 0;
+}
+
+.sc-ascii-snapshot__corner--tr {
+  border-right-width: 1.5px;
+  border-top-width: 1.5px;
+  right: 0;
+  top: 0;
+}
+
+.sc-ascii-snapshot__corner--bl {
+  border-bottom-width: 1.5px;
+  border-left-width: 1.5px;
+  bottom: 0;
+  left: 0;
+}
+
+.sc-ascii-snapshot__corner--br {
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+  bottom: 0;
+  right: 0;
+}
+
+.sc-ascii-snapshot__media {
+  display: flex;
+  min-height: 16rem;
+  position: relative;
+}
+
+.sc-ascii-snapshot__media > * {
+  flex: 1;
+  min-height: 0;
+}
+
+.sc-ascii-snapshot__media .sc-live {
+  min-height: 0;
+}
+
+.sc-ascii-snapshot__body {
+  display: grid;
+  gap: var(--sc-space-2);
+}
+
+.sc-ascii-snapshot__headline {
+  align-items: flex-start;
+  display: flex;
+  gap: var(--sc-space-3);
+  justify-content: space-between;
+}
+
+.sc-ascii-snapshot__title {
+  font-size: var(--sc-font-size-6);
+  line-height: var(--sc-line-height-tight);
+  margin: 0;
+}
+
+.sc-ascii-snapshot__action {
+  flex: 0 0 auto;
+}
+
+.sc-ascii-snapshot__icon {
+  align-items: center;
+  background: var(--sc-color-surface-inset);
+  border: var(--sc-border-strong);
+  border-radius: var(--sc-radius-2);
+  color: var(--sc-color-text);
+  cursor: pointer;
+  display: inline-flex;
+  height: 2rem;
+  justify-content: center;
+  transition:
+    background 160ms var(--sc-motion-ease),
+    border-color 160ms var(--sc-motion-ease),
+    transform 160ms var(--sc-motion-ease);
+  width: 2rem;
+}
+
+.sc-ascii-snapshot__icon:hover {
+  background: var(--sc-color-surface-raised);
+  border-color: rgb(var(--sc-theme-rgb-primary) / 0.6);
+  transform: translateY(-1px);
+}
+
+.sc-ascii-snapshot__icon:focus-visible {
+  outline: 2px solid rgb(var(--sc-theme-rgb-primary) / 0.6);
+  outline-offset: 2px;
+}
+
+.sc-ascii-snapshot__description {
+  color: var(--sc-color-text-muted);
+  font-size: var(--sc-font-size-2);
+  line-height: var(--sc-line-height-normal);
+  margin: 0;
+  max-width: 40ch;
+}
+
+.sc-ascii-snapshot__footer {
+  align-items: center;
+  border-top: var(--sc-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sc-space-3);
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: var(--sc-space-4);
+}
+
+.sc-ascii-snapshot__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sc-space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-ascii-snapshot__icon {
+    transition: none;
+  }
+}

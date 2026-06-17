@@ -12,6 +12,12 @@ export interface CanvasFrame {
 export interface UseCanvasAnimationOptions {
   fps?: number;
   reactive?: boolean;
+  /**
+   * Re-runs the driver when this value changes. Use it to force a fresh static
+   * frame once an async data source (e.g. an image) has loaded, so the
+   * reduced-motion single-frame path does not get stuck on a placeholder.
+   */
+  redrawKey?: number | string | boolean;
 }
 
 /**
@@ -26,7 +32,7 @@ export function useCanvasAnimation(
   draw: (frame: CanvasFrame) => void,
   options: UseCanvasAnimationOptions = {}
 ) {
-  const { fps = 0, reactive = false } = options;
+  const { fps = 0, reactive = false, redrawKey } = options;
   const drawRef = React.useRef(draw);
   drawRef.current = draw;
 
@@ -106,5 +112,5 @@ export function useCanvasAnimation(
       resizeObserver.disconnect();
       if (reactive) window.removeEventListener("mousemove", onPointerMove);
     };
-  }, [canvasRef, fps, hostRef, reactive]);
+  }, [canvasRef, fps, hostRef, reactive, redrawKey]);
 }

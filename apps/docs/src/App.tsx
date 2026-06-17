@@ -74,16 +74,20 @@ import {
 import {
   Alert,
   AnnouncementBar,
+  AsciiImage,
+  AsciiSnapshot,
   Avatar,
   Breadcrumb,
   ButtonGroup,
   Calendar,
   DateInput,
   DatePicker,
+  DitherImage,
   DuotoneCard,
   DuotoneImage,
   GlitchText,
   GradientBanner,
+  HalftoneImage,
   Kbd,
   Label,
   Loader,
@@ -91,6 +95,7 @@ import {
   loaderNames,
   LogoRow,
   MatrixRain,
+  MosaicImage,
   NativeSelect,
   OrbitLoader,
   Pagination,
@@ -2139,6 +2144,119 @@ const componentEntries: ComponentEntry[] = [
     slug: "duotone-card"
   },
   {
+    category: "Media",
+    code: `<AsciiImage charRamp=" .:/|<>=+*#" />`,
+    description: "Renders an image or procedural subject as a live, theme-tinted field of ASCII glyphs.",
+    name: "AsciiImage",
+    preview: () => <AsciiImage charRamp=" .:/|<>=+*#" label="ASCII / SCREEN" />,
+    slug: "ascii-image"
+  },
+  {
+    category: "Media",
+    code: `<MosaicImage src={src} cell={16} />`,
+    description: "Pixelates an image into posterized rounded tiles with grout the theme ground shows through.",
+    name: "MosaicImage",
+    preview: () => (
+      <MosaicImage label="MOSAIC" src="https://picsum.photos/seed/soft-club-mosaic/640/360" />
+    ),
+    slug: "mosaic-image"
+  },
+  {
+    category: "Media",
+    code: `<DitherImage src={src} />`,
+    description: "Prints an image as a scrolling diagonal line-screen, ordered-dithered over a saturated theme field.",
+    name: "DitherImage",
+    preview: () => (
+      <DitherImage label="DITHER" src="https://picsum.photos/seed/soft-club-dither/640/360" />
+    ),
+    slug: "dither-image"
+  },
+  {
+    category: "Media",
+    code: `<HalftoneImage cell={10} />`,
+    description: "Reduces an image or procedural subject to theme-tinted halftone dots sized by luminance.",
+    name: "HalftoneImage",
+    preview: () => <HalftoneImage label="HALFTONE" />,
+    slug: "halftone-image"
+  },
+  {
+    category: "Surfaces",
+    code: `<AsciiSnapshot><AsciiSnapshot.Media><AsciiImage charRamp="01" /></AsciiSnapshot.Media>…</AsciiSnapshot>`,
+    description: "Framed share card: an animated ASCII portrait over a headline, copy, range toggle, and share actions.",
+    name: "AsciiSnapshot",
+    preview: () => (
+      <div className="snapshot-grid">
+        <AsciiSnapshot>
+          <AsciiSnapshot.Media>
+            <AsciiImage charRamp="01" label="SC / BINARY" />
+          </AsciiSnapshot.Media>
+          <AsciiSnapshot.Body>
+            <AsciiSnapshot.Headline
+              action={
+                <button aria-label="Open snapshot" className="sc-ascii-snapshot__icon" type="button">
+                  ↗
+                </button>
+              }
+            >
+              Turn Analysis Into Authority.
+            </AsciiSnapshot.Headline>
+            <AsciiSnapshot.Description>
+              Don't just track the market, narrate it. Generate watermarked, high-fidelity chart
+              snapshots and broadcast your thesis to your audience instantly.
+            </AsciiSnapshot.Description>
+          </AsciiSnapshot.Body>
+          <AsciiSnapshot.Footer>
+            <ToggleGroup aria-label="Snapshot time range" defaultValue={["1m"]} size="sm">
+              <ToggleGroup.Item value="1d">1D</ToggleGroup.Item>
+              <ToggleGroup.Item value="7d">7D</ToggleGroup.Item>
+              <ToggleGroup.Item value="1m">1M</ToggleGroup.Item>
+            </ToggleGroup>
+            <AsciiSnapshot.Actions>
+              <Button size="sm" variant="outline">
+                Copy Link
+              </Button>
+              <Button size="sm">Share to X</Button>
+            </AsciiSnapshot.Actions>
+          </AsciiSnapshot.Footer>
+        </AsciiSnapshot>
+        <AsciiSnapshot>
+          <AsciiSnapshot.Media>
+            <AsciiImage charRamp="0123456789" label="SC / SIGNAL" />
+          </AsciiSnapshot.Media>
+          <AsciiSnapshot.Body>
+            <AsciiSnapshot.Headline
+              action={
+                <button aria-label="Open snapshot" className="sc-ascii-snapshot__icon" type="button">
+                  ↗
+                </button>
+              }
+            >
+              Share The Narrative.
+            </AsciiSnapshot.Headline>
+            <AsciiSnapshot.Description>
+              Don't just share a screenshot. Publish interactive market snapshots that let your team
+              inspect the data behind your thesis.
+            </AsciiSnapshot.Description>
+          </AsciiSnapshot.Body>
+          <AsciiSnapshot.Footer>
+            <ToggleGroup aria-label="Snapshot time range" defaultValue={["7d"]} size="sm">
+              <ToggleGroup.Item value="1d">1D</ToggleGroup.Item>
+              <ToggleGroup.Item value="7d">7D</ToggleGroup.Item>
+              <ToggleGroup.Item value="1m">1M</ToggleGroup.Item>
+            </ToggleGroup>
+            <AsciiSnapshot.Actions>
+              <Button size="sm" variant="outline">
+                Copy Embed
+              </Button>
+              <Button size="sm">Share View</Button>
+            </AsciiSnapshot.Actions>
+          </AsciiSnapshot.Footer>
+        </AsciiSnapshot>
+      </div>
+    ),
+    slug: "ascii-snapshot"
+  },
+  {
     category: "Date & Time",
     code: `<Calendar defaultValue={new Date()} />`,
     description: "Month-grid calendar with keyboard navigation and single-date selection.",
@@ -2304,7 +2422,7 @@ const categoryDescriptions: Record<string, string> = {
   Foundations: "Small primitives that carry state, spacing, and separators.",
   Instruments: "Generative canvas instruments: live simulations you can play, regen, and export.",
   "Live & Reactive": "Canvas-driven, cursor-aware, always-moving surfaces.",
-  Media: "Image treatments that recolor to a chosen hue or the active theme.",
+  Media: "Image treatments — duotone, ASCII, mosaic, dither, and halftone — tuned to a chosen hue or the active theme.",
   Menus: "Menu bars, right-click menus, and navigation menus.",
   "Motion & Type": "Animated type and controlled emphasis components.",
   Navigation: "Tabs, disclosure, menus, dialogs, popovers, and tooltips.",
@@ -2340,6 +2458,11 @@ const wideExampleSlugs = new Set([
   "curl-field",
   "duotone-card",
   "duotone-image",
+  "ascii-image",
+  "ascii-snapshot",
+  "mosaic-image",
+  "dither-image",
+  "halftone-image",
   "accretion-cluster",
   "chladni-plate",
   "clifford-smoke",
