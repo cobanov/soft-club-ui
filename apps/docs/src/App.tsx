@@ -74,6 +74,7 @@ import {
 import {
   Alert,
   AnnouncementBar,
+  AsciiBackdrop,
   AsciiDonut,
   AsciiFire,
   AsciiFlow,
@@ -2142,6 +2143,21 @@ const componentEntries: ComponentEntry[] = [
   },
   {
     category: "Media",
+    code: `<AsciiBackdrop seed={42} />`,
+    description:
+      "A static, seeded halftone-dot background. Every seed deterministically generates a unique soft colour field; pass a brand palette or a glyphs ramp for an ASCII variant.",
+    name: "AsciiBackdrop",
+    preview: () => (
+      <div style={{ display: "grid", gap: "0.6rem", gridTemplateColumns: "repeat(3, 1fr)" }}>
+        {[7, 42, 2026].map((value) => (
+          <AsciiBackdrop key={value} cell={6} seed={value} style={{ minHeight: "11rem" }} />
+        ))}
+      </div>
+    ),
+    slug: "ascii-backdrop"
+  },
+  {
+    category: "Media",
     code: `<DuotoneImage src={src} color="rgb(142 255 173)" />`,
     description: "Recolors any image into a single-hue duotone via CSS blends.",
     name: "DuotoneImage",
@@ -2517,6 +2533,7 @@ const categories = Object.entries(groupedEntries).map(([category, entries]) => (
 }));
 
 const wideExampleSlugs = new Set([
+  "ascii-backdrop",
   "ascii-banner",
   "ascii-donut",
   "ascii-fire",
