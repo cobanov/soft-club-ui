@@ -3,6 +3,7 @@ export * from "./components/accretion-cluster";
 export * from "./components/alert";
 export * from "./components/alert-dialog";
 export * from "./components/announcement-bar";
+export * from "./components/ascii-backdrop";
 export * from "./components/ascii-donut";
 export * from "./components/ascii-fire";
 export * from "./components/ascii-flow";
