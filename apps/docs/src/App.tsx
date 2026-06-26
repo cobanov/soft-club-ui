@@ -74,8 +74,15 @@ import {
 import {
   Alert,
   AnnouncementBar,
+  AsciiDonut,
+  AsciiFire,
+  AsciiFlow,
   AsciiImage,
+  AsciiLife,
+  AsciiPlasma,
   AsciiSnapshot,
+  AsciiStars,
+  AsciiTunnel,
   Avatar,
   Breadcrumb,
   ButtonGroup,
@@ -2036,6 +2043,69 @@ const componentEntries: ComponentEntry[] = [
   },
   {
     category: "Live & Reactive",
+    code: `<AsciiDonut />`,
+    description:
+      "The spinning 3D ASCII torus, shaded by surface normals. The light tracks the cursor.",
+    name: "AsciiDonut",
+    preview: () => <AsciiDonut label="ASCII / DONUT" />,
+    slug: "ascii-donut"
+  },
+  {
+    category: "Live & Reactive",
+    code: `<AsciiPlasma />`,
+    description:
+      "Classic plasma interference rendered as a glyph density field; bulges toward the cursor.",
+    name: "AsciiPlasma",
+    preview: () => <AsciiPlasma label="PLASMA / FIELD" />,
+    slug: "ascii-plasma"
+  },
+  {
+    category: "Live & Reactive",
+    code: `<AsciiLife />`,
+    description:
+      "Conway's Game of Life on a glyph grid. Hover to paint living cells into the simulation.",
+    name: "AsciiLife",
+    preview: () => <AsciiLife label="GAME OF LIFE" />,
+    slug: "ascii-life"
+  },
+  {
+    category: "Live & Reactive",
+    code: `<AsciiFire />`,
+    description:
+      "Rising ASCII flame field. The cursor becomes a torch that injects heat and bends the fire.",
+    name: "AsciiFire",
+    preview: () => <AsciiFire label="ASCII / FIRE" />,
+    slug: "ascii-fire"
+  },
+  {
+    category: "Live & Reactive",
+    code: `<AsciiFlow />`,
+    description:
+      "A dense glyph flow field with drifting negative-space voids that deform around the cursor.",
+    name: "AsciiFlow",
+    preview: () => <AsciiFlow label="FLOW / FIELD" />,
+    slug: "ascii-flow"
+  },
+  {
+    category: "Live & Reactive",
+    code: `<AsciiStars />`,
+    description:
+      "A 3D ASCII starfield flying toward the viewer; the cursor steers the vanishing point.",
+    name: "AsciiStars",
+    preview: () => <AsciiStars label="STARFIELD" />,
+    slug: "ascii-stars"
+  },
+  {
+    category: "Live & Reactive",
+    code: `<AsciiTunnel />`,
+    description:
+      "Concentric rings receding to a vanishing point; hover to steer where the tunnel converges.",
+    name: "AsciiTunnel",
+    preview: () => <AsciiTunnel label="TUNNEL" />,
+    slug: "ascii-tunnel"
+  },
+  {
+    category: "Live & Reactive",
     code: `<ParticleField />`,
     description: "Cursor-reactive constellation of particles linked by signal lines.",
     name: "ParticleField",
@@ -2448,7 +2518,14 @@ const categories = Object.entries(groupedEntries).map(([category, entries]) => (
 
 const wideExampleSlugs = new Set([
   "ascii-banner",
+  "ascii-donut",
+  "ascii-fire",
+  "ascii-flow",
   "ascii-hero",
+  "ascii-life",
+  "ascii-plasma",
+  "ascii-stars",
+  "ascii-tunnel",
   "aurora-field",
   "before-after",
   "calendar",
